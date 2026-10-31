@@ -12,7 +12,7 @@
 <div class="cross-sell-product-page-section container{% render 'wide-css-class' %}{% render 'section-gutters-nobkg' %}" id="crosssell-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product-crosssell">
   {%- render 'section-heading' -%}
   {%- if section.settings.display == 'widget' -%}
-    {%- render 'product-single-fre-bought' with product: product, fre_handles: product.metafields.btt.fre_bought, enable_rtl: enable_rtl -%}
+    {%- render 'product-single-fre-bought' with product, product: product, fre_handles: product.metafields.btt.fre_bought, enable_rtl: enable_rtl -%}
   {%- else -%}
     {%- capture fre_bought_content -%}
       {%- assign fre_show = 0 -%}
@@ -29,27 +29,7 @@
             {%- assign fre_product = all_products[fre_handle] -%}
             {%- unless fre_product == blank or fre_cart_ids contains fre_product.id -%}
               {%- assign fre_show = fre_show | plus: 1 -%}
-              {%- render 'product-grid-item' with
-                product: fre_product, 
-                use_slider: true, 
-                index: fre_show, 
-                lazy_index: 999,
-                column_count: 4, 
-                main_thumbnail: settings.cross_sell_main_thumbnail, 
-                image_size: '375x', 
-                truncate_count: settings.cross_sell_product_name_size,
-                enable_product_options: settings.cross_sell_enable_product_options, 
-                show_review_stars: settings.cross_sell_show_review_stars,
-                enable_small_images: false,
-                show_wishlist_btn: settings.cross_sell_show_wishlist_btn,
-                small_image: '1x',
-                show_label : settings.cross_sell_show_label,
-                show_cart_btn: settings.cross_sell_show_cart_btn,
-                show_wishlist : false,
-                show_compare_btn: settings.cross_sell_show_compare_btn,
-                show_qs_btn: settings.cross_sell_show_qs_btn,
-                small_image_slider: false
-              -%}
+              {%- render 'product-grid-item' with product, product: fre_product, use_slider: true, index: fre_show, lazy_index: 999, column_count: 4, main_thumbnail: settings.cross_sell_main_thumbnail, image_size: '375x', truncate_count: settings.cross_sell_product_name_size, enable_product_options: settings.cross_sell_enable_product_options, show_review_stars: settings.cross_sell_show_review_stars, enable_small_images: false, show_wishlist_btn: settings.cross_sell_show_wishlist_btn, small_image: '1x', show_label: settings.cross_sell_show_label, show_cart_btn: settings.cross_sell_show_cart_btn, show_wishlist: false, show_compare_btn: settings.cross_sell_show_compare_btn, show_qs_btn: settings.cross_sell_show_qs_btn, small_image_slider: false -%}
             {%- endunless -%}
           {%- endif -%}
         {%- endfor -%}
@@ -69,27 +49,7 @@
               {%- if fre_show < fre_max_length -%}
                 {%- unless fre_product == blank or fre_cart_ids contains fre_product.id -%}
                   {%- assign fre_show = fre_show | plus: 1 -%}
-                  {%- render 'product-grid-item' with
-                    product: fre_product, 
-                    use_slider: true, 
-                    index: fre_show, 
-                    lazy_index: 999,
-                    column_count: 4, 
-                    main_thumbnail: section.settings.main_thumbnail, 
-                    image_size: '375x', 
-                    truncate_count: section.settings.product_name_size,
-                    enable_product_options: section.settings.enable_product_options, 
-                    show_review_stars: section.settings.show_review_stars,
-                    enable_small_images: false,
-                    show_wishlist_btn: section.settings.show_wishlist_btn,
-                    small_image: '1x',
-                    show_label : section.settings.show_label,
-                    show_cart_btn: section.settings.show_cart_btn,
-                    show_wishlist : false,
-                    show_compare_btn: section.settings.show_compare_btn,
-                    show_qs_btn: section.settings.show_qs_btn,
-                    small_image_slider: false
-                  -%}
+                  {%- render 'product-grid-item' with product, product: fre_product, use_slider: true, index: fre_show, lazy_index: 999, column_count: 4, main_thumbnail: section.settings.main_thumbnail, image_size: '375x', truncate_count: section.settings.product_name_size, enable_product_options: section.settings.enable_product_options, show_review_stars: section.settings.show_review_stars, enable_small_images: false, show_wishlist_btn: section.settings.show_wishlist_btn, small_image: '1x', show_label: section.settings.show_label, show_cart_btn: section.settings.show_cart_btn, show_wishlist: false, show_compare_btn: section.settings.show_compare_btn, show_qs_btn: section.settings.show_qs_btn, small_image_slider: false -%}
                 {%- endunless -%}
               {%- endif -%}
             {%- endfor -%}  
@@ -105,7 +65,7 @@
   {%- endif -%}
 </div>
 {%- style -%}
-  {%- render 'preload-product-single-fre-bought.css' with left_holder: left_holder, right_holder: right_holder -%}
+  {%- render 'preload-product-single-fre-bought.css' with left_holder, left_holder: left_holder, right_holder: right_holder -%}
 {%- endstyle -%}
 {% schema %}
 {
@@ -272,4 +232,64 @@
     }
   ]
 }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-single-fre-bought' with product: product, fre_handles:
+    product.metafields.btt.fre_bought, enable_rtl: enable_rtl -%}"
+  to: "{%- render 'product-single-fre-bought' with product, product: product, fre_handles:
+    product.metafields.btt.fre_bought, enable_rtl: enable_rtl -%}"
+  position: 634..779
+- from: "{%- render 'product-grid-item' with\n                product: fre_product,
+    \n                use_slider: true, \n                index: fre_show, \n                lazy_index:
+    999,\n                column_count: 4, \n                main_thumbnail: settings.cross_sell_main_thumbnail,
+    \n                image_size: '375x', \n                truncate_count: settings.cross_sell_product_name_size,\n
+    \               enable_product_options: settings.cross_sell_enable_product_options,
+    \n                show_review_stars: settings.cross_sell_show_review_stars,\n
+    \               enable_small_images: false,\n                show_wishlist_btn:
+    settings.cross_sell_show_wishlist_btn,\n                small_image: '1x',\n                show_label
+    : settings.cross_sell_show_label,\n                show_cart_btn: settings.cross_sell_show_cart_btn,\n
+    \               show_wishlist : false,\n                show_compare_btn: settings.cross_sell_show_compare_btn,\n
+    \               show_qs_btn: settings.cross_sell_show_qs_btn,\n                small_image_slider:
+    false\n              -%}"
+  to: "{%- render 'product-grid-item' with product, product: fre_product, use_slider:
+    true, index: fre_show, lazy_index: 999, column_count: 4, main_thumbnail: settings.cross_sell_main_thumbnail,
+    image_size: '375x', truncate_count: settings.cross_sell_product_name_size, enable_product_options:
+    settings.cross_sell_enable_product_options, show_review_stars: settings.cross_sell_show_review_stars,
+    enable_small_images: false, show_wishlist_btn: settings.cross_sell_show_wishlist_btn,
+    small_image: '1x', show_label: settings.cross_sell_show_label, show_cart_btn:
+    settings.cross_sell_show_cart_btn, show_wishlist: false, show_compare_btn: settings.cross_sell_show_compare_btn,
+    show_qs_btn: settings.cross_sell_show_qs_btn, small_image_slider: false -%}"
+  position: 1678..2419
+- from: "{%- render 'product-grid-item' with\n                    product: fre_product,
+    \n                    use_slider: true, \n                    index: fre_show,
+    \n                    lazy_index: 999,\n                    column_count: 4, \n
+    \                   main_thumbnail: section.settings.main_thumbnail, \n                    image_size:
+    '375x', \n                    truncate_count: section.settings.product_name_size,\n
+    \                   enable_product_options: section.settings.enable_product_options,
+    \n                    show_review_stars: section.settings.show_review_stars,\n
+    \                   enable_small_images: false,\n                    show_wishlist_btn:
+    section.settings.show_wishlist_btn,\n                    small_image: '1x',\n
+    \                   show_label : section.settings.show_label,\n                    show_cart_btn:
+    section.settings.show_cart_btn,\n                    show_wishlist : false,\n
+    \                   show_compare_btn: section.settings.show_compare_btn,\n                    show_qs_btn:
+    section.settings.show_qs_btn,\n                    small_image_slider: false\n
+    \                 -%}"
+  to: "{%- render 'product-grid-item' with product, product: fre_product, use_slider:
+    true, index: fre_show, lazy_index: 999, column_count: 4, main_thumbnail: section.settings.main_thumbnail,
+    image_size: '375x', truncate_count: section.settings.product_name_size, enable_product_options:
+    section.settings.enable_product_options, show_review_stars: section.settings.show_review_stars,
+    enable_small_images: false, show_wishlist_btn: section.settings.show_wishlist_btn,
+    small_image: '1x', show_label: section.settings.show_label, show_cart_btn: section.settings.show_cart_btn,
+    show_wishlist: false, show_compare_btn: section.settings.show_compare_btn, show_qs_btn:
+    section.settings.show_qs_btn, small_image_slider: false -%}"
+  position: 3663..4377
+- from: "{%- render 'preload-product-single-fre-bought.css' with left_holder: left_holder,
+    right_holder: right_holder -%}"
+  to: "{%- render 'preload-product-single-fre-bought.css' with left_holder, left_holder:
+    left_holder, right_holder: right_holder -%}"
+  position: 4760..4885
+{%- endcomment -%}

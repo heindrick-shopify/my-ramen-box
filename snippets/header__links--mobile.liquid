@@ -65,7 +65,7 @@
 {%- if header_cart_layout_mobile != 'no_display' -%}
 	{%- capture header_cart_link_html -%}
 	<a href="{% if header_cart_layout_mobile == 'only_link' %}{{ routes.cart_url }}{% else %}#{% endif %}" class="por{% if header_cart_layout_mobile != 'only_link' %} header__cart-trigger-mobile{% endif %}{% if header_cart_layout_mobile == 'dropdown' %} bt-dropdown__trigger w100 dib{% elsif header_cart_layout_mobile == 'sidebar' %} bt-sidebar-btn{% endif %} header__link"{% if header_cart_layout_mobile == 'sidebar' %} data-target="#bt-sidebar-cart" data-placement="{% unless settings.enable_rtl and settings.rtl_language_codes contains request.locale.iso_code %}right{% else %}left{% endunless %}"{% endif %} title="{{ 'layout.cart.title' | t | escape }}">
-      	  {% render 'icon-cart-header' with add_class: 'ver-sub' %}
+      	  {% render 'icon-cart-header' with add_class, add_class: 'ver-sub' %}
 		  <span class="cart-number text-center abs-number fw-bold">{{ cart.item_count }}</span>
 	</a>
 	{%- endcapture -%}
@@ -86,4 +86,13 @@
 {%- endif -%}
 {%- if header_cart_layout_mobile != 'dropdown' and header_cart_layout_mobile != 'sidebar' and settings.add_cart_action == 'open_cart' -%}
 	<a href="#" class="hide bt-sidebar-btn header__cart-trigger-mobile" data-target="#bt-sidebar-cart" data-placement="{% unless settings.enable_rtl and settings.rtl_language_codes contains request.locale.iso_code %}right{% else %}left{% endunless %}" title="{{ 'layout.cart.title' | t | escape }}">&nbsp;</a>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'icon-cart-header' with add_class: 'ver-sub' %}"
+  to: "{% render 'icon-cart-header' with add_class, add_class: 'ver-sub' %}"
+  position: 4105..4173
+{%- endcomment -%}

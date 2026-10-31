@@ -17,27 +17,7 @@
   {%- paginate search.results by settings.search_suggest_limit -%}  
     {%- for item in search.results -%}
       {%- if item.object_type == 'product' -%}
-        {%- render 'product-grid-item' with
-          product: item, 
-          use_slider: false, 
-          limit_first: 0, 
-          index: forloop.index, 
-          lazy_index: 15,
-          column_count: 5, 
-          main_thumbnail: settings.search_suggest_main_thumbnail, 
-          image_size: '1x', 
-          truncate_count: settings.search_suggest_product_name_size, enable_product_options: settings.search_suggest_enable_product_options,
-          show_review_stars: settings.search_suggest_show_review_stars,
-          enable_small_images: false,
-          show_wishlist_btn: settings.search_suggest_show_wishlist_btn,
-          small_image: '1x',
-          show_label : settings.search_suggest_show_label,
-          show_cart_btn: settings.search_suggest_show_cart_btn,
-          show_wishlist : false,
-          show_compare_btn: settings.search_suggest_show_compare_btn,
-          show_qs_btn: settings.search_suggest_show_qs_btn,
-          show_desc: true,
-          highlight_text: search.terms -%}
+        {%- render 'product-grid-item' with product, product: item, use_slider: false, limit_first: 0, index: forloop.index, lazy_index: 15, column_count: 5, main_thumbnail: settings.search_suggest_main_thumbnail, image_size: '1x', truncate_count: settings.search_suggest_product_name_size, enable_product_options: settings.search_suggest_enable_product_options, show_review_stars: settings.search_suggest_show_review_stars, enable_small_images: false, show_wishlist_btn: settings.search_suggest_show_wishlist_btn, small_image: '1x', show_label: settings.search_suggest_show_label, show_cart_btn: settings.search_suggest_show_cart_btn, show_wishlist: false, show_compare_btn: settings.search_suggest_show_compare_btn, show_qs_btn: settings.search_suggest_show_qs_btn, show_desc: true, highlight_text: search.terms -%}
       {%- elsif item.object_type == 'article' -%}
         <div class="gutter-ele-top">
           <h4><a href="{{ item.url }}" title="{{ item.title | escape }}">
@@ -90,4 +70,31 @@
   <div class="text-center">
     <a class="button button--style1 search-full__close-js" href="#" title="{{ 'cart.general.continue_shopping' | t | escape }}">{{ 'cart.general.continue_shopping' | t }}</a>  
   </div>
-{%- endif -%} 
+{%- endif -%} {%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-grid-item' with\n          product: item, \n          use_slider:
+    false, \n          limit_first: 0, \n          index: forloop.index, \n          lazy_index:
+    15,\n          column_count: 5, \n          main_thumbnail: settings.search_suggest_main_thumbnail,
+    \n          image_size: '1x', \n          truncate_count: settings.search_suggest_product_name_size,
+    enable_product_options: settings.search_suggest_enable_product_options,\n          show_review_stars:
+    settings.search_suggest_show_review_stars,\n          enable_small_images: false,\n
+    \         show_wishlist_btn: settings.search_suggest_show_wishlist_btn,\n          small_image:
+    '1x',\n          show_label : settings.search_suggest_show_label,\n          show_cart_btn:
+    settings.search_suggest_show_cart_btn,\n          show_wishlist : false,\n          show_compare_btn:
+    settings.search_suggest_show_compare_btn,\n          show_qs_btn: settings.search_suggest_show_qs_btn,\n
+    \         show_desc: true,\n          highlight_text: search.terms -%}"
+  to: "{%- render 'product-grid-item' with product, product: item, use_slider: false,
+    limit_first: 0, index: forloop.index, lazy_index: 15, column_count: 5, main_thumbnail:
+    settings.search_suggest_main_thumbnail, image_size: '1x', truncate_count: settings.search_suggest_product_name_size,
+    enable_product_options: settings.search_suggest_enable_product_options, show_review_stars:
+    settings.search_suggest_show_review_stars, enable_small_images: false, show_wishlist_btn:
+    settings.search_suggest_show_wishlist_btn, small_image: '1x', show_label: settings.search_suggest_show_label,
+    show_cart_btn: settings.search_suggest_show_cart_btn, show_wishlist: false, show_compare_btn:
+    settings.search_suggest_show_compare_btn, show_qs_btn: settings.search_suggest_show_qs_btn,
+    show_desc: true, highlight_text: search.terms -%}"
+  position: 1007..1816
+{%- endcomment -%}

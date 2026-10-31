@@ -9,7 +9,7 @@
 			{%- endif -%}
 			{%- render 'language-picker', data_group: 'header__links', show_language_icon: true, hide_language_code: true, wrap_class: 'flex flex-align-ver header__link-ele', addition_classes: 'header__link flex flex-align-ver', dropdown_class: 'bt-dropdown__content--auto-center' -%}
 			<a href="#" title="{{ 'general.search.placeholder' | t | escape }}" class="search__input--desktop text-uppercase fw-bold search-full-trigger flex flex-align-ver header__link header__link-ele" rel="noreferrer">
-				{%- render 'icon-search' with add_class: 'fw-bold' -%}
+				{%- render 'icon-search' with add_class, add_class: 'fw-bold' -%}
 				<span class="header__search-text hidden-md">{{ 'general.search.placeholder' | t }}</span>
 			</a>
 		</div>
@@ -86,4 +86,13 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'icon-search' with add_class: 'fw-bold' -%}"
+  to: "{%- render 'icon-search' with add_class, add_class: 'fw-bold' -%}"
+  position: 1089..1154
+{%- endcomment -%}

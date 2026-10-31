@@ -1,4 +1,4 @@
-{%- render 'navigation-mobile' with section: section -%}
+{%- render 'navigation-mobile' with section, section: section -%}
 {% schema %}
 {
   "name": "Powerful Mobile Megamenu",
@@ -1079,3 +1079,13 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'navigation-mobile' with section: section -%}"
+  to: "{%- render 'navigation-mobile' with section, section: section -%}"
+  position: 0..65
+{% endcomment %}

@@ -1,7 +1,7 @@
 {%- layout none -%}
 {%- liquid
 	capture terms
-    render 'read-url-param' with param_name: 'q'
+    render 'read-url-param' with param_name, param_name: 'q'
   endcapture
   assign terms = terms | strip
   unless settings.enable_rtl and settings.rtl_language_codes contains request.locale.iso_code
@@ -14,9 +14,24 @@
     assign enable_rtl = true
   endunless  
 -%}
-{%- capture snippet_html -%}{%- include terms with left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl -%}{%- endcapture -%}
+{%- capture snippet_html -%}{%- include terms with left_holder, left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl -%}{%- endcapture -%}
 {%- unless snippet_html contains 'Liquid error' -%}
 {{ snippet_html }}
 {%- else -%}
 <div><span class="snippet-error">Error</span></div>
 {%- endunless -%}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "    render 'read-url-param' with param_name: 'q'"
+  to: "    render 'read-url-param' with param_name, param_name: 'q'"
+  position: 46..106
+- from: "{%- include terms with left_holder: left_holder, right_holder: right_holder,
+    enable_rtl: enable_rtl -%}"
+  to: "{%- include terms with left_holder, left_holder: left_holder, right_holder:
+    right_holder, enable_rtl: enable_rtl -%}"
+  position: 489..605
+{% endcomment %}

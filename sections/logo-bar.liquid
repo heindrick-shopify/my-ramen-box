@@ -4,7 +4,7 @@
     {%- assign heading_pos = section.settings.heading_pos -%}
     {%- if heading_pos == 'left' and section.settings.title != blank -%}
     <div class="col-xs-12 col-sm-5">
-      {%- render 'section-heading' with heading_align: 'left' -%}
+      {%- render 'section-heading' with heading_align, heading_align: 'left' -%}
     </div>
     {%- endif -%}
     {%- if heading_pos == 'above' and section.settings.title != blank -%}
@@ -88,7 +88,7 @@
     </div>
     {%- if heading_pos == 'right' and section.settings.title != blank -%}
     <div class="col-xs-12 col-sm-5 hidden-xs">
-      {%- render 'section-heading' with heading_align: 'right' -%}
+      {%- render 'section-heading' with heading_align, heading_align: 'right' -%}
     </div>
     {%- endif -%}
   </div>
@@ -322,3 +322,16 @@
     ]
   }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'section-heading' with heading_align: 'left' -%}"
+  to: "{%- render 'section-heading' with heading_align, heading_align: 'left' -%}"
+  position: 453..527
+- from: "{%- render 'section-heading' with heading_align: 'right' -%}"
+  to: "{%- render 'section-heading' with heading_align, heading_align: 'right' -%}"
+  position: 5474..5549
+{% endcomment %}

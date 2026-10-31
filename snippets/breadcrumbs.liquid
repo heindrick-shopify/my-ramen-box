@@ -37,7 +37,7 @@
             </a>
             <span class="breadcrumbs__slash dib">/</span>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
           </li>
         {% if template contains 'page' %}
           <li itemprop="itemListElement" itemscope
@@ -47,7 +47,7 @@
               <span itemprop="name">{{ page.title }}</span>
             </a>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
           </li>
         {% elsif template contains 'product' %}
           {% if collection.url %}
@@ -59,7 +59,7 @@
             </a>
             <span class="breadcrumbs__slash dib">/</span>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
           </li>
           {% endif %}
           <li itemprop="itemListElement" itemscope
@@ -69,7 +69,7 @@
               <span itemprop="name">{{ product.title }}</span>
             </a>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
           </li>
         {% elsif template contains 'collection' and collection.handle %}
           {% if current_tags %}
@@ -81,7 +81,7 @@
               </a>
               <span class="breadcrumbs__slash dib">/</span>
               {%- assign bIndex = bIndex | plus: 1 -%}
-              {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+              {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
             </li>
             <li itemprop="itemListElement" itemscope
       itemtype="https://schema.org/ListItem">
@@ -90,7 +90,7 @@
                 <span itemprop="name">{{ current_tags | join: " + " }}</span>
               </a>
               {%- assign bIndex = bIndex | plus: 1 -%}
-              {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+              {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
             </li>
           {% else %}
           <li itemprop="itemListElement" itemscope
@@ -100,7 +100,7 @@
               <span itemprop="name">{{ collection.title }}</span>
             </a>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
           </li>
           {% endif %}
         {% elsif template == 'blog' %}
@@ -113,7 +113,7 @@
             </a>
             <span class="breadcrumbs__slash dib">/</span>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
           </li>
           <li itemprop="itemListElement" itemscope
       itemtype="https://schema.org/ListItem">
@@ -122,7 +122,7 @@
               <span itemprop="name">{{ current_tags | join: " + " }}</span>
             </a>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
           </li>
           {% else %}
           <li itemprop="itemListElement" itemscope
@@ -132,7 +132,7 @@
               <span itemprop="name">{{ blog.title }}</span>
             </a>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
           </li>
           {% endif %}
         {% elsif template == 'article' %}
@@ -144,7 +144,7 @@
             </a>
             <span class="breadcrumbs__slash dib">/</span>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
           </li>
           <li itemprop="itemListElement" itemscope
       itemtype="https://schema.org/ListItem">
@@ -153,7 +153,7 @@
               <span itemprop="name">{{ article.title }}</span>
             </a>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
           </li>
         {% elsif template == 'cart' %}
           <li itemprop="itemListElement" itemscope
@@ -165,7 +165,7 @@
               </span>
             </a>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
           </li>
         {% elsif template == 'customers/order' %}
           <li itemprop="itemListElement" itemscope
@@ -177,7 +177,7 @@
               </span>
             </a>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
           </li>  
         {% elsif template == 'customers/active_account' %}
           <li itemprop="itemListElement" itemscope
@@ -189,7 +189,7 @@
               </span>
             </a>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
           </li>  
         {% elsif template == 'reset_password' %}
           <li itemprop="itemListElement" itemscope
@@ -201,7 +201,7 @@
               </span>
             </a>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}  
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}  
           </li>
         {% elsif template == 'search' %}
           <li itemprop="itemListElement" itemscope
@@ -213,7 +213,7 @@
               </span>
             </a>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}  
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}  
           </li>      
         {% else %}
           <li itemprop="itemListElement" itemscope
@@ -225,7 +225,7 @@
               </span>
             </a>
             {%- assign bIndex = bIndex | plus: 1 -%}
-            {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+            {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
           </li>
         {% endif %}
         </ul>
@@ -237,3 +237,64 @@
     </div>
   </div>
 </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 2513..2575
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 2970..3032
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 3537..3599
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 3980..4042
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 4584..4646
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 5079..5141
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 5529..5591
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 6095..6157
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 6570..6632
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 7006..7068
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 7543..7605
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 7964..8026
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 8471..8533
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 9061..9123
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 9664..9726
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 10246..10308
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 10846..10908
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 11322..11384
+{% endcomment %}

@@ -44,7 +44,7 @@
 	<div class="row gutter-ele-top gutter-bottom flex flex-align-ver{% if settings.use_sticky %} hide-in-sticky{% endif %}">
 		<div class="col-xs-4">
 			<a href="#" title="{{ 'general.search.placeholder' | t | escape }}" class="search__input--desktop text-uppercase fw-bold search-full-trigger flex flex-align-ver">
-				{%- render 'icon-search' with add_class: 'fw-bold' -%}
+				{%- render 'icon-search' with add_class, add_class: 'fw-bold' -%}
 				<span class="header__search-text">{{ 'general.search.placeholder' | t }}</span>
 			</a>
 		</div>
@@ -114,4 +114,13 @@
 			{% section 'navigation' %}
 		</div>
 	</div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'icon-search' with add_class: 'fw-bold' -%}"
+  to: "{%- render 'icon-search' with add_class, add_class: 'fw-bold' -%}"
+  position: 2596..2661
+{%- endcomment -%}

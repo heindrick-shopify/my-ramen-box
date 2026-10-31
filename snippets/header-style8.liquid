@@ -114,7 +114,7 @@
 			<div class="col-xs-12">
 				<div class="flex flex-align-space-between flex-align-ver header__search__inner{% if template.name == 'index' %} header-search-bkg{% endif %}">
 					{% section 'navigation-vertical' %}
-					{%- render 'search-form' with search_form_abs: true -%}
+					{%- render 'search-form' with search_form_abs, search_form_abs: true -%}
 					{%- if settings.header_style8_text1 != blank -%}
 						<div class="header__search__icon-text flex flex-align-ver flex-align-space-between hidden-md">
 							{%- render 'icon-like' -%}
@@ -131,4 +131,13 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'search-form' with search_form_abs: true -%}"
+  to: "{%- render 'search-form' with search_form_abs, search_form_abs: true -%}"
+  position: 7405..7477
+{%- endcomment -%}

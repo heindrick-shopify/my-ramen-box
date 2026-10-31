@@ -23,7 +23,7 @@
             data-src="{{ img_url }}"
             data-sizes="auto" class="w100 pg__main-image img-responsive center-block img-abs center-abs lazyload{% unless no_effect %} zoom-fade{% endunless %} pg__img-fit"{% render 'img-one-pixel' %} alt="{{ featured_image.alt | escape }}" data-image-size="1x1"/>
         {%- else -%}
-          <img src="{{ featured_image | img_url: '180x' }}" srcset="{% render 'img-srcset-50w' with image: featured_image %}" class="w100 pg__main-image img-responsive center-block img-abs center-abs pg__img-fit" alt="{{ featured_image.alt | escape }}" sizes="(max-width: 767px) 50vw, 25vw" data-aspectratio="{{ featured_image.aspect_ratio }}" data-sizes="auto" data-image-size="1x1"/>    
+          <img src="{{ featured_image | img_url: '180x' }}" srcset="{% render 'img-srcset-50w' with image, image: featured_image %}" class="w100 pg__main-image img-responsive center-block img-abs center-abs pg__img-fit" alt="{{ featured_image.alt | escape }}" sizes="(max-width: 767px) 50vw, 25vw" data-aspectratio="{{ featured_image.aspect_ratio }}" data-sizes="auto" data-image-size="1x1"/>    
         {%- endunless -%}    
         {%- if product.images.size > 1 -%}
           {%- assign image = product.images[1] -%}
@@ -36,7 +36,7 @@
       {%- render 'product-countdown' with product as product, show_countdown_timer: show_countdown_timer -%}
       {%- render 'product-labels' with product as product, show_label: show_label -%}
       <div class="item__actions effect-hover__content">
-        {%- render 'product-qs-btn' with product_url: product_url, show_qs_btn: show_qs_btn, showTooltip: true, btn_style_classes: 'button--square button--icon pg__btn-action', tooltip_pos: 'left' -%}
+        {%- render 'product-qs-btn' with product_url, product_url: product_url, show_qs_btn: show_qs_btn, showTooltip: true, btn_style_classes: 'button--square button--icon pg__btn-action', tooltip_pos: 'left' -%}
         {%- render 'product-wishlist' with product as product, showTooltip: true, tooltip_pos: 'left', show_wishlist_btn: show_wishlist_btn, hide_wishlist_text: true, btn_style_classes: 'button--square button--icon pg__btn-action' -%}
         {%- render 'product-compare-btn' with product as product, showTooltip: true, show_compare_btn: show_compare_btn, hide_compare_text: true, btn_style_classes: 'button--square button--icon pg__btn-action', tooltip_pos: 'left' -%}
         {%- if remove_wishlist_btn -%}
@@ -94,11 +94,34 @@
       {%- else -%}
       <div class="pg__button-list gutter-ele-top w100 distance-top-ele flex flex-align-ver">
         {%- render 'product-cart-btn' with product as product, show_options: enable_product_options, hide_text: false, count: true, show_cart_btn: show_cart_btn, no_gutter_cart_btn: true -%}
-        {%- render 'product-qs-btn' with product_url: product_url, show_qs_btn: show_qs_btn, showTooltip: true, btn_style_classes: 'button--square button--icon pg__btn-action hide pg__btn-list', tooltip_pos: 'top' -%}
+        {%- render 'product-qs-btn' with product_url, product_url: product_url, show_qs_btn: show_qs_btn, showTooltip: true, btn_style_classes: 'button--square button--icon pg__btn-action hide pg__btn-list', tooltip_pos: 'top' -%}
         {%- render 'product-wishlist' with product as product, showTooltip: true, tooltip_pos: 'top', show_wishlist_btn: show_wishlist_btn, hide_wishlist_text: true, btn_style_classes: 'button--square button--icon pg__btn-action hide pg__btn-list' -%}
         {%- render 'product-compare-btn' with product as product, showTooltip: true, show_compare_btn: show_compare_btn, hide_compare_text: true, btn_style_classes: 'button--square button--icon pg__btn-action hide pg__btn-list', tooltip_pos: 'top' -%}
       </div>  
       {%- endunless -%}  
     </div>
   </div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'img-srcset-50w' with image: featured_image %}"
+  to: "{% render 'img-srcset-50w' with image, image: featured_image %}"
+  position: 2026..2089
+- from: "{%- render 'product-qs-btn' with product_url: product_url, show_qs_btn: show_qs_btn,
+    showTooltip: true, btn_style_classes: 'button--square button--icon pg__btn-action',
+    tooltip_pos: 'left' -%}"
+  to: "{%- render 'product-qs-btn' with product_url, product_url: product_url, show_qs_btn:
+    show_qs_btn, showTooltip: true, btn_style_classes: 'button--square button--icon
+    pg__btn-action', tooltip_pos: 'left' -%}"
+  position: 3202..3407
+- from: "{%- render 'product-qs-btn' with product_url: product_url, show_qs_btn: show_qs_btn,
+    showTooltip: true, btn_style_classes: 'button--square button--icon pg__btn-action
+    hide pg__btn-list', tooltip_pos: 'top' -%}"
+  to: "{%- render 'product-qs-btn' with product_url, product_url: product_url, show_qs_btn:
+    show_qs_btn, showTooltip: true, btn_style_classes: 'button--square button--icon
+    pg__btn-action hide pg__btn-list', tooltip_pos: 'top' -%}"
+  position: 6756..6978
+{%- endcomment -%}

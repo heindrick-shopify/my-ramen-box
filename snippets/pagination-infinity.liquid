@@ -8,10 +8,19 @@
 		{%- assign next_url = next_url | append: '?section_id=' | append: section.id -%}	
 	{%- endif -%}
 	{%- if infinity_action == 'click' -%}
-		{%- render 'product-tabs-more-btn' with href: next_url -%}
+		{%- render 'product-tabs-more-btn' with href, href: next_url -%}
 	{%- else -%}
 		<a class="infinite-scroll collection__scroll loading-not-full" href="{{ next_url }}" data-id=".collection__scroll" data-id-save="{% if dataIdSave %}{{ dataIdSave }}{% else %}{{ section.id }}{% endif %}">
 			<i class="loading-ajax"></i>
 		</a>
 	{%- endif -%}
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-tabs-more-btn' with href: next_url -%}"
+  to: "{%- render 'product-tabs-more-btn' with href, href: next_url -%}"
+  position: 437..501
+{%- endcomment -%}

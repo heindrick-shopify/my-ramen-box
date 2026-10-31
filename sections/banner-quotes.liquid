@@ -27,13 +27,7 @@
       </div>
       {%- endif -%}
       <div class="big-gutter-top big-gutter-bottom">
-        {%- render 'banner-quotes-image' with 
-          image: section.settings.image_3,
-          link: section.settings.link_3,
-          btn_text: section.settings.btn_text_3,
-          section_id: section.id,
-          index: 3
-        -%}
+        {%- render 'banner-quotes-image' with image, image: section.settings.image_3, link: section.settings.link_3, btn_text: section.settings.btn_text_3, section_id: section.id, index: 3 -%}
       </div>
       <div class="big-gutter-top">
         {%- if section.settings.quote_heading != blank -%}
@@ -57,47 +51,23 @@
     <div class="bq__col bq__col--left col-xs-12 col-sm-7 f-{{ left_holder }}">
       <div class="big-gutter-bottom{% if section.settings.image_bkg_1 != blank %} bq__bkg-{{ section.id }}-1 lazyload{% endif %} distance-bottom-ele"{% if section.settings.image_bkg_1 != blank %} data-bgset="{% render 'bgset' with section.settings.image_bkg_1 as image %}"
        data-sizes="auto"{% endif %}>
-        {%- render 'banner-quotes-image' with 
-          image: section.settings.image_1,
-          link: section.settings.link_1,
-          btn_text: section.settings.btn_text_1,
-          section_id: section.id,
-          index: 1
-        -%}
+        {%- render 'banner-quotes-image' with image, image: section.settings.image_1, link: section.settings.link_1, btn_text: section.settings.btn_text_1, section_id: section.id, index: 1 -%}
       </div>
       <div class="big-gutter-top{% if section.settings.image_bkg_2 != blank %} bq__bkg-{{ section.id }}-2 lazyload{% else %} big-gutter-bottom{% endif %} distance-bottom-ele"{% if section.settings.image_bkg_2 != blank %} data-bgset="{% render 'bgset' with section.settings.image_bkg_2 as image %}"
        data-sizes="auto" data-index="-100"{% endif %}>
-        {%- render 'banner-quotes-image' with 
-          image: section.settings.image_2,
-          link: section.settings.link_2,
-          btn_text: section.settings.btn_text_2,
-          section_id: section.id,
-          index: 2
-        -%}
+        {%- render 'banner-quotes-image' with image, image: section.settings.image_2, link: section.settings.link_2, btn_text: section.settings.btn_text_2, section_id: section.id, index: 2 -%}
       </div>
     </div>
     <div class="clearfix"></div>
     <div class="bq__col col-xs-12 col-sm-4 f-{{ left_holder }}">
       <div class="big-gutter-top{% if section.settings.image_bkg_4 != blank %} bq__bkg-{{ section.id }}-4 lazyload{% endif %} distance-bottom-ele"{% if section.settings.image_bkg_4 != blank %} data-bgset="{% render 'bgset' with section.settings.image_bkg_4 as image %}"
        data-sizes="auto" data-index="-100"{% endif %}>
-        {%- render 'banner-quotes-image' with 
-          image: section.settings.image_4,
-          link: section.settings.link_4,
-          btn_text: section.settings.btn_text_4,
-          section_id: section.id,
-          index: 4
-        -%}
+        {%- render 'banner-quotes-image' with image, image: section.settings.image_4, link: section.settings.link_4, btn_text: section.settings.btn_text_4, section_id: section.id, index: 4 -%}
       </div>
     </div>
     <div class="bq__col col-xs-12 col-sm-7 big-gutter-top gutter-ele-top-mb f-{{ right_holder }}">
       <div class="big-gutter-top big-gutter-bottom">
-        {%- render 'banner-quotes-image' with 
-          image: section.settings.image_5,
-          link: section.settings.link_5,
-          btn_text: section.settings.btn_text_5,
-          section_id: section.id,
-          index: 5
-        -%}
+        {%- render 'banner-quotes-image' with image, image: section.settings.image_5, link: section.settings.link_5, btn_text: section.settings.btn_text_5, section_id: section.id, index: 5 -%}
       </div>
     </div>
     {%- if section.settings.bottom_text != blank -%}
@@ -130,49 +100,19 @@
   .bq__btn-text-{{ section.id }}{color:{{ section.settings.btn_color }};border: 1px solid {{ section.settings.btn_color }};}
 {%- endif -%}
 {%- if section.settings.btn_text_1 != blank -%}
-  {%- render 'banner-quotes-image-style' with 
-    section_id: section.id,
-    index: 1,
-    color: section.settings.btn_color_1,
-    background: section.settings.btn_bkg_1,
-    font_size: section.settings.btn_fs_1,
-  -%}
+  {%- render 'banner-quotes-image-style' with section_id, section_id: section.id, index: 1, color: section.settings.btn_color_1, background: section.settings.btn_bkg_1, font_size: section.settings.btn_fs_1 -%}
 {%- endif -%}
 {%- if section.settings.btn_text_2 != blank -%}
-  {%- render 'banner-quotes-image-style' with 
-    section_id: section.id,
-    index: 2,
-    color: section.settings.btn_color_2,
-    background: section.settings.btn_bkg_2,
-    font_size: section.settings.btn_fs_2,
-  -%}
+  {%- render 'banner-quotes-image-style' with section_id, section_id: section.id, index: 2, color: section.settings.btn_color_2, background: section.settings.btn_bkg_2, font_size: section.settings.btn_fs_2 -%}
 {%- endif -%}
 {%- if section.settings.btn_text_3 != blank -%}
-  {%- render 'banner-quotes-image-style' with 
-    section_id: section.id,
-    index: 3,
-    color: section.settings.btn_color_3,
-    background: section.settings.btn_bkg_3,
-    font_size: section.settings.btn_fs_3,
-  -%}
+  {%- render 'banner-quotes-image-style' with section_id, section_id: section.id, index: 3, color: section.settings.btn_color_3, background: section.settings.btn_bkg_3, font_size: section.settings.btn_fs_3 -%}
 {%- endif -%}
 {%- if section.settings.btn_text_4 != blank -%}
-  {%- render 'banner-quotes-image-style' with 
-    section_id: section.id,
-    index: 4,
-    color: section.settings.btn_color_4,
-    background: section.settings.btn_bkg_4,
-    font_size: section.settings.btn_fs_4,
-  -%}
+  {%- render 'banner-quotes-image-style' with section_id, section_id: section.id, index: 4, color: section.settings.btn_color_4, background: section.settings.btn_bkg_4, font_size: section.settings.btn_fs_4 -%}
 {%- endif -%}
 {%- if section.settings.btn_text_5 != blank -%}
-  {%- render 'banner-quotes-image-style' with 
-    section_id: section.id,
-    index: 5,
-    color: section.settings.btn_color_5,
-    background: section.settings.btn_bkg_5,
-    font_size: section.settings.btn_fs_5,
-  -%}
+  {%- render 'banner-quotes-image-style' with section_id, section_id: section.id, index: 5, color: section.settings.btn_color_5, background: section.settings.btn_bkg_5, font_size: section.settings.btn_fs_5 -%}
 {%- endif -%}
 {%- if section.blocks.size > 0 -%}
 .bq__quote-{{ section.id }}{color:{{ section.settings.quote_text_color }};font-size:{{ section.settings.quote_text_fs }}px;line-height:1.3em;}
@@ -729,3 +669,80 @@
     ]
   }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'banner-quotes-image' with \n          image: section.settings.image_3,\n
+    \         link: section.settings.link_3,\n          btn_text: section.settings.btn_text_3,\n
+    \         section_id: section.id,\n          index: 3\n        -%}"
+  to: "{%- render 'banner-quotes-image' with image, image: section.settings.image_3,
+    link: section.settings.link_3, btn_text: section.settings.btn_text_3, section_id:
+    section.id, index: 3 -%}"
+  position: 1957..2141
+- from: "{%- render 'banner-quotes-image' with \n          image: section.settings.image_1,\n
+    \         link: section.settings.link_1,\n          btn_text: section.settings.btn_text_1,\n
+    \         section_id: section.id,\n          index: 1\n        -%}"
+  to: "{%- render 'banner-quotes-image' with image, image: section.settings.image_1,
+    link: section.settings.link_1, btn_text: section.settings.btn_text_1, section_id:
+    section.id, index: 1 -%}"
+  position: 3812..3996
+- from: "{%- render 'banner-quotes-image' with \n          image: section.settings.image_2,\n
+    \         link: section.settings.link_2,\n          btn_text: section.settings.btn_text_2,\n
+    \         section_id: section.id,\n          index: 2\n        -%}"
+  to: "{%- render 'banner-quotes-image' with image, image: section.settings.image_2,
+    link: section.settings.link_2, btn_text: section.settings.btn_text_2, section_id:
+    section.id, index: 2 -%}"
+  position: 4371..4555
+- from: "{%- render 'banner-quotes-image' with \n          image: section.settings.image_4,\n
+    \         link: section.settings.link_4,\n          btn_text: section.settings.btn_text_4,\n
+    \         section_id: section.id,\n          index: 4\n        -%}"
+  to: "{%- render 'banner-quotes-image' with image, image: section.settings.image_4,
+    link: section.settings.link_4, btn_text: section.settings.btn_text_4, section_id:
+    section.id, index: 4 -%}"
+  position: 5011..5195
+- from: "{%- render 'banner-quotes-image' with \n          image: section.settings.image_5,\n
+    \         link: section.settings.link_5,\n          btn_text: section.settings.btn_text_5,\n
+    \         section_id: section.id,\n          index: 5\n        -%}"
+  to: "{%- render 'banner-quotes-image' with image, image: section.settings.image_5,
+    link: section.settings.link_5, btn_text: section.settings.btn_text_5, section_id:
+    section.id, index: 5 -%}"
+  position: 5380..5564
+- from: "{%- render 'banner-quotes-image-style' with \n    section_id: section.id,\n
+    \   index: 1,\n    color: section.settings.btn_color_1,\n    background: section.settings.btn_bkg_1,\n
+    \   font_size: section.settings.btn_fs_1,\n  -%}"
+  to: "{%- render 'banner-quotes-image-style' with section_id, section_id: section.id,
+    index: 1, color: section.settings.btn_color_1, background: section.settings.btn_bkg_1,
+    font_size: section.settings.btn_fs_1 -%}"
+  position: 8241..8448
+- from: "{%- render 'banner-quotes-image-style' with \n    section_id: section.id,\n
+    \   index: 2,\n    color: section.settings.btn_color_2,\n    background: section.settings.btn_bkg_2,\n
+    \   font_size: section.settings.btn_fs_2,\n  -%}"
+  to: "{%- render 'banner-quotes-image-style' with section_id, section_id: section.id,
+    index: 2, color: section.settings.btn_color_2, background: section.settings.btn_bkg_2,
+    font_size: section.settings.btn_fs_2 -%}"
+  position: 8513..8720
+- from: "{%- render 'banner-quotes-image-style' with \n    section_id: section.id,\n
+    \   index: 3,\n    color: section.settings.btn_color_3,\n    background: section.settings.btn_bkg_3,\n
+    \   font_size: section.settings.btn_fs_3,\n  -%}"
+  to: "{%- render 'banner-quotes-image-style' with section_id, section_id: section.id,
+    index: 3, color: section.settings.btn_color_3, background: section.settings.btn_bkg_3,
+    font_size: section.settings.btn_fs_3 -%}"
+  position: 8785..8992
+- from: "{%- render 'banner-quotes-image-style' with \n    section_id: section.id,\n
+    \   index: 4,\n    color: section.settings.btn_color_4,\n    background: section.settings.btn_bkg_4,\n
+    \   font_size: section.settings.btn_fs_4,\n  -%}"
+  to: "{%- render 'banner-quotes-image-style' with section_id, section_id: section.id,
+    index: 4, color: section.settings.btn_color_4, background: section.settings.btn_bkg_4,
+    font_size: section.settings.btn_fs_4 -%}"
+  position: 9057..9264
+- from: "{%- render 'banner-quotes-image-style' with \n    section_id: section.id,\n
+    \   index: 5,\n    color: section.settings.btn_color_5,\n    background: section.settings.btn_bkg_5,\n
+    \   font_size: section.settings.btn_fs_5,\n  -%}"
+  to: "{%- render 'banner-quotes-image-style' with section_id, section_id: section.id,
+    index: 5, color: section.settings.btn_color_5, background: section.settings.btn_bkg_5,
+    font_size: section.settings.btn_fs_5 -%}"
+  position: 9329..9536
+{% endcomment %}

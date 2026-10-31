@@ -1,4 +1,4 @@
-{% capture "form_classes" -%}
+{% capture form_classes -%}
   flex product-form product-form-{{ section.id }}{% if obj.settings.enable_payment_button and product.has_only_default_variant%} product-form--payment-button-no-variants{% endif %}{% if inline_button %} flex{% endif %}
 {%- endcapture %}
 {%- assign has_compare_btn = false -%}
@@ -76,7 +76,7 @@
 {%- endif -%}
 {%- if template.suffix != 'quick_view' and template.suffix != 'select_option' -%}
   {%- assign cart_terms_for_id = 'single-page-' | append: section.id -%}
-  {%- render 'cart-terms' with for_id: cart_terms_for_id, small_gutter_top: true -%}
+  {%- render 'cart-terms' with for_id, for_id: cart_terms_for_id, small_gutter_top: true -%}
 {%- endif -%}
 {%- unless inline_button -%}
   {%- if has_compare_btn or has_wishlist_btn -%}
@@ -106,4 +106,18 @@
 <input type="hidden" name="id" data-productid="{{ product.id }}" value="{{ product.selected_or_first_available_variant.id }}" class="variant-id">
 {%- endform -%}
 
-{%- render 'atc-badges' -%}
+{%- render 'atc-badges' -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '{% capture "form_classes" -%}'
+  to: "{% capture form_classes -%}"
+  position: 0..27
+- from: "{%- render 'cart-terms' with for_id: cart_terms_for_id, small_gutter_top:
+    true -%}"
+  to: "{%- render 'cart-terms' with for_id, for_id: cart_terms_for_id, small_gutter_top:
+    true -%}"
+  position: 5377..5467
+{%- endcomment -%}

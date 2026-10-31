@@ -113,7 +113,7 @@
               </div>
             {% endunless %}  
           {%- endif -%}
-					{%- render 'header-cart' with cart_dropdown_direction: 'bt-dropdown__content--right', addition_classes: 'header__link--icon header__link--middle flex flex-align-ver', show_cart_text: true -%}
+					{%- render 'header-cart' with cart_dropdown_direction, cart_dropdown_direction: 'bt-dropdown__content--right', addition_classes: 'header__link--icon header__link--middle flex flex-align-ver', show_cart_text: true -%}
 				</div>
 			</div>
 		</div>
@@ -126,4 +126,17 @@
 			{%- render 'search-form' -%}
 		</div>
 	</div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'header-cart' with cart_dropdown_direction: 'bt-dropdown__content--right',
+    addition_classes: 'header__link--icon header__link--middle flex flex-align-ver',
+    show_cart_text: true -%}"
+  to: "{%- render 'header-cart' with cart_dropdown_direction, cart_dropdown_direction:
+    'bt-dropdown__content--right', addition_classes: 'header__link--icon header__link--middle
+    flex flex-align-ver', show_cart_text: true -%}"
+  position: 7207..7423
+{%- endcomment -%}

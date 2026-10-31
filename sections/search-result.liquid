@@ -12,7 +12,7 @@
 <div data-section-id="{{ section.id }}" data-section-type="collection-template" id="collection-template">
   {%- render 'search-result' -%}
 </div>
-{%- render 'bottom-mobile-toolbar' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, has_collection_filter: false -%}
+{%- render 'bottom-mobile-toolbar' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, has_collection_filter: false -%}
 {% schema %}
   {
     "name": "Search result page",
@@ -253,4 +253,16 @@
       }
     ]
   }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'bottom-mobile-toolbar' with enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder, has_collection_filter: false -%}"
+  to: "{%- render 'bottom-mobile-toolbar' with enable_rtl, enable_rtl: enable_rtl,
+    left_holder: left_holder, right_holder: right_holder, has_collection_filter: false
+    -%}"
+  position: 464..626
+{%- endcomment -%}

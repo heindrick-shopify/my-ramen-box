@@ -2,9 +2,9 @@
 {%- liquid
 	capture icon_arrow
 		unless settings.enable_rtl and settings.rtl_language_codes contains request.locale.iso_code
-			render 'icon-angle-right' with add_class: 'nav__item__angle-ver'
+			render 'icon-angle-right' with add_class, add_class: 'nav__item__angle-ver'
 		else
-			render 'icon-angle-left' with add_class: 'nav__item__angle-ver'
+			render 'icon-angle-left' with add_class, add_class: 'nav__item__angle-ver'
 		endunless
 	endcapture
 -%}
@@ -72,10 +72,10 @@
 											</span>
 											{%- endif -%}
 											<div class="nav__item__dropdown-column-content">
-												{%- render 'nav-dropdown-link-list' with link_list: item.settings[link_list_index], color_label: item.settings[dropdown_color_label_index], bkg_label: item.settings[dropdown_bkg_label_index] -%}
-												{%- render 'nav-dropdown-product' with product_handle: item.settings[product_index] -%}
-												{%- render 'nav-dropdown-image' with image: item.settings[image_index], image_link: item.settings[image_link_index], image_new_tab: item.settings[image_new_tab_index] -%}
-												{%- render 'nav-dropdown-html' with html: item.settings[html_index] -%}
+												{%- render 'nav-dropdown-link-list' with link_list, link_list: item.settings[link_list_index], color_label: item.settings[dropdown_color_label_index], bkg_label: item.settings[dropdown_bkg_label_index] -%}
+												{%- render 'nav-dropdown-product' with product_handle, product_handle: item.settings[product_index] -%}
+												{%- render 'nav-dropdown-image' with image, image: item.settings[image_index], image_link: item.settings[image_link_index], image_new_tab: item.settings[image_new_tab_index] -%}
+												{%- render 'nav-dropdown-html' with html, html: item.settings[html_index] -%}
 											</div>
 										</div>
 										{%- if item.settings[drop_col_width_index] -%}
@@ -114,7 +114,7 @@
 											{%- if childlink.links != blank -%}
 												<div class="dib por">
 											{%- endif -%}
-											<a class="link-list__item__link nav__item__dropdown-link--{{ section.id }}{% if childlink.active %} active{% endif %}" href="{{ childlink.url }}" title="{%- render 'nav-shortcode-ign' with str: childlink.title -%}">{%- render 'nav-shortcode', str: childlink.title, custom_label_class: 'fw-bold' -%}</a>
+											<a class="link-list__item__link nav__item__dropdown-link--{{ section.id }}{% if childlink.active %} active{% endif %}" href="{{ childlink.url }}" title="{%- render 'nav-shortcode-ign' with str, str: childlink.title -%}">{%- render 'nav-shortcode', str: childlink.title, custom_label_class: 'fw-bold' -%}</a>
 											{%- if childlink.links != blank -%}
 												<ul class="link-list__item__dropdown link-list__item__dropdown--nav link-list__item__dropdown--nav-{{ section.id }}">
 													{%- for grandchildlink in childlink.links -%}
@@ -158,3 +158,41 @@
 	}
 </style>
 {%- endif -%}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "\t\t\trender 'icon-angle-right' with add_class: 'nav__item__angle-ver'"
+  to: "\t\t\trender 'icon-angle-right' with add_class, add_class: 'nav__item__angle-ver'"
+  position: 194..272
+- from: "\t\t\trender 'icon-angle-left' with add_class: 'nav__item__angle-ver'"
+  to: "\t\t\trender 'icon-angle-left' with add_class, add_class: 'nav__item__angle-ver'"
+  position: 280..357
+- from: "{%- render 'nav-dropdown-link-list' with link_list: item.settings[link_list_index],
+    color_label: item.settings[dropdown_color_label_index], bkg_label: item.settings[dropdown_bkg_label_index]
+    -%}"
+  to: "{%- render 'nav-dropdown-link-list' with link_list, link_list: item.settings[link_list_index],
+    color_label: item.settings[dropdown_color_label_index], bkg_label: item.settings[dropdown_bkg_label_index]
+    -%}"
+  position: 4487..4692
+- from: "{%- render 'nav-dropdown-product' with product_handle: item.settings[product_index]
+    -%}"
+  to: "{%- render 'nav-dropdown-product' with product_handle, product_handle: item.settings[product_index]
+    -%}"
+  position: 4705..4808
+- from: "{%- render 'nav-dropdown-image' with image: item.settings[image_index], image_link:
+    item.settings[image_link_index], image_new_tab: item.settings[image_new_tab_index]
+    -%}"
+  to: "{%- render 'nav-dropdown-image' with image, image: item.settings[image_index],
+    image_link: item.settings[image_link_index], image_new_tab: item.settings[image_new_tab_index]
+    -%}"
+  position: 4821..4998
+- from: "{%- render 'nav-dropdown-html' with html: item.settings[html_index] -%}"
+  to: "{%- render 'nav-dropdown-html' with html, html: item.settings[html_index] -%}"
+  position: 5011..5088
+- from: "{%- render 'nav-shortcode-ign' with str: childlink.title -%}"
+  to: "{%- render 'nav-shortcode-ign' with str, str: childlink.title -%}"
+  position: 7255..7320
+{% endcomment %}

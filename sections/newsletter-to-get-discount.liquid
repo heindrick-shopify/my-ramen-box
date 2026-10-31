@@ -134,12 +134,12 @@
               {%- if settings.news_terms_enable and settings.news_platform == 'shopify' -%}
                 <div class="center-block" style="max-width: 600px;float:none;">
                   {%- assign section_news_terms_input_id = 'SectionNewsletterTerms-' | append: section.id -%}
-                  {%- render 'newsletter-terms' with inputId: section_news_terms_input_id -%}
+                  {%- render 'newsletter-terms' with inputId, inputId: section_news_terms_input_id -%}
                 </div>
               {%- endif -%}
               {%- if section.settings.social_icons -%}
               <div class="gutter-top{% unless settings.news_terms_enable and settings.news_platform == 'shopify' %} gutter-ele-top-tbs{% endunless %}">
-                {%- render 'footer-social-icons' with enable_social: section.settings.social_icons -%}
+                {%- render 'footer-social-icons' with enable_social, enable_social: section.settings.social_icons -%}
               </div>
               {%- endif -%}
             </div>
@@ -289,12 +289,12 @@
               {%- if settings.news_terms_enable and settings.news_platform == 'shopify' -%}
                 <div class="center-block" style="max-width: 600px;float:none;">
                   {%- assign section_news_terms_input_id = 'SectionNewsletterTerms-' | append: section.id -%}
-                  {%- render 'newsletter-terms' with inputId: section_news_terms_input_id -%}
+                  {%- render 'newsletter-terms' with inputId, inputId: section_news_terms_input_id -%}
                 </div>
               {%- endif -%}
               {%- if section.settings.social_icons -%}
               <div class="gutter-top{% unless settings.news_terms_enable and settings.news_platform == 'shopify' %} gutter-ele-top-tbs{% endunless %}">
-                {%- render 'footer-social-icons' with enable_social: section.settings.social_icons -%}
+                {%- render 'footer-social-icons' with enable_social, enable_social: section.settings.social_icons -%}
               </div>
               {%- endif -%}
             </div>
@@ -498,4 +498,28 @@
       }
     ]
   }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'newsletter-terms' with inputId: section_news_terms_input_id -%}"
+  to: "{%- render 'newsletter-terms' with inputId, inputId: section_news_terms_input_id
+    -%}"
+  position: 4882..4966
+- from: "{%- render 'footer-social-icons' with enable_social: section.settings.social_icons
+    -%}"
+  to: "{%- render 'footer-social-icons' with enable_social, enable_social: section.settings.social_icons
+    -%}"
+  position: 5241..5342
+- from: "{%- render 'newsletter-terms' with inputId: section_news_terms_input_id -%}"
+  to: "{%- render 'newsletter-terms' with inputId, inputId: section_news_terms_input_id
+    -%}"
+  position: 10652..10736
+- from: "{%- render 'footer-social-icons' with enable_social: section.settings.social_icons
+    -%}"
+  to: "{%- render 'footer-social-icons' with enable_social, enable_social: section.settings.social_icons
+    -%}"
+  position: 11011..11112
+{%- endcomment -%}

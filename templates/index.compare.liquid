@@ -1,7 +1,7 @@
 {%- layout none -%}
 {%- liquid
 	capture terms
-    render 'read-url-param' with param_name: 'q'
+    render 'read-url-param' with param_name, param_name: 'q'
   endcapture
   assign terms = terms | strip | url_decode | split: ','
   assign count_product = 0
@@ -71,7 +71,7 @@
 
     {%- capture priceItemCol -%}
     <td data-index="{{ forloop.index }}">
-    	{% render 'product-variant-price' with variant: current_variant %}
+    	{% render 'product-variant-price' with variant, variant: current_variant %}
     	<span class="hide compare-popup__badge dib" data-price="{{ current_variant.price }}">{%- render 'icon-check' -%}</span>
     </td>
     {%- endcapture -%}
@@ -87,7 +87,7 @@
     {%- capture optionsItemCol -%}
     <td data-index="{{ forloop.index }}">
     	<div class="pg pg__compare-options" data-product-handle="{{ product.handle }}" data-ignore-sold-out-text="1">
-				{%- render 'product-group-variants' with product: product, enable_product_options: true, is_single_view: true -%}
+				{%- render 'product-group-variants' with product, product: product, enable_product_options: true, is_single_view: true -%}
 				<select name="id" class="variant-id hide variant-id--compare" data-index="{{ forloop.index }}">
 		      {%- for variant in product.variants -%}
 				    <option {% if variant == current_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
@@ -95,7 +95,7 @@
 				    </option>
 				  {%- endfor -%}
 		    </select>
-		    {%- render 'product-cart-btn' with product: product, show_cart_btn : true, enable_product_options: true, show_options: true, no_effect: true -%}
+		    {%- render 'product-cart-btn' with product, product: product, show_cart_btn: true, enable_product_options: true, show_options: true, no_effect: true -%}
 		  </div>
 		</td>
     {%- endcapture -%}
@@ -104,7 +104,7 @@
     {%- if settings.enable_review -%}
     {%- capture ratingItemCol -%}
     <td>
-			{%- render 'product-review-force' with product: product -%}
+			{%- render 'product-review-force' with product, product: product -%}
 		</td>
     {%- endcapture -%}
     {%- assign ratingCol = ratingCol | append: ratingItemCol -%}    
@@ -137,4 +137,29 @@
 </div>
 {%- else -%}
 <div class="alert alert-danger">{{ 'products.product.comparison_empty' | t }}</div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "    render 'read-url-param' with param_name: 'q'"
+  to: "    render 'read-url-param' with param_name, param_name: 'q'"
+  position: 46..106
+- from: "{% render 'product-variant-price' with variant: current_variant %}"
+  to: "{% render 'product-variant-price' with variant, variant: current_variant %}"
+  position: 2657..2732
+- from: "{%- render 'product-group-variants' with product: product, enable_product_options:
+    true, is_single_view: true -%}"
+  to: "{%- render 'product-group-variants' with product, product: product, enable_product_options:
+    true, is_single_view: true -%}"
+  position: 3599..3721
+- from: "{%- render 'product-cart-btn' with product: product, show_cart_btn : true,
+    enable_product_options: true, show_options: true, no_effect: true -%}"
+  to: "{%- render 'product-cart-btn' with product, product: product, show_cart_btn:
+    true, enable_product_options: true, show_options: true, no_effect: true -%}"
+  position: 4071..4223
+- from: "{%- render 'product-review-force' with product: product -%}"
+  to: "{%- render 'product-review-force' with product, product: product -%}"
+  position: 4419..4487
+{%- endcomment -%}

@@ -3,9 +3,20 @@
   <div class="container{% render 'wide-css-class' %} big-gutter-top big-gutter-bottom">
     <div class="row">
       <div class="col-xs-12">
-        {%- render 'product-single-tabs-content' with product: product, description: description, center: center -%}
+        {%- render 'product-single-tabs-content' with product, product: product, description: description, center: center -%}
       </div>
     </div>
   </div>
 </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-single-tabs-content' with product: product, description:
+    description, center: center -%}"
+  to: "{%- render 'product-single-tabs-content' with product, product: product, description:
+    description, center: center -%}"
+  position: 287..404
+{%- endcomment -%}

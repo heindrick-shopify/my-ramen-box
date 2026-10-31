@@ -1,32 +1,54 @@
-<div class="{% render 'rich-banner-item-size' with block: block, item_size_class: item_size_class %} banner-item banner-item--{{ block.id }}{% if block.settings.hide_on_mobile %} hidden-xs{% endif %}{% if block.settings.hide_on_desktop %} hidden-sm hidden-md hidden-lg{% endif %}{% if section.settings.enable_slider %}{{ slider_class }}{% if current_index_mobile > lazyload_index_mobile %} ov-slider-mb{% endif %}{% if current_index_tb > lazyload_index %} ov-slider-tb{% endif %}{% endif %}" {{ block.shopify_attributes }}>
+<div class="{% render 'rich-banner-item-size' with block, block: block, item_size_class: item_size_class %} banner-item banner-item--{{ block.id }}{% if block.settings.hide_on_mobile %} hidden-xs{% endif %}{% if block.settings.hide_on_desktop %} hidden-sm hidden-md hidden-lg{% endif %}{% if section.settings.enable_slider %}{{ slider_class }}{% if current_index_mobile > lazyload_index_mobile %} ov-slider-mb{% endif %}{% if current_index_tb > lazyload_index %} ov-slider-tb{% endif %}{% endif %}" {{ block.shopify_attributes }}>
   {%- capture banner_html -%}
     {%- assign product = all_products[block.settings.product] -%}
     {%- if product != blank -%}
-    	{%- include 'product-grid-item' with 
-      use_slider: section.settings.enable_slider, 
-      index: forloop.index, 
-      lazy_index: -1,
-      column_count: item_size_number, 
-      main_thumbnail: block.settings.main_thumbnail, 
-      image_size: block.settings.image_size, 
-      truncate_count: block.settings..product_name_size,
-      enable_product_options: block.settings.enable_product_options, 
-      show_review_stars: block.settings.show_review_stars,
-      enable_small_images: false,
-      show_wishlist_btn: block.settings.show_wishlist_btn,
-      small_image: '1x',
-      show_label : block.settings.show_label,
-      show_cart_btn: block.settings.show_cart_btn,
-      show_wishlist : false,
-      show_compare_btn: block.settings.show_compare_btn,
-      show_qs_btn: block.settings.show_qs_btn,
-      small_image_slider: false,
-      show_countdown_timer: block.settings.show_countdown_timer,
-      no_grid_item_class: true
-    -%}
+    	{%- include 'product-grid-item' with use_slider, use_slider: section.settings.enable_slider, index: forloop.index, lazy_index: -1, column_count: item_size_number, main_thumbnail: block.settings.main_thumbnail, image_size: block.settings.image_size, truncate_count: block.settings.product_name_size, enable_product_options: block.settings.enable_product_options, show_review_stars: block.settings.show_review_stars, enable_small_images: false, show_wishlist_btn: block.settings.show_wishlist_btn, small_image: '1x', show_label: block.settings.show_label, show_cart_btn: block.settings.show_cart_btn, show_wishlist: false, show_compare_btn: block.settings.show_compare_btn, show_qs_btn: block.settings.show_qs_btn, small_image_slider: false, show_countdown_timer: block.settings.show_countdown_timer, no_grid_item_class: true -%}
     {%- else -%}
-    	{%- include 'product-grid-item-placeholder' with no_grid_item_class: true -%}	
+    	{%- include 'product-grid-item-placeholder' with no_grid_item_class, no_grid_item_class: true -%}	
     {%- endif -%}
   {%- endcapture -%}
-  {%- render 'rich-banner-display' with banner_html: banner_html, block: block -%}
-</div>
+  {%- render 'rich-banner-display' with banner_html, banner_html: banner_html, block: block -%}
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'rich-banner-item-size' with block: block, item_size_class: item_size_class
+    %}"
+  to: "{% render 'rich-banner-item-size' with block, block: block, item_size_class:
+    item_size_class %}"
+  position: 12..107
+- from: "{%- include 'product-grid-item' with \n      use_slider: section.settings.enable_slider,
+    \n      index: forloop.index, \n      lazy_index: -1,\n      column_count: item_size_number,
+    \n      main_thumbnail: block.settings.main_thumbnail, \n      image_size: block.settings.image_size,
+    \n      truncate_count: block.settings..product_name_size,\n      enable_product_options:
+    block.settings.enable_product_options, \n      show_review_stars: block.settings.show_review_stars,\n
+    \     enable_small_images: false,\n      show_wishlist_btn: block.settings.show_wishlist_btn,\n
+    \     small_image: '1x',\n      show_label : block.settings.show_label,\n      show_cart_btn:
+    block.settings.show_cart_btn,\n      show_wishlist : false,\n      show_compare_btn:
+    block.settings.show_compare_btn,\n      show_qs_btn: block.settings.show_qs_btn,\n
+    \     small_image_slider: false,\n      show_countdown_timer: block.settings.show_countdown_timer,\n
+    \     no_grid_item_class: true\n    -%}"
+  to: "{%- include 'product-grid-item' with use_slider, use_slider: section.settings.enable_slider,
+    index: forloop.index, lazy_index: -1, column_count: item_size_number, main_thumbnail:
+    block.settings.main_thumbnail, image_size: block.settings.image_size, truncate_count:
+    block.settings.product_name_size, enable_product_options: block.settings.enable_product_options,
+    show_review_stars: block.settings.show_review_stars, enable_small_images: false,
+    show_wishlist_btn: block.settings.show_wishlist_btn, small_image: '1x', show_label:
+    block.settings.show_label, show_cart_btn: block.settings.show_cart_btn, show_wishlist:
+    false, show_compare_btn: block.settings.show_compare_btn, show_qs_btn: block.settings.show_qs_btn,
+    small_image_slider: false, show_countdown_timer: block.settings.show_countdown_timer,
+    no_grid_item_class: true -%}"
+  position: 664..1491
+- from: "{%- include 'product-grid-item-placeholder' with no_grid_item_class: true
+    -%}"
+  to: "{%- include 'product-grid-item-placeholder' with no_grid_item_class, no_grid_item_class:
+    true -%}"
+  position: 1514..1611
+- from: "{%- render 'rich-banner-display' with banner_html: banner_html, block: block
+    -%}"
+  to: "{%- render 'rich-banner-display' with banner_html, banner_html: banner_html,
+    block: block -%}"
+  position: 1654..1747
+{%- endcomment -%}

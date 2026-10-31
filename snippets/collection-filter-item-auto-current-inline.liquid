@@ -12,12 +12,12 @@
 									<span class="cf__link--current__content">
 					    			{%- if filter_item_parts[0] == 'price' -%}
 					    				{%- assign price_parts = filter_item_value | split: '-' -%}
-					    				<span class="cf__price cf__price-from dib">{%- render 'price' with price: price_parts[0] -%}</span>
+					    				<span class="cf__price cf__price-from dib">{%- render 'price' with price, price: price_parts[0] -%}</span>
 					    				<span class="cf__price__sep">-</span>
-					    				<span class="cf__price cf__price-to dib">{%- render 'price' with price: price_parts[1] -%}</span>
+					    				<span class="cf__price cf__price-to dib">{%- render 'price' with price, price: price_parts[1] -%}</span>
 					    			{%- elsif filter_item_parts[0] == 'ratings' -%}
 					    				{%- assign count_rating_stars = filter_item_value | plus: 0 -%}
-					    				{%- render 'rating-stars' with count_rating_stars: count_rating_stars -%}
+					    				{%- render 'rating-stars' with count_rating_stars, count_rating_stars: count_rating_stars -%}
 					    			{%- else -%}
 					    				{{ filter_item_value | replace: '-', ' ' }}
 					    			{%- endif -%}
@@ -29,4 +29,20 @@
   		{%- endfor -%}
   	</ul>
   </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'price' with price: price_parts[0] -%}"
+  to: "{%- render 'price' with price, price: price_parts[0] -%}"
+  position: 1085..1141
+- from: "{%- render 'price' with price: price_parts[1] -%}"
+  to: "{%- render 'price' with price, price: price_parts[1] -%}"
+  position: 1254..1310
+- from: "{%- render 'rating-stars' with count_rating_stars: count_rating_stars -%}"
+  to: "{%- render 'rating-stars' with count_rating_stars, count_rating_stars: count_rating_stars
+    -%}"
+  position: 1468..1561
+{%- endcomment -%}

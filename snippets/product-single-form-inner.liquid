@@ -64,7 +64,7 @@
 {%- endif -%}
 {%- if template.suffix != 'quick_view' -%}
   {%- assign cart_terms_for_id = 'single-page-' | append: section.id -%}
-  {%- render 'cart-terms' with for_id: cart_terms_for_id, small_gutter_top: true -%}
+  {%- render 'cart-terms' with for_id, for_id: cart_terms_for_id, small_gutter_top: true -%}
 {%- endif -%}
 {%- if has_compare_btn or has_wishlist_btn -%}
 <div class="gutter-top gutter-ele-bottom{% if inline_button %} hidden-md hidden-lg w100{% endif %}">
@@ -97,3 +97,15 @@
   {%- endfor -%}
 </select>
 {%- endform -%}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'cart-terms' with for_id: cart_terms_for_id, small_gutter_top:
+    true -%}"
+  to: "{%- render 'cart-terms' with for_id, for_id: cart_terms_for_id, small_gutter_top:
+    true -%}"
+  position: 4487..4577
+{% endcomment %}

@@ -37,13 +37,13 @@
 
   <meta name="description" content="{{ 'gift_cards.issued.subtext' | t }}">
 
-  {%- render 'css-variables' with enable_rtl: enable_rtl, base_font: base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font: heading_font, heading_font_bold: heading_font_bold -%}
-  {%- render 'css-variables-password' with base_font: base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic, header_font: heading_font, heading_font_bold: heading_font_bold -%}
-  {%- render 'styles-inline' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, base_font: base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font: heading_font, heading_font_bold: heading_font_bold -%}
-  {%- render 'theme-styles' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
+  {%- render 'css-variables' with enable_rtl, enable_rtl: enable_rtl, base_font: base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font: heading_font, heading_font_bold: heading_font_bold -%}
+  {%- render 'css-variables-password' with base_font, base_font: base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic, header_font: heading_font, heading_font_bold: heading_font_bold -%}
+  {%- render 'styles-inline' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, base_font: base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font: heading_font, heading_font_bold: heading_font_bold -%}
+  {%- render 'theme-styles' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
   {{ 'theme.css' | asset_url | stylesheet_tag }}
   {{ 'gift-card.css' | asset_url | stylesheet_tag }}
-  {%- render 'script-inline' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, root_url: root_url -%}
+  {%- render 'script-inline' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, root_url: root_url -%}
 
   <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'match-media.min.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
   <!--[if lte IE 9]><script src="{{ 'match-media.min.js' | asset_url }}"></script><![endif]-->
@@ -73,7 +73,7 @@
     {%- render 'rich-banner-countdown' -%}
   {%- endif -%}
   {%- render 'popups' -%}
-  {%- render 'back-top-button' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
+  {%- render 'back-top-button' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
   {%- render 'search-full' -%}
   {%- render 'currency-plus-form' -%}
   
@@ -91,3 +91,54 @@
   {%- endif -%}
 </body>
 </html>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'css-variables' with enable_rtl: enable_rtl, base_font: base_font,
+    base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic:
+    base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font:
+    heading_font, heading_font_bold: heading_font_bold -%}"
+  to: "{%- render 'css-variables' with enable_rtl, enable_rtl: enable_rtl, base_font:
+    base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold,
+    base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic,
+    heading_font: heading_font, heading_font_bold: heading_font_bold -%}"
+  position: 1895..2203
+- from: "{%- render 'css-variables-password' with base_font: base_font, base_font_bolder:
+    base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic,
+    base_font_bold_italic: base_font_bold_italic, header_font: heading_font, heading_font_bold:
+    heading_font_bold -%}"
+  to: "{%- render 'css-variables-password' with base_font, base_font: base_font, base_font_bolder:
+    base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic,
+    base_font_bold_italic: base_font_bold_italic, header_font: heading_font, heading_font_bold:
+    heading_font_bold -%}"
+  position: 2206..2497
+- from: "{%- render 'styles-inline' with enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder, base_font: base_font, base_font_bolder: base_font_bolder,
+    base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic:
+    base_font_bold_italic, heading_font: heading_font, heading_font_bold: heading_font_bold
+    -%}"
+  to: "{%- render 'styles-inline' with enable_rtl, enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder, base_font: base_font, base_font_bolder:
+    base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic,
+    base_font_bold_italic: base_font_bold_italic, heading_font: heading_font, heading_font_bold:
+    heading_font_bold -%}"
+  position: 2500..2862
+- from: "{%- render 'theme-styles' with enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder -%}"
+  to: "{%- render 'theme-styles' with enable_rtl, enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder -%}"
+  position: 2865..2988
+- from: "{%- render 'script-inline' with enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder, root_url: root_url -%}"
+  to: "{%- render 'script-inline' with enable_rtl, enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder, root_url: root_url -%}"
+  position: 3093..3237
+- from: "{%- render 'back-top-button' with enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder -%}"
+  to: "{%- render 'back-top-button' with enable_rtl, enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder -%}"
+  position: 4752..4878
+{% endcomment %}

@@ -16,7 +16,7 @@
     {{ label | escape }}
   </h2>
   <a href="#" class="fw-bold expand-trigger{% if section.settings.filter_default_expand == 'expand' or filter.active_values.size > 0 %} open{% endif %}">
-    {%- render 'icon-collapse' with add_classes: 'cf__item__collapse' -%}
+    {%- render 'icon-collapse' with add_classes, add_classes: 'cf__item__collapse' -%}
   </a>
   <div class="w100 cf__item__content expand-content{% if type == 'list' %} cf__item__content--scroll custom-scrollbar{% endif %}"{% unless section.settings.filter_default_expand == 'expand' or filter.active_values.size > 0 %} style="display:none;"{% endunless %}>
     {%- if type == 'list' or type == 'current' -%}
@@ -43,4 +43,14 @@
     </div>
   {%- endif -%}
 </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'icon-collapse' with add_classes: 'cf__item__collapse' -%}"
+  to: "{%- render 'icon-collapse' with add_classes, add_classes: 'cf__item__collapse'
+    -%}"
+  position: 1181..1263
+{%- endcomment -%}

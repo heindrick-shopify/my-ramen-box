@@ -1,80 +1,229 @@
 {%- case block.type -%}
 {%- when 'text' -%}
-  {%- render 'product-single-text' with product: product, text: block.settings.text, text_style: block.settings.text_style -%}
+  {%- render 'product-single-text' with product, product: product, text: block.settings.text, text_style: block.settings.text_style -%}
 {%- when 'title' -%}
   {%- render 'product-single-name' -%} 
 {%- when 'price' -%}
-  {%- render 'product-single-price' with product: product, current_variant: current_variant, show_shipping_policy_link: block.settings.show_shipping_policy_link, block: block, left_holder: left_holder -%}
+  {%- render 'product-single-price' with product, product: product, current_variant: current_variant, show_shipping_policy_link: block.settings.show_shipping_policy_link, block: block, left_holder: left_holder -%}
 {%- when 'sku' -%}
-  {%- render 'product-single-sku' with product: product, current_variant: current_variant, right_holder: right_holder -%}
+  {%- render 'product-single-sku' with product, product: product, current_variant: current_variant, right_holder: right_holder -%}
 {%- when 'variant_picker' -%}
   {%- unless product.has_only_default_variant -%}
-    {%- render 'product-single-variants' with product: product -%}
+    {%- render 'product-single-variants' with product, product: product -%}
   {%- endunless -%}
 {%- when 'quantity_buy_buttons' -%}
-  {%- render 'product-single-form' with product: product, current_variant: current_variant, full_qty_box: false, product_form_id: product_form_id, obj: block, inline_button: inline_button -%}
+  {%- render 'product-single-form' with product, product: product, current_variant: current_variant, full_qty_box: false, product_form_id: product_form_id, obj: block, inline_button: inline_button -%}
 {%- when 'description' -%}
   {{ description }} 
 {%- when 'share' -%}
-  {%- render 'product-single-social-sharing' with product: product -%}
+  {%- render 'product-single-social-sharing' with product, product: product -%}
 {%- when 'random_sold_number' -%}
-  {%- render 'product-single-sold' with product: product, obj: block -%}
+  {%- render 'product-single-sold' with product, product: product, obj: block -%}
 {%- when 'countdown_timer' -%}
-  {%- render 'product-single-countdown' with product: product, obj: block -%}
+  {%- render 'product-single-countdown' with product, product: product, obj: block -%}
 {%- when 'payment_badge' -%}
-  {%- render 'product-single-payment-badge' with product: product, obj: block -%}
+  {%- render 'product-single-payment-badge' with product, product: product, obj: block -%}
 {%- when 'size_chart' -%}
-  {%- render 'product-single-size-chart' with product: product, obj: block, sizechart: sizechart, right_holder: right_holder -%}
+  {%- render 'product-single-size-chart' with product, product: product, obj: block, sizechart: sizechart, right_holder: right_holder -%}
 {%- when 'limited_stock_text' -%}
-  {%- render 'product-single-hurry-up' with product: product, obj: block, current_variant: current_variant -%}
+  {%- render 'product-single-hurry-up' with product, product: product, obj: block, current_variant: current_variant -%}
 {%- when 'review_stars' -%}  
-  {%- render 'product-review-single' with product: product -%}
+  {%- render 'product-review-single' with product, product: product -%}
 {%- when 'store-availability' -%}
-  {%- render 'product-single-store-availability' with product: product, show_top_line: true, show_bottom_line: true -%}
+  {%- render 'product-single-store-availability' with product, product: product, show_top_line: true, show_bottom_line: true -%}
 {%- when 'collections-tags' -%}
-  {%- render 'product-single-sub-info' with product: product, obj: block, right_holder: right_holder -%}
+  {%- render 'product-single-sub-info' with product, product: product, obj: block, right_holder: right_holder -%}
 {%- when 'custom_field' -%}
-  {%- render 'product-single-customizable-field' with product: product, index: 1, obj: block, product_form_id: product_form_id, enable_field: true -%}
+  {%- render 'product-single-customizable-field' with product, product: product, index: 1, obj: block, product_form_id: product_form_id, enable_field: true -%}
 {%- when 'custom_fields_group' -%}
-  {%- render 'product-single-customizable-fields' with product: product, obj: block, product_form_id: product_form_id -%}
+  {%- render 'product-single-customizable-fields' with product, product: product, obj: block, product_form_id: product_form_id -%}
 {%- when 'collapsible_tab_text' -%}
-  {%- render 'product-single-collapse-tab-text' with product: product, obj: block -%}
+  {%- render 'product-single-collapse-tab-text' with product, product: product, obj: block -%}
 {%- when 'collapsible_tab_desc' -%}
-  {%- render 'product-single-collapse-tab-desc' with product: product, obj: block, description: description -%}
+  {%- render 'product-single-collapse-tab-desc' with product, product: product, obj: block, description: description -%}
 {%- when 'collapsible_tab_reviews' -%}
-  {%- render 'product-single-collapse-tab-reviews' with product: product, obj: block -%}
+  {%- render 'product-single-collapse-tab-reviews' with product, product: product, obj: block -%}
 {%- when 'collapsible_tab_toolkit' -%}
-  {%- render 'product-single-collapse-tab-toolkit' with product: product, obj: block -%}  
+  {%- render 'product-single-collapse-tab-toolkit' with product, product: product, obj: block -%}  
 {%- when 'popup' -%}
   {%- if template.suffix != 'quick_view' -%}
-    {%- render 'product-single-popup-trigger' with product: product, obj: block -%}
+    {%- render 'product-single-popup-trigger' with product, product: product, obj: block -%}
   {%- endif -%}
 {%- when 'group_1' -%}
   {%- if block.settings.text_1 != blank -%}
-    {%- render 'product-single-text' with product: product, text: block.settings.text_1, text_style: block.settings.text_style_1 -%}
+    {%- render 'product-single-text' with product, product: product, text: block.settings.text_1, text_style: block.settings.text_style_1 -%}
   {%- endif -%}
   {%- if block.settings.text_2 != blank -%}
-    {%- render 'product-single-text' with product: product, text: block.settings.text_2, text_style: block.settings.text_style_2 -%}
+    {%- render 'product-single-text' with product, product: product, text: block.settings.text_2, text_style: block.settings.text_style_2 -%}
   {%- endif -%}
   {%- if block.settings.show_sku -%}
-    {%- render 'product-single-sku' with product: product, current_variant: current_variant, right_holder: right_holder -%} 
+    {%- render 'product-single-sku' with product, product: product, current_variant: current_variant, right_holder: right_holder -%} 
   {%- endif -%}
 {%- when 'group_2' -%}
   {%- if block.settings.show_review_stars -%}
-    {%- render 'product-review-single' with product: product -%}
+    {%- render 'product-review-single' with product, product: product -%}
   {%- endif -%}
   {%- if block.settings.show_price -%}
-    {%- render 'product-single-price' with product: product, current_variant: current_variant, show_shipping_policy_link: block.settings.show_shipping_policy_link, obj: block, left_holder: left_holder -%}
+    {%- render 'product-single-price' with product, product: product, current_variant: current_variant, show_shipping_policy_link: block.settings.show_shipping_policy_link, obj: block, left_holder: left_holder -%}
   {%- endif -%}
   {%- if block.settings.show_countdown -%}
-    {%- render 'product-single-countdown' with product: product, obj: block -%}
+    {%- render 'product-single-countdown' with product, product: product, obj: block -%}
   {%- endif -%}
 {%- when 'group_3' -%}
-  {%- render 'product-single-sub-info' with product: product, obj: block, right_holder: right_holder -%}
+  {%- render 'product-single-sub-info' with product, product: product, obj: block, right_holder: right_holder -%}
   {%- if block.settings.show_payment_badge -%}
-    {%- render 'product-single-payment-badge' with product: product, obj: block -%}
+    {%- render 'product-single-payment-badge' with product, product: product, obj: block -%}
   {%- endif -%}
   {%- if block.settings.show_sharing_icons -%}
-    {%- render 'product-single-social-sharing' with product: product -%}
+    {%- render 'product-single-social-sharing' with product, product: product -%}
   {%- endif -%}
-{%- endcase -%}
+{%- endcase -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-single-text' with product: product, text: block.settings.text,
+    text_style: block.settings.text_style -%}"
+  to: "{%- render 'product-single-text' with product, product: product, text: block.settings.text,
+    text_style: block.settings.text_style -%}"
+  position: 46..179
+- from: "{%- render 'product-single-price' with product: product, current_variant:
+    current_variant, show_shipping_policy_link: block.settings.show_shipping_policy_link,
+    block: block, left_holder: left_holder -%}"
+  to: "{%- render 'product-single-price' with product, product: product, current_variant:
+    current_variant, show_shipping_policy_link: block.settings.show_shipping_policy_link,
+    block: block, left_holder: left_holder -%}"
+  position: 264..475
+- from: "{%- render 'product-single-sku' with product: product, current_variant: current_variant,
+    right_holder: right_holder -%}"
+  to: "{%- render 'product-single-sku' with product, product: product, current_variant:
+    current_variant, right_holder: right_holder -%}"
+  position: 497..625
+- from: "{%- render 'product-single-variants' with product: product -%}"
+  to: "{%- render 'product-single-variants' with product, product: product -%}"
+  position: 710..781
+- from: "{%- render 'product-single-form' with product: product, current_variant:
+    current_variant, full_qty_box: false, product_form_id: product_form_id, obj: block,
+    inline_button: inline_button -%}"
+  to: "{%- render 'product-single-form' with product, product: product, current_variant:
+    current_variant, full_qty_box: false, product_form_id: product_form_id, obj: block,
+    inline_button: inline_button -%}"
+  position: 840..1038
+- from: "{%- render 'product-single-social-sharing' with product: product -%}"
+  to: "{%- render 'product-single-social-sharing' with product, product: product -%}"
+  position: 1110..1187
+- from: "{%- render 'product-single-sold' with product: product, obj: block -%}"
+  to: "{%- render 'product-single-sold' with product, product: product, obj: block
+    -%}"
+  position: 1224..1303
+- from: "{%- render 'product-single-countdown' with product: product, obj: block -%}"
+  to: "{%- render 'product-single-countdown' with product, product: product, obj:
+    block -%}"
+  position: 1337..1421
+- from: "{%- render 'product-single-payment-badge' with product: product, obj: block
+    -%}"
+  to: "{%- render 'product-single-payment-badge' with product, product: product, obj:
+    block -%}"
+  position: 1453..1541
+- from: "{%- render 'product-single-size-chart' with product: product, obj: block,
+    sizechart: sizechart, right_holder: right_holder -%}"
+  to: "{%- render 'product-single-size-chart' with product, product: product, obj:
+    block, sizechart: sizechart, right_holder: right_holder -%}"
+  position: 1570..1705
+- from: "{%- render 'product-single-hurry-up' with product: product, obj: block, current_variant:
+    current_variant -%}"
+  to: "{%- render 'product-single-hurry-up' with product, product: product, obj: block,
+    current_variant: current_variant -%}"
+  position: 1742..1859
+- from: "{%- render 'product-review-single' with product: product -%}"
+  to: "{%- render 'product-review-single' with product, product: product -%}"
+  position: 1892..1961
+- from: "{%- render 'product-single-store-availability' with product: product, show_top_line:
+    true, show_bottom_line: true -%}"
+  to: "{%- render 'product-single-store-availability' with product, product: product,
+    show_top_line: true, show_bottom_line: true -%}"
+  position: 1998..2124
+- from: "{%- render 'product-single-sub-info' with product: product, obj: block, right_holder:
+    right_holder -%}"
+  to: "{%- render 'product-single-sub-info' with product, product: product, obj: block,
+    right_holder: right_holder -%}"
+  position: 2159..2270
+- from: "{%- render 'product-single-customizable-field' with product: product, index:
+    1, obj: block, product_form_id: product_form_id, enable_field: true -%}"
+  to: "{%- render 'product-single-customizable-field' with product, product: product,
+    index: 1, obj: block, product_form_id: product_form_id, enable_field: true -%}"
+  position: 2301..2458
+- from: "{%- render 'product-single-customizable-fields' with product: product, obj:
+    block, product_form_id: product_form_id -%}"
+  to: "{%- render 'product-single-customizable-fields' with product, product: product,
+    obj: block, product_form_id: product_form_id -%}"
+  position: 2496..2624
+- from: "{%- render 'product-single-collapse-tab-text' with product: product, obj:
+    block -%}"
+  to: "{%- render 'product-single-collapse-tab-text' with product, product: product,
+    obj: block -%}"
+  position: 2663..2755
+- from: "{%- render 'product-single-collapse-tab-desc' with product: product, obj:
+    block, description: description -%}"
+  to: "{%- render 'product-single-collapse-tab-desc' with product, product: product,
+    obj: block, description: description -%}"
+  position: 2794..2912
+- from: "{%- render 'product-single-collapse-tab-reviews' with product: product, obj:
+    block -%}"
+  to: "{%- render 'product-single-collapse-tab-reviews' with product, product: product,
+    obj: block -%}"
+  position: 2954..3049
+- from: "{%- render 'product-single-collapse-tab-toolkit' with product: product, obj:
+    block -%}"
+  to: "{%- render 'product-single-collapse-tab-toolkit' with product, product: product,
+    obj: block -%}"
+  position: 3091..3186
+- from: "{%- render 'product-single-popup-trigger' with product: product, obj: block
+    -%}"
+  to: "{%- render 'product-single-popup-trigger' with product, product: product, obj:
+    block -%}"
+  position: 3259..3347
+- from: "{%- render 'product-single-text' with product: product, text: block.settings.text_1,
+    text_style: block.settings.text_style_1 -%}"
+  to: "{%- render 'product-single-text' with product, product: product, text: block.settings.text_1,
+    text_style: block.settings.text_style_1 -%}"
+  position: 3435..3572
+- from: "{%- render 'product-single-text' with product: product, text: block.settings.text_2,
+    text_style: block.settings.text_style_2 -%}"
+  to: "{%- render 'product-single-text' with product, product: product, text: block.settings.text_2,
+    text_style: block.settings.text_style_2 -%}"
+  position: 3637..3774
+- from: "{%- render 'product-single-sku' with product: product, current_variant: current_variant,
+    right_holder: right_holder -%}"
+  to: "{%- render 'product-single-sku' with product, product: product, current_variant:
+    current_variant, right_holder: right_holder -%}"
+  position: 3832..3960
+- from: "{%- render 'product-review-single' with product: product -%}"
+  to: "{%- render 'product-review-single' with product, product: product -%}"
+  position: 4051..4120
+- from: "{%- render 'product-single-price' with product: product, current_variant:
+    current_variant, show_shipping_policy_link: block.settings.show_shipping_policy_link,
+    obj: block, left_holder: left_holder -%}"
+  to: "{%- render 'product-single-price' with product, product: product, current_variant:
+    current_variant, show_shipping_policy_link: block.settings.show_shipping_policy_link,
+    obj: block, left_holder: left_holder -%}"
+  position: 4180..4389
+- from: "{%- render 'product-single-countdown' with product: product, obj: block -%}"
+  to: "{%- render 'product-single-countdown' with product, product: product, obj:
+    block -%}"
+  position: 4453..4537
+- from: "{%- render 'product-single-sub-info' with product: product, obj: block, right_holder:
+    right_holder -%}"
+  to: "{%- render 'product-single-sub-info' with product, product: product, obj: block,
+    right_holder: right_holder -%}"
+  position: 4579..4690
+- from: "{%- render 'product-single-payment-badge' with product: product, obj: block
+    -%}"
+  to: "{%- render 'product-single-payment-badge' with product, product: product, obj:
+    block -%}"
+  position: 4742..4830
+- from: "{%- render 'product-single-social-sharing' with product: product -%}"
+  to: "{%- render 'product-single-social-sharing' with product, product: product -%}"
+  position: 4898..4975
+{%- endcomment -%}

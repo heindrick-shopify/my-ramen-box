@@ -13,7 +13,7 @@
       endcapture
       assign page_url_str = contentForQuerystring | split:'"pageurl":"' | last | split:'"' | first
       capture filter_param_value
-        render 'read-url-param' with param_name: 'f', page_url_str: page_url_str
+        render 'read-url-param' with param_name, param_name: 'f', page_url_str: page_url_str
       endcapture
       if filter_param_value
         assign filter_param_value = filter_param_value | strip | url_decode | downcase
@@ -433,7 +433,7 @@
                 <span class="cfs__dropdown__title{% if index_loop < index_data %} cfs__dropdown__title--top{% endif %} transition w100 db text-uppercase lh1">{{ block.settings.title }}</span>
                 <span class="cfs__dropdown__value w100 db fw-bold lh1 gutter-ele-small-top">{%- if index_loop < index_data -%}{{ current_query_item_label }}{%- endif -%}</span>
               </div>
-              {%- render 'icon-arrow-down' with add_classes: 'cfs__item__arrow transition' -%}
+              {%- render 'icon-arrow-down' with add_classes, add_classes: 'cfs__item__arrow transition' -%}
             </div>
             {%- if index_loop <= index_data -%}
             <div class="cfs__dropdown__content transition custom-scrollbar custom-scrollbar--thick">
@@ -453,4 +453,19 @@
   <div class="gutter-ele-top-mb{% if no_center_btn_align != 0 %} col-xs-12 col-sm-6 col-md-3{% else %} col-xs-12 col-sm-3 {% if index_data > 3 %}gutter-top{% else %}gutter-ele-top-tbs{% endif %}{% endif %} cfs__item--btn" data-index-data="{{ no_center_btn_align }}">
     <a class="button button--style1 cfs__btn w100" href="#" title="{{ 'layout.navigation.search' | t | escape }}">{{ 'layout.navigation.search' | t }}</a>
   </div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "        render 'read-url-param' with param_name: 'f', page_url_str: page_url_str"
+  to: "        render 'read-url-param' with param_name, param_name: 'f', page_url_str:
+    page_url_str"
+  position: 504..596
+- from: "{%- render 'icon-arrow-down' with add_classes: 'cfs__item__arrow transition'
+    -%}"
+  to: "{%- render 'icon-arrow-down' with add_classes, add_classes: 'cfs__item__arrow
+    transition' -%}"
+  position: 24392..24485
+{%- endcomment -%}

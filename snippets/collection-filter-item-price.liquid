@@ -16,9 +16,9 @@
 {%- endif -%}
 <div class="cf__price-slider" id="price-slider-{{ block.id }}" data-min="0" data-max="{{ max_value }}" data-start="{{ start }}" data-end="{{ end }}"></div>
 <div class="gutter-top text-center">
-	<span class="cf__price cf__price-from dib">{%- render 'price' with price: filter.min_value.value -%}</span>
+	<span class="cf__price cf__price-from dib">{%- render 'price' with price, price: filter.min_value.value -%}</span>
 	<span class="cf__price__sep">-</span>
-	<span class="cf__price cf__price-to dib">{%- render 'price' with price: filter.max_value.value -%}</span>
+	<span class="cf__price cf__price-to dib">{%- render 'price' with price, price: filter.max_value.value -%}</span>
 </div>
 <input class="hide cf__price-input-min"
   name="{{ filter.min_value.param_name }}"
@@ -49,4 +49,16 @@
   placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
   min="0"
   max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
-</input>
+</input>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'price' with price: filter.min_value.value -%}"
+  to: "{%- render 'price' with price, price: filter.min_value.value -%}"
+  position: 1303..1367
+- from: "{%- render 'price' with price: filter.max_value.value -%}"
+  to: "{%- render 'price' with price, price: filter.max_value.value -%}"
+  position: 1456..1520
+{%- endcomment -%}

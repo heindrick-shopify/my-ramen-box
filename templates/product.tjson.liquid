@@ -1,2 +1,11 @@
 {%- layout none -%}
-{%- render 'product-tjson' with product: product -%}
+{%- render 'product-tjson' with product, product: product -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-tjson' with product: product -%}"
+  to: "{%- render 'product-tjson' with product, product: product -%}"
+  position: 20..81
+{%- endcomment -%}

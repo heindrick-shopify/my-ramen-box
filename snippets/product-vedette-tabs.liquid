@@ -32,7 +32,7 @@
               {{ product.description }}
             </div>
           {%- when 'tab_item_review' -%}
-            {%- render 'product-review-form' with product: product -%}
+            {%- render 'product-review-form' with product, product: product -%}
           {%- when 'tab_item_custom' -%}
             <div class="rte">{{ block.settings.custom_html }}</div>
         {%- endcase -%}
@@ -52,4 +52,13 @@
     </div>
   </div> 
 </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-review-form' with product: product -%}"
+  to: "{%- render 'product-review-form' with product, product: product -%}"
+  position: 2384..2451
+{%- endcomment -%}

@@ -16,7 +16,7 @@
 {%- elsif block.settings.ver_align_text_box -%}
 	{%- assign has_wrap_flex = true -%}
 {%- endif -%}
-<div class="{% render 'rich-banner-item-size' with block: block, item_size_class: item_size_class %} banner-item banner-item--{{ block.id }}{% unless has_wrap_flex %}{% if row_reverse %} flex flex-row-reverse{% endif %}{% endunless %}{% if block.settings.hide_on_mobile %} hidden-xs{% endif %}{% if block.settings.hide_on_desktop %} hidden-sm hidden-md hidden-lg{% endif %}{% if section.settings.enable_slider %}{{ slider_class }}{% if current_index_mobile > lazyload_index_mobile %} ov-slider-mb{% endif %}{% if current_index_tb > lazyload_index %} ov-slider-tb{% endif %}{% endif %}{% if block.settings.template == 'inside' %} por{% endif %}" {{ block.shopify_attributes }}>
+<div class="{% render 'rich-banner-item-size' with block, block: block, item_size_class: item_size_class %} banner-item banner-item--{{ block.id }}{% unless has_wrap_flex %}{% if row_reverse %} flex flex-row-reverse{% endif %}{% endunless %}{% if block.settings.hide_on_mobile %} hidden-xs{% endif %}{% if block.settings.hide_on_desktop %} hidden-sm hidden-md hidden-lg{% endif %}{% if section.settings.enable_slider %}{{ slider_class }}{% if current_index_mobile > lazyload_index_mobile %} ov-slider-mb{% endif %}{% if current_index_tb > lazyload_index %} ov-slider-tb{% endif %}{% endif %}{% if block.settings.template == 'inside' %} por{% endif %}" {{ block.shopify_attributes }}>
 	{%- assign image_col_width = 'col-xs-' | append: block.settings.image_box_width_mobile | append: ' col-md-' | append: block.settings.image_box_width_tb | append: ' col-lg-' | append: block.settings.image_box_width -%}
 	{%- capture text_html -%}
 		{%- if block.settings.text_1 != blank or block.settings.text_2 != blank or block.settings.text_3 != blank -%}
@@ -126,5 +126,22 @@
 		{%- endif -%}
 	{%- endcapture -%}
 
-	{%- render 'rich-banner-display' with banner_html: banner_html, block: block, ver_align_text: block.settings.ver_align_text_box, row_reverse: row_reverse -%}
-</div>
+	{%- render 'rich-banner-display' with banner_html, banner_html: banner_html, block: block, ver_align_text: block.settings.ver_align_text_box, row_reverse: row_reverse -%}
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'rich-banner-item-size' with block: block, item_size_class: item_size_class
+    %}"
+  to: "{% render 'rich-banner-item-size' with block, block: block, item_size_class:
+    item_size_class %}"
+  position: 768..863
+- from: "{%- render 'rich-banner-display' with banner_html: banner_html, block: block,
+    ver_align_text: block.settings.ver_align_text_box, row_reverse: row_reverse -%}"
+  to: "{%- render 'rich-banner-display' with banner_html, banner_html: banner_html,
+    block: block, ver_align_text: block.settings.ver_align_text_box, row_reverse:
+    row_reverse -%}"
+  position: 7625..7795
+{%- endcomment -%}

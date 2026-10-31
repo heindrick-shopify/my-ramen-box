@@ -17,10 +17,31 @@
 		<div class="col-xs-12 col-md-7 gutter-ele-top-tbs">
 			<div class="product-single__title product-single__title--select-options gutter-ele-bottom">{{ product.title }}</div>
 			<div class="gutter-ele-top gutter-ele-bottom">
-				{%- render 'product-variant-price' with product: product, variant: current_variant -%} 
+				{%- render 'product-variant-price' with product, product: product, variant: current_variant -%} 
 			</div>	 
-			{% render 'product-group-variants' with product: product, enable_product_options: true, color_size: '45x', is_single_view: true %}
-			{%- render 'product-single-form' with product: product, current_variant: current_variant, align_center_button: true -%}
+			{% render 'product-group-variants' with product, product: product, enable_product_options: true, color_size: '45x', is_single_view: true %}
+			{%- render 'product-single-form' with product, product: product, current_variant: current_variant, align_center_button: true -%}
 		</div>
 	</div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-variant-price' with product: product, variant: current_variant
+    -%}"
+  to: "{%- render 'product-variant-price' with product, product: product, variant:
+    current_variant -%}"
+  position: 1291..1386
+- from: "{% render 'product-group-variants' with product: product, enable_product_options:
+    true, color_size: '45x', is_single_view: true %}"
+  to: "{% render 'product-group-variants' with product, product: product, enable_product_options:
+    true, color_size: '45x', is_single_view: true %}"
+  position: 1403..1542
+- from: "{%- render 'product-single-form' with product: product, current_variant:
+    current_variant, align_center_button: true -%}"
+  to: "{%- render 'product-single-form' with product, product: product, current_variant:
+    current_variant, align_center_button: true -%}"
+  position: 1546..1674
+{%- endcomment -%}

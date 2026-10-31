@@ -16,18 +16,18 @@
           <input type="email" name="contact[email]" id="{{ section_news_input_id }}" class="w100{% if form.errors contains 'email' %} input--error{% endif %}" autocapitalize="off" placeholder="{{ 'general.newsletter_form.email_placeholder' | t | escape }}" style="height:45px;line-height:45px;border:none;background:{{ section.settings.input_bkg_color }};color:{{ section.settings.input_color }};" required>
           <button type="submit" class="button button--style1 newsletter__submit--{{ section.id }} button--icon no-gutter flex flex-align-ver" name="commit" aria-label="button" style="border:none;background:none;position:absolute;top:0;">
             {%- assign news_icon_class = 'newsletter__icon--' | append: section.id -%}
-            {%- render 'icon-paper-plane' with add_class: news_icon_class -%}
+            {%- render 'icon-paper-plane' with add_class, add_class: news_icon_class -%}
           </button>
         </div>
         {%- if settings.news_terms_enable and settings.news_platform == 'shopify' -%}
           <div class="center-block" style="max-width: 600px;float:none;">
             {%- assign section_news_terms_input_id = 'SectionNewsletterTerms-' | append: section.id -%}
-            {%- render 'newsletter-terms' with inputId: section_news_terms_input_id -%}
+            {%- render 'newsletter-terms' with inputId, inputId: section_news_terms_input_id -%}
           </div>
         {%- endif -%}
         {%- if section.settings.social_icons -%}
         <div class="gutter-top{% unless settings.news_terms_enable and settings.news_platform == 'shopify' %} gutter-ele-top-tbs{% endunless %}">
-          {%- render 'footer-social-icons' with enable_social: section.settings.social_icons -%}
+          {%- render 'footer-social-icons' with enable_social, enable_social: section.settings.social_icons -%}
         </div>
         {%- endif -%}
       {% endform %}
@@ -208,4 +208,22 @@
       }
     ]
   }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'icon-paper-plane' with add_class: news_icon_class -%}"
+  to: "{%- render 'icon-paper-plane' with add_class, add_class: news_icon_class -%}"
+  position: 2043..2119
+- from: "{%- render 'newsletter-terms' with inputId: section_news_terms_input_id -%}"
+  to: "{%- render 'newsletter-terms' with inputId, inputId: section_news_terms_input_id
+    -%}"
+  position: 2431..2515
+- from: "{%- render 'footer-social-icons' with enable_social: section.settings.social_icons
+    -%}"
+  to: "{%- render 'footer-social-icons' with enable_social, enable_social: section.settings.social_icons
+    -%}"
+  position: 2760..2861
+{%- endcomment -%}

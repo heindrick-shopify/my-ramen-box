@@ -9,31 +9,31 @@
 </div>
 
 <div class="col-xs-12 col-md-6 gutter-ele-top-tbs">
-  {%- render 'product-single-vendor' with product: product, gutter_bottom: true -%}
-  {%- render 'product-single-name' with product: product -%}
-  {%- render 'product-single-sku' with current_variant: current_variant -%}
+  {%- render 'product-single-vendor' with product, product: product, gutter_bottom: true -%}
+  {%- render 'product-single-name' with product, product: product -%}
+  {%- render 'product-single-sku' with current_variant, current_variant: current_variant -%}
   <div class="flex flex-align-ver flex-align-space-between">
-    {%- render 'product-single-sold' with product: product -%}
-    {%- render 'product-single-social-sharing' with product: product -%}
+    {%- render 'product-single-sold' with product, product: product -%}
+    {%- render 'product-single-social-sharing' with product, product: product -%}
   </div>
   {%- capture review_single_html -%}
-    {%- render 'product-review-single' with product: product, sizechart: sizechart -%}
+    {%- render 'product-review-single' with product, product: product, sizechart: sizechart -%}
   {%- endcapture -%}
   {%- if review_single_html != blank or sizechart -%}
   <div class="gutter-ele-small-top gutter-ele-bottom{% if review_single_html != blank and sizechart %} flex flex-align-space-between{% endif %}">
     {{ review_single_html }}
-    {%- render 'product-single-size-chart' with product: product, sizechart: sizechart -%}
+    {%- render 'product-single-size-chart' with product, product: product, sizechart: sizechart -%}
   </div>
   {%- endif -%}
-  {%- render 'product-single-price' with product: product, current_variant: current_variant -%}
-  {%- render 'product-single-short-desc' with product: product, description: description -%}
-  {%- render 'product-single-countdown' with product: product -%}
-  {%- render 'product-single-hurry-up' with current_variant: current_variant -%}
+  {%- render 'product-single-price' with product, product: product, current_variant: current_variant -%}
+  {%- render 'product-single-short-desc' with product, product: product, description: description -%}
+  {%- render 'product-single-countdown' with product, product: product -%}
+  {%- render 'product-single-hurry-up' with current_variant, current_variant: current_variant -%}
   {%- unless product.has_only_default_variant -%}
-  {%- render 'product-single-variants' with product: product -%}
+  {%- render 'product-single-variants' with product, product: product -%}
   {%- endunless -%}
-  {%- render 'product-single-form' with product: product, current_variant: current_variant, full_qty_box: false, left_holder: left_holder -%}
-  {%- render 'product-single-store-availability' with custom_classes: 'gutter-ele-top gutter-ele-bottom' -%}
+  {%- render 'product-single-form' with product, product: product, current_variant: current_variant, full_qty_box: false, left_holder: left_holder -%}
+  {%- render 'product-single-store-availability' with custom_classes, custom_classes: 'gutter-ele-top gutter-ele-bottom' -%}
   <hr>
   {%- render 'product-single-payment-badge' -%}
   {%- if template.suffix == 'quick_view' -%}
@@ -41,8 +41,8 @@
       <div class="gutter-ele-top gutter-ele-bottom">{{ description }}</div>
     {%- endunless -%}
   {%- endif -%}
-  {%- render 'product-single-sub-info' with product: product -%}
-  {%- render 'product-single-view-details' with product: product -%}
+  {%- render 'product-single-sub-info' with product, product: product -%}
+  {%- render 'product-single-view-details' with product, product: product -%}
 </div>
 
 {%- if template.suffix != 'quick_view' -%}
@@ -50,4 +50,75 @@
 {%- unless no_container -%}
 </div>
 {%- endunless -%}
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-single-vendor' with product: product, gutter_bottom:
+    true -%}"
+  to: "{%- render 'product-single-vendor' with product, product: product, gutter_bottom:
+    true -%}"
+  position: 390..480
+- from: "{%- render 'product-single-name' with product: product -%}"
+  to: "{%- render 'product-single-name' with product, product: product -%}"
+  position: 483..550
+- from: "{%- render 'product-single-sku' with current_variant: current_variant -%}"
+  to: "{%- render 'product-single-sku' with current_variant, current_variant: current_variant
+    -%}"
+  position: 553..643
+- from: "{%- render 'product-single-sold' with product: product -%}"
+  to: "{%- render 'product-single-sold' with product, product: product -%}"
+  position: 709..776
+- from: "{%- render 'product-single-social-sharing' with product: product -%}"
+  to: "{%- render 'product-single-social-sharing' with product, product: product -%}"
+  position: 781..858
+- from: "{%- render 'product-review-single' with product: product, sizechart: sizechart
+    -%}"
+  to: "{%- render 'product-review-single' with product, product: product, sizechart:
+    sizechart -%}"
+  position: 909..1000
+- from: "{%- render 'product-single-size-chart' with product: product, sizechart:
+    sizechart -%}"
+  to: "{%- render 'product-single-size-chart' with product, product: product, sizechart:
+    sizechart -%}"
+  position: 1255..1350
+- from: "{%- render 'product-single-price' with product: product, current_variant:
+    current_variant -%}"
+  to: "{%- render 'product-single-price' with product, product: product, current_variant:
+    current_variant -%}"
+  position: 1378..1480
+- from: "{%- render 'product-single-short-desc' with product: product, description:
+    description -%}"
+  to: "{%- render 'product-single-short-desc' with product, product: product, description:
+    description -%}"
+  position: 1483..1582
+- from: "{%- render 'product-single-countdown' with product: product -%}"
+  to: "{%- render 'product-single-countdown' with product, product: product -%}"
+  position: 1585..1657
+- from: "{%- render 'product-single-hurry-up' with current_variant: current_variant
+    -%}"
+  to: "{%- render 'product-single-hurry-up' with current_variant, current_variant:
+    current_variant -%}"
+  position: 1660..1755
+- from: "{%- render 'product-single-variants' with product: product -%}"
+  to: "{%- render 'product-single-variants' with product, product: product -%}"
+  position: 1808..1879
+- from: "{%- render 'product-single-form' with product: product, current_variant:
+    current_variant, full_qty_box: false, left_holder: left_holder -%}"
+  to: "{%- render 'product-single-form' with product, product: product, current_variant:
+    current_variant, full_qty_box: false, left_holder: left_holder -%}"
+  position: 1902..2050
+- from: "{%- render 'product-single-store-availability' with custom_classes: 'gutter-ele-top
+    gutter-ele-bottom' -%}"
+  to: "{%- render 'product-single-store-availability' with custom_classes, custom_classes:
+    'gutter-ele-top gutter-ele-bottom' -%}"
+  position: 2053..2175
+- from: "{%- render 'product-single-sub-info' with product: product -%}"
+  to: "{%- render 'product-single-sub-info' with product, product: product -%}"
+  position: 2466..2537
+- from: "{%- render 'product-single-view-details' with product: product -%}"
+  to: "{%- render 'product-single-view-details' with product, product: product -%}"
+  position: 2540..2615
+{%- endcomment -%}

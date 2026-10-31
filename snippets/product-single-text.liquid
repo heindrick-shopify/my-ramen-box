@@ -1,9 +1,25 @@
 {%- if text != blank -%}
 	{%- if text_style == 'title' -%}
-		{%- render 'product-single-name' with product: product, custom_text: text -%}
+		{%- render 'product-single-name' with product, product: product, custom_text: text -%}
 	{%- elsif text_style == 'vendor' -%}
-		{%- render 'product-single-vendor' with product: product, custom_text: text -%}
+		{%- render 'product-single-vendor' with product, product: product, custom_text: text -%}
 	{%- else -%}
 		<span class="db w100">{{- text -}}</span>		
 	{%- endif -%}
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-single-name' with product: product, custom_text: text
+    -%}"
+  to: "{%- render 'product-single-name' with product, product: product, custom_text:
+    text -%}"
+  position: 61..147
+- from: "{%- render 'product-single-vendor' with product: product, custom_text: text
+    -%}"
+  to: "{%- render 'product-single-vendor' with product, product: product, custom_text:
+    text -%}"
+  position: 188..276
+{%- endcomment -%}

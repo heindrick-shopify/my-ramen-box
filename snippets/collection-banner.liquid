@@ -9,6 +9,15 @@
   </noscript>
   {%- unless has_lcp -%}
     {%- assign has_lcp = true -%}
-    {%- render 'lcp-mark' with image: collection.image -%}
+    {%- render 'lcp-mark' with image, image: collection.image -%}
   {%- endunless -%}
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'lcp-mark' with image: collection.image -%}"
+  to: "{%- render 'lcp-mark' with image, image: collection.image -%}"
+  position: 824..885
+{%- endcomment -%}

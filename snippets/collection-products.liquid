@@ -25,17 +25,17 @@
             <a class="cf__link--current cf__link por current" href="{{ filter.url_to_remove }}" title="{{ filter.label | escape }}">
               <span class="cf__price cf__price-from dib">
                 {%- if filter.min_value.value -%}
-                  {%- render 'price' with price: filter.min_value.value -%}
+                  {%- render 'price' with price, price: filter.min_value.value -%}
                 {%- else -%}
-                  {%- render 'price' with price: 0 -%}
+                  {%- render 'price' with price, price: 0 -%}
                 {%- endif -%}
               </span>
               <span class="cf__price__sep">-</span>
               <span class="cf__price cf__price-to dib">
                 {%- if filter.max_value.value -%}
-                  {%- render 'price' with price: filter.max_value.value -%}
+                  {%- render 'price' with price, price: filter.max_value.value -%}
                 {%- else -%}
-                  {%- render 'price' with price: filter.range_max -%}
+                  {%- render 'price' with price, price: filter.range_max -%}
                 {%- endif -%}
               </span>
             </a>
@@ -89,40 +89,17 @@
             {%- else -%}
               {%- assign featured_image = product.first_available_variant.featured_image -%}
             {%- endif -%}
-            {%- render 'lcp-mark-50w' with image: featured_image, sizes: '(max-width: 767px) 50vw, 25vw' -%}
+            {%- render 'lcp-mark-50w' with image, image: featured_image, sizes: '(max-width: 767px) 50vw, 25vw' -%}
           {%- endif -%}
           {%- assign is_lcp = forloop.first -%}
         {%- endunless -%}
-      	{%- render 'product-grid-item' with 
-        product: product,
-        use_slider: false, 
-        limit_first: 0, 
-        item_size: item_size, 
-        index: forloop.index, 
-        lazy_index: lazy_index,
-        column_count: column_count, 
-        main_thumbnail: section.settings.main_thumbnail, 
-        image_size: '50x', 
-        truncate_count: section.settings.product_name_size, enable_product_options: section.settings.enable_product_options, 
-        show_review_stars: section.settings.show_review_stars,
-        enable_small_images: false,
-        show_wishlist_btn: section.settings.show_wishlist_btn,
-        small_image: '1x',
-        show_label : section.settings.show_label,
-        show_cart_btn: section.settings.show_cart_btn,
-        show_compare_btn: section.settings.show_compare_btn,
-        show_qs_btn: section.settings.show_qs_btn,
-        show_desc: is_list_mode,
-        show_countdown_timer: section.settings.show_countdown_timer,
-        show_vendor: section.settings.show_vendor,
-        withinCollection: collection,
-        is_lcp: is_lcp -%}
+      	{%- render 'product-grid-item' with product, product: product, use_slider: false, limit_first: 0, item_size: item_size, index: forloop.index, lazy_index: lazy_index, column_count: column_count, main_thumbnail: section.settings.main_thumbnail, image_size: '50x', truncate_count: section.settings.product_name_size, enable_product_options: section.settings.enable_product_options, show_review_stars: section.settings.show_review_stars, enable_small_images: false, show_wishlist_btn: section.settings.show_wishlist_btn, small_image: '1x', show_label: section.settings.show_label, show_cart_btn: section.settings.show_cart_btn, show_compare_btn: section.settings.show_compare_btn, show_qs_btn: section.settings.show_qs_btn, show_desc: is_list_mode, show_countdown_timer: section.settings.show_countdown_timer, show_vendor: section.settings.show_vendor, withinCollection: collection, is_lcp: is_lcp -%}
     	{%- endfor -%}
     	</div>
       {%- if section.settings.enable_infinity_loading -%}
-        {%- render 'pagination-infinity' with infinity_action: section.settings.infinity_action, paginate: paginate -%}
+        {%- render 'pagination-infinity' with infinity_action, infinity_action: section.settings.infinity_action, paginate: paginate -%}
       {%- else -%}
-        {%- render 'pagination' with paginate: paginate -%}
+        {%- render 'pagination' with paginate, paginate: paginate -%}
       {%- endif -%}  
     {%- endpaginate -%}
   {%- else -%}
@@ -132,4 +109,60 @@
     </div>
   </div>  
   {%- endif -%}
-</div>  
+</div>  {%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'price' with price: filter.min_value.value -%}"
+  to: "{%- render 'price' with price, price: filter.min_value.value -%}"
+  position: 1367..1431
+- from: "{%- render 'price' with price: 0 -%}"
+  to: "{%- render 'price' with price, price: 0 -%}"
+  position: 1479..1522
+- from: "{%- render 'price' with price: filter.max_value.value -%}"
+  to: "{%- render 'price' with price, price: filter.max_value.value -%}"
+  position: 1751..1815
+- from: "{%- render 'price' with price: filter.range_max -%}"
+  to: "{%- render 'price' with price, price: filter.range_max -%}"
+  position: 1863..1921
+- from: "{%- render 'lcp-mark-50w' with image: featured_image, sizes: '(max-width:
+    767px) 50vw, 25vw' -%}"
+  to: "{%- render 'lcp-mark-50w' with image, image: featured_image, sizes: '(max-width:
+    767px) 50vw, 25vw' -%}"
+  position: 4202..4305
+- from: "{%- render 'product-grid-item' with \n        product: product,\n        use_slider:
+    false, \n        limit_first: 0, \n        item_size: item_size, \n        index:
+    forloop.index, \n        lazy_index: lazy_index,\n        column_count: column_count,
+    \n        main_thumbnail: section.settings.main_thumbnail, \n        image_size:
+    '50x', \n        truncate_count: section.settings.product_name_size, enable_product_options:
+    section.settings.enable_product_options, \n        show_review_stars: section.settings.show_review_stars,\n
+    \       enable_small_images: false,\n        show_wishlist_btn: section.settings.show_wishlist_btn,\n
+    \       small_image: '1x',\n        show_label : section.settings.show_label,\n
+    \       show_cart_btn: section.settings.show_cart_btn,\n        show_compare_btn:
+    section.settings.show_compare_btn,\n        show_qs_btn: section.settings.show_qs_btn,\n
+    \       show_desc: is_list_mode,\n        show_countdown_timer: section.settings.show_countdown_timer,\n
+    \       show_vendor: section.settings.show_vendor,\n        withinCollection:
+    collection,\n        is_lcp: is_lcp -%}"
+  to: "{%- render 'product-grid-item' with product, product: product, use_slider:
+    false, limit_first: 0, item_size: item_size, index: forloop.index, lazy_index:
+    lazy_index, column_count: column_count, main_thumbnail: section.settings.main_thumbnail,
+    image_size: '50x', truncate_count: section.settings.product_name_size, enable_product_options:
+    section.settings.enable_product_options, show_review_stars: section.settings.show_review_stars,
+    enable_small_images: false, show_wishlist_btn: section.settings.show_wishlist_btn,
+    small_image: '1x', show_label: section.settings.show_label, show_cart_btn: section.settings.show_cart_btn,
+    show_compare_btn: section.settings.show_compare_btn, show_qs_btn: section.settings.show_qs_btn,
+    show_desc: is_list_mode, show_countdown_timer: section.settings.show_countdown_timer,
+    show_vendor: section.settings.show_vendor, withinCollection: collection, is_lcp:
+    is_lcp -%}"
+  position: 4411..5308
+- from: "{%- render 'pagination-infinity' with infinity_action: section.settings.infinity_action,
+    paginate: paginate -%}"
+  to: "{%- render 'pagination-infinity' with infinity_action, infinity_action: section.settings.infinity_action,
+    paginate: paginate -%}"
+  position: 5407..5535
+- from: "{%- render 'pagination' with paginate: paginate -%}"
+  to: "{%- render 'pagination' with paginate, paginate: paginate -%}"
+  position: 5563..5624
+{%- endcomment -%}

@@ -15,17 +15,27 @@
 {% paginate search.results by section.settings.limit %}
 <div class="products grid--products row flex{% if item_size == 'list' %} grid--list{% endif %}">
   {% for item in search.results %}
-    {%- render 'article-grid-item' with 
-    article: item,
-    layout: item_size,
-    blog_show_author: section.settings.blog_show_author_search,
-    blog_show_date: section.settings.blog_show_date_search,
-    multi_mode: true,
-    add_classes: 'transition',
-    highlight_text: search.terms,
-    add_classes: item_class -%}
+    {%- render 'article-grid-item' with article, article: item, layout: item_size, blog_show_author: section.settings.blog_show_author_search, blog_show_date: section.settings.blog_show_date_search, multi_mode: true, add_classes: item_class, highlight_text: search.terms -%}
   {% endfor %}
 </div>
-{%- render 'search-result-pagination' with paginate: paginate -%}
+{%- render 'search-result-pagination' with paginate, paginate: paginate -%}
 {% endpaginate %}
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'article-grid-item' with \n    article: item,\n    layout: item_size,\n
+    \   blog_show_author: section.settings.blog_show_author_search,\n    blog_show_date:
+    section.settings.blog_show_date_search,\n    multi_mode: true,\n    add_classes:
+    'transition',\n    highlight_text: search.terms,\n    add_classes: item_class
+    -%}"
+  to: "{%- render 'article-grid-item' with article, article: item, layout: item_size,
+    blog_show_author: section.settings.blog_show_author_search, blog_show_date: section.settings.blog_show_date_search,
+    multi_mode: true, add_classes: item_class, highlight_text: search.terms -%}"
+  position: 746..1016
+- from: "{%- render 'search-result-pagination' with paginate: paginate -%}"
+  to: "{%- render 'search-result-pagination' with paginate, paginate: paginate -%}"
+  position: 1039..1114
+{%- endcomment -%}

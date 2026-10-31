@@ -8,7 +8,7 @@
         <div class="grid__item">
           {%- if block.settings.image -%}
             {%- capture img_wrapper_id -%}SimpleBannerWrapper--{{ block.id }}-{{ forloop.index }}-{{ block.settings.image.id }}{%- endcapture -%}
-            {%- render 'image-style' with image: block.settings.image, small_style: false, width: block.settings.image.width, height: block.settings.image.height, wrapper_id: img_wrapper_id -%}
+            {%- render 'image-style' with image, image: block.settings.image, small_style: false, width: block.settings.image.width, height: block.settings.image.height, wrapper_id: img_wrapper_id -%}
             <div id="{{ img_wrapper_id }}" class="w100">
               <a href="{{ block.settings.link | default: '#' }}" class="img-container" style="padding-top:{{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100}}%;">
                 {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
@@ -195,3 +195,17 @@
     ]
   }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'image-style' with image: block.settings.image, small_style: false,
+    width: block.settings.image.width, height: block.settings.image.height, wrapper_id:
+    img_wrapper_id -%}"
+  to: "{%- render 'image-style' with image, image: block.settings.image, small_style:
+    false, width: block.settings.image.width, height: block.settings.image.height,
+    wrapper_id: img_wrapper_id -%}"
+  position: 664..852
+{% endcomment %}

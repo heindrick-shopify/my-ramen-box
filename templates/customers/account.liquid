@@ -45,7 +45,7 @@
 
             {% endif %}
             {% if paginate.pages > 1 %}
-              {% render 'pagination' with paginate: paginate %}
+              {% render 'pagination' with paginate, paginate: paginate %}
             {% endif %}
             {% endpaginate %}
           </div>
@@ -74,4 +74,13 @@
   .table>tbody>tr>td {
     text-align: center;
   }
-</style>
+</style>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'pagination' with paginate: paginate %}"
+  to: "{% render 'pagination' with paginate, paginate: paginate %}"
+  position: 2515..2574
+{%- endcomment -%}

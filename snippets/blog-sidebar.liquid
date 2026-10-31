@@ -12,9 +12,19 @@
           render 'blog-sidebar-filter-tags', blog: blog
         endif
         if show_recent_posts
-          render 'blog-sidebar-recent-posts' with blog: blog, limit: recent_post_limit
+          render 'blog-sidebar-recent-posts' with blog, blog: blog, limit: recent_post_limit
         endif
       -%}
     </div>
   </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "          render 'blog-sidebar-recent-posts' with blog: blog, limit: recent_post_limit"
+  to: "          render 'blog-sidebar-recent-posts' with blog, blog: blog, limit:
+    recent_post_limit"
+  position: 523..615
+{%- endcomment -%}

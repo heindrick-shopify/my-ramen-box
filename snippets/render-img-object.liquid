@@ -1,8 +1,17 @@
-<img srcset="{% render 'img-srcset' with image: image %}"
+<img srcset="{% render 'img-srcset' with image, image: image %}"
   sizes="{{ sizes | default: '(min-width: 750px) 50vw, 100vw' }}"
   alt="{{ image.alt | escape }}"
   loading="lazy"
   width="{{ image.width }}"
   height="{{ image.height }}"
   class="{{ css_classes }}"
->
+>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'img-srcset' with image: image %}"
+  to: "{% render 'img-srcset' with image, image: image %}"
+  position: 13..63
+{%- endcomment -%}

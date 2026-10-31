@@ -1,11 +1,32 @@
 <div class="row flex">
 	{%- if has_collection_filter -%}
 	<div class="col-xs-12 col-md-3 col-lg-2">
-		{%- render 'collection-filter' with block: block, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
+		{%- render 'collection-filter' with block, block: block, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
 	</div>
 	{%- endif -%}
 	<div class="col-xs-12{% if has_collection_filter %} col-md-9 col-lg-10{% endif %}">
-		{%- render 'collection-toolbar' with block: block, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
-		{%- render 'collection-products' with block: block, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
+		{%- render 'collection-toolbar' with block, block: block, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
+		{%- render 'collection-products' with block, block: block, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
 	</div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'collection-filter' with block: block, enable_rtl: enable_rtl,
+    left_holder: left_holder, right_holder: right_holder -%}"
+  to: "{%- render 'collection-filter' with block, block: block, enable_rtl: enable_rtl,
+    left_holder: left_holder, right_holder: right_holder -%}"
+  position: 102..239
+- from: "{%- render 'collection-toolbar' with block: block, enable_rtl: enable_rtl,
+    left_holder: left_holder, right_holder: right_holder -%}"
+  to: "{%- render 'collection-toolbar' with block, block: block, enable_rtl: enable_rtl,
+    left_holder: left_holder, right_holder: right_holder -%}"
+  position: 350..488
+- from: "{%- render 'collection-products' with block: block, enable_rtl: enable_rtl,
+    left_holder: left_holder, right_holder: right_holder -%}"
+  to: "{%- render 'collection-products' with block, block: block, enable_rtl: enable_rtl,
+    left_holder: left_holder, right_holder: right_holder -%}"
+  position: 491..630
+{%- endcomment -%}

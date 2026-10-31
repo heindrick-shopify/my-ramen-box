@@ -3,15 +3,15 @@
 	{%- case media.media_type -%}
     {%- when 'external_video' -%}
     	{%- if use_slider -%}
-				{%- render 'product-single-main-video' with video_type: media.host, video_id: media.external_id, video_ratio: ratio, media: media -%}
+				{%- render 'product-single-main-video' with video_type, video_type: media.host, video_id: media.external_id, video_ratio: ratio, media: media -%}
 			{%- else -%}
-				{%- render 'product-single-main-video-iframe' with video_type: media.host, video_id: media.external_id, media: media -%}	
+				{%- render 'product-single-main-video-iframe' with video_type, video_type: media.host, video_id: media.external_id, media: media -%}	
 			{%- endif -%}
     {%- when 'video' -%}
       {%- if use_slider -%}
-				{%- render 'product-single-main-video' with video_type: media.media_type, video_url: media.sources[0].url, media: media -%}
+				{%- render 'product-single-main-video' with video_type, video_type: media.media_type, video_url: media.sources[0].url, media: media -%}
 			{%- else -%}
-				{%- render 'product-single-main-video-iframe' with video_type: media.media_type, media: media -%}	
+				{%- render 'product-single-main-video-iframe' with video_type, video_type: media.media_type, media: media -%}	
 			{%- endif -%}
     {%- when 'model' -%}
     	<div style="padding-top: 100%" data-image-id="{{ media.id }}" data-product-media-type-model class="pg__main__link pg__main__link--model ignore-lightbox por">
@@ -20,7 +20,7 @@
     {%- else -%}
      	{%- unless media.alt contains '{{video' or media.alt contains '{{youtube' or media.alt contains '{{vimeo' -%}
 				<a href="{{ media.src | img_url: 'master' }}" class="pg__main__link img-container" title="{{ img_alt | escape }}" data-image-id="{{ media.id }}" style="padding-top:{{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;" data-width="{{ media.width }}" data-height="{{ media.height }}">
-					<img srcset="{% unless single_main_size == '50w' %}{% render 'img-srcset' with image: media.preview_image %}{% else %}{% render 'img-srcset-50w' with image: media.preview_image %}{% endunless %}"
+					<img srcset="{% unless single_main_size == '50w' %}{% render 'img-srcset' with image, image: media.preview_image %}{% else %}{% render 'img-srcset-50w' with image, image: media.preview_image %}{% endunless %}"
 					  sizes="{{ single_main_size }}"
 					  alt="{{ media.alt | escape }}"
 					  loading="lazy"
@@ -32,20 +32,73 @@
 			  </a>
 			{%- else -%}
 				{%- if use_slider -%}
-					{%- render 'alt-img-shortcode' with media: media -%}
+					{%- render 'alt-img-shortcode' with media, media: media -%}
 				{%- else -%}
-					{%- render 'alt-img-shortcode-iframe' with media: media -%}	
+					{%- render 'alt-img-shortcode-iframe' with media, media: media -%}	
 				{%- endif -%}
 			{%- endunless -%}
 			{%- if show_media_btn_inner -%}
-				{%- render 'product-single-media-btn' with show_media_btn: section.settings.show_media_btn, hide_media_text: true, media_id: media.id -%}
+				{%- render 'product-single-media-btn' with show_media_btn, show_media_btn: section.settings.show_media_btn, hide_media_text: true, media_id: media.id -%}
 			{%- endif -%}
   {%- endcase -%} 
 </div>
 {%- if is_active and template.name == 'product' -%}
 	{%- unless single_main_size == '50w' -%}
-		{%- render 'lcp-mark' with image: media.preview_image, sizes: single_main_size -%}
+		{%- render 'lcp-mark' with image, image: media.preview_image, sizes: single_main_size -%}
 	{%- else -%}
-		{%- render 'lcp-mark-50w' with image: media.preview_image, sizes: single_main_size -%}	
+		{%- render 'lcp-mark-50w' with image, image: media.preview_image, sizes: single_main_size -%}	
 	{%- endunless -%}	
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-single-main-video' with video_type: media.host, video_id:
+    media.external_id, video_ratio: ratio, media: media -%}"
+  to: "{%- render 'product-single-main-video' with video_type, video_type: media.host,
+    video_id: media.external_id, video_ratio: ratio, media: media -%}"
+  position: 551..696
+- from: "{%- render 'product-single-main-video-iframe' with video_type: media.host,
+    video_id: media.external_id, media: media -%}"
+  to: "{%- render 'product-single-main-video-iframe' with video_type, video_type:
+    media.host, video_id: media.external_id, media: media -%}"
+  position: 717..849
+- from: "{%- render 'product-single-main-video' with video_type: media.media_type,
+    video_url: media.sources[0].url, media: media -%}"
+  to: "{%- render 'product-single-main-video' with video_type, video_type: media.media_type,
+    video_url: media.sources[0].url, media: media -%}"
+  position: 925..1060
+- from: "{%- render 'product-single-main-video-iframe' with video_type: media.media_type,
+    media: media -%}"
+  to: "{%- render 'product-single-main-video-iframe' with video_type, video_type:
+    media.media_type, media: media -%}"
+  position: 1081..1190
+- from: "{% render 'img-srcset' with image: media.preview_image %}"
+  to: "{% render 'img-srcset' with image, image: media.preview_image %}"
+  position: 2017..2081
+- from: "{% render 'img-srcset-50w' with image: media.preview_image %}"
+  to: "{% render 'img-srcset-50w' with image, image: media.preview_image %}"
+  position: 2091..2159
+- from: "{%- render 'alt-img-shortcode' with media: media -%}"
+  to: "{%- render 'alt-img-shortcode' with media, media: media -%}"
+  position: 2643..2702
+- from: "{%- render 'alt-img-shortcode-iframe' with media: media -%}"
+  to: "{%- render 'alt-img-shortcode-iframe' with media, media: media -%}"
+  position: 2725..2791
+- from: "{%- render 'product-single-media-btn' with show_media_btn: section.settings.show_media_btn,
+    hide_media_text: true, media_id: media.id -%}"
+  to: "{%- render 'product-single-media-btn' with show_media_btn, show_media_btn:
+    section.settings.show_media_btn, hide_media_text: true, media_id: media.id -%}"
+  position: 2871..3024
+- from: "{%- render 'lcp-mark' with image: media.preview_image, sizes: single_main_size
+    -%}"
+  to: "{%- render 'lcp-mark' with image, image: media.preview_image, sizes: single_main_size
+    -%}"
+  position: 3164..3253
+- from: "{%- render 'lcp-mark-50w' with image: media.preview_image, sizes: single_main_size
+    -%}"
+  to: "{%- render 'lcp-mark-50w' with image, image: media.preview_image, sizes: single_main_size
+    -%}"
+  position: 3270..3363
+{%- endcomment -%}

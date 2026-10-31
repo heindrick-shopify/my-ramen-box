@@ -34,17 +34,17 @@
               <a href="{{ filter.url_to_remove }}" class="cf__link cf__link--current por current" title="{{ filter.label | escape }}">
                 <span class="cf__price cf__price-from dib">
                   {%- if filter.min_value.value -%}
-                    {%- render 'price' with price: filter.min_value.value -%}
+                    {%- render 'price' with price, price: filter.min_value.value -%}
                   {%- else -%}
-                    {%- render 'price' with price: 0 -%}
+                    {%- render 'price' with price, price: 0 -%}
                   {%- endif -%}
                 </span>
                 <span class="cf__price__sep">-</span>
                 <span class="cf__price cf__price-to dib">
                   {%- if filter.max_value.value -%}
-                    {%- render 'price' with price: filter.max_value.value -%}
+                    {%- render 'price' with price, price: filter.max_value.value -%}
                   {%- else -%}
-                    {%- render 'price' with price: filter.range_max -%}
+                    {%- render 'price' with price, price: filter.range_max -%}
                   {%- endif -%}
                 </span>
                </a> 
@@ -55,3 +55,22 @@
     {%- endif -%}      
   {%- endif -%}
 {%- endfor -%}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'price' with price: filter.min_value.value -%}"
+  to: "{%- render 'price' with price, price: filter.min_value.value -%}"
+  position: 1786..1850
+- from: "{%- render 'price' with price: 0 -%}"
+  to: "{%- render 'price' with price, price: 0 -%}"
+  position: 1902..1945
+- from: "{%- render 'price' with price: filter.max_value.value -%}"
+  to: "{%- render 'price' with price, price: filter.max_value.value -%}"
+  position: 2186..2250
+- from: "{%- render 'price' with price: filter.range_max -%}"
+  to: "{%- render 'price' with price, price: filter.range_max -%}"
+  position: 2302..2360
+{% endcomment %}

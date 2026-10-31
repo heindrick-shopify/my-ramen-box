@@ -2,7 +2,7 @@
 	<div class="container{% if settings.header_wide_display %}-fluid{% endif %}">
 		<div class="flex flex-align-space-between flex-align-ver">
 			<div class="header__top__left">
-				{%- render 'header-social-links' with add_wrap_classes: 'header__top-padding' -%}
+				{%- render 'header-social-links' with add_wrap_classes, add_wrap_classes: 'header__top-padding' -%}
 			</div>
 			<div class="header__top__center">
 				{%- if settings.header_text != blank -%}
@@ -21,7 +21,7 @@
 <div class="container{% if settings.header_wide_display %}-fluid{% endif %}">
 	<div class="row header__middle flex flex-align-space-between flex-align-ver{% if settings.use_sticky %} use-sticky--desktop{% endif %} por{% if settings.use_sticky %} hide-in-sticky{% endif %}">
 		<div class="col-xs-5"></div>
-		<div class="col-xs-2">{% render 'header__logo' with prevent_width: true %}</div>
+		<div class="col-xs-2">{% render 'header__logo' with prevent_width, prevent_width: true %}</div>
 		<div class="col-xs-5 position-static" style="align-self:normal;">
 			<div class="flex flex-wrap header__right-col h100" style="justify-content: flex-end;">
 				<div class="header__middle__links header__links--flex flex">
@@ -97,6 +97,23 @@
 	</div>
 	<div class="header__wrap flex flex-align-space-between flex-align-ver">
 		{% section 'navigation' %}
-		{%- render 'search-form' with hide_placeholder: true -%}
+		{%- render 'search-form' with hide_placeholder, hide_placeholder: true -%}
 	</div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'header-social-links' with add_wrap_classes: 'header__top-padding'
+    -%}"
+  to: "{%- render 'header-social-links' with add_wrap_classes, add_wrap_classes: 'header__top-padding'
+    -%}"
+  position: 259..358
+- from: "{% render 'header__logo' with prevent_width: true %}"
+  to: "{% render 'header__logo' with prevent_width, prevent_width: true %}"
+  position: 1631..1698
+- from: "{%- render 'search-form' with hide_placeholder: true -%}"
+  to: "{%- render 'search-form' with hide_placeholder, hide_placeholder: true -%}"
+  position: 6828..6902
+{%- endcomment -%}

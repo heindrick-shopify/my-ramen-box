@@ -39,7 +39,7 @@
         </path>
       </svg>
     </span>
-    <span class="cart-subox-delivery">(Delivery within {% render 'vendor-shipping-times' with input_vendor:item.vendor %})</span>
+    <span class="cart-subox-delivery">(Delivery within {% render 'vendor-shipping-times' with input_vendor.item.vendor, input_vendor: item.vendor %})</span>
   </div>
 
 <style>
@@ -48,4 +48,14 @@
   .cart-subox-message p { 
     font-size: 13px;
     margin-bottom: 0; } 
-</style>
+</style>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'vendor-shipping-times' with input_vendor:item.vendor %}"
+  to: "{% render 'vendor-shipping-times' with input_vendor.item.vendor, input_vendor:
+    item.vendor %}"
+  position: 1996..2089
+{%- endcomment -%}

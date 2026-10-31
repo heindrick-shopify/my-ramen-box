@@ -23,7 +23,7 @@
       </a>
       {%- if show_review_stars -%}
       <div class="gutter-ele-small-top">
-        {%- render 'product-review' with product: product -%}
+        {%- render 'product-review' with product, product: product -%}
       </div>
       {%- endif -%}
       <div class="gutter-ele-small-top">
@@ -31,4 +31,13 @@
       </div>
     </div>
   </div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-review' with product: product -%}"
+  to: "{%- render 'product-review' with product, product: product -%}"
+  position: 1813..1875
+{%- endcomment -%}

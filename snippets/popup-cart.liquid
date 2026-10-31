@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" data-dismiss="modal" aria-label="Close" class="close">{% render 'icon-close' with add_class: 'flex flex-align-hoz' %}</button>
+        <button type="button" data-dismiss="modal" aria-label="Close" class="close">{% render 'icon-close' with add_class, add_class: 'flex flex-align-hoz' %}</button>
       </div>
       <div class="modal-body">
         <div class="cart-message alert alert-success hide">
@@ -42,13 +42,13 @@
                 <button aria-label="button" class="button button--style1 button--checkout checkout-btn checkout-btn--redirect w100"{% unless settings.cart_terms_enable %} onclick="window.location.href='{{ routes.root_url | append: '/' | replace: '//', '/' }}checkout';"{% endunless %}><span class="ver-sub">{{ 'cart.general.checkout' | t }}</span></button>
               </div>
               {%- if settings.cart_terms_enable -%}
-                {%- render 'cart-terms' with for_id: 'popup-cart' -%}
+                {%- render 'cart-terms' with for_id, for_id: 'popup-cart' -%}
               {%- endif -%}
               {%- if settings.cart_free_shipping_enable -%}
               <div class="gutter-top"></div>
-              {%- render 'free-shipping-progress' with free_shipping_goal: 0, custom_progess_bar_classes: 'progress-bar--popup-cart' -%}
+              {%- render 'free-shipping-progress' with free_shipping_goal, free_shipping_goal: 0, custom_progess_bar_classes: 'progress-bar--popup-cart' -%}
               <p class="gutter-ele-top cart-response__free-shipping">
-                {%- render 'icon-truck' with addClasses: 'free-shipping-icon' -%}<span class="cart-response__free-shipping__text free-shipping-text"></span>
+                {%- render 'icon-truck' with addClasses, addClasses: 'free-shipping-icon' -%}<span class="cart-response__free-shipping__text free-shipping-text"></span>
               </p>
               {%- endif -%}
             </div>
@@ -72,4 +72,24 @@
 .cart-response__sub-total{font-size: 16px;}
 .cart-response__price--align{padding: 0 5px;}
 .cart-response__line-price__label{font-size: 15px;padding-right: 5px;}
-.cart-response__qty{padding-right: 5px;}</style>
+.cart-response__qty{padding-right: 5px;}</style>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'icon-close' with add_class: 'flex flex-align-hoz' %}"
+  to: "{% render 'icon-close' with add_class, add_class: 'flex flex-align-hoz' %}"
+  position: 281..355
+- from: "{%- render 'cart-terms' with for_id: 'popup-cart' -%}"
+  to: "{%- render 'cart-terms' with for_id, for_id: 'popup-cart' -%}"
+  position: 2818..2879
+- from: "{%- render 'free-shipping-progress' with free_shipping_goal: 0, custom_progess_bar_classes:
+    'progress-bar--popup-cart' -%}"
+  to: "{%- render 'free-shipping-progress' with free_shipping_goal, free_shipping_goal:
+    0, custom_progess_bar_classes: 'progress-bar--popup-cart' -%}"
+  position: 3027..3169
+- from: "{%- render 'icon-truck' with addClasses: 'free-shipping-icon' -%}"
+  to: "{%- render 'icon-truck' with addClasses, addClasses: 'free-shipping-icon' -%}"
+  position: 3256..3333
+{%- endcomment -%}

@@ -1,6 +1,6 @@
 <div class="main-product-reviews-section container{% render 'wide-css-class' %}{% render 'section-gutters-nobkg' %}" id="main-product-reviews-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="main-product-reviews">
   {%- render 'section-heading' -%}
-  {%- render 'product-review-form' with product: product -%}
+  {%- render 'product-review-form' with product, product: product -%}
 </div>
 {% schema %}
 {
@@ -35,4 +35,13 @@
     }
   ]
 }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-review-form' with product: product -%}"
+  to: "{%- render 'product-review-form' with product, product: product -%}"
+  position: 274..341
+{%- endcomment -%}

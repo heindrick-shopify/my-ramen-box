@@ -37,7 +37,7 @@
                     <ul class="order-discount order-discount--list order-discount--title" aria-label="{{ 'customer.order.discount' | t }}">
                       {%- for discount_allocation in line_item.line_level_discount_allocations -%}
                         <li class="order-discount__item">
-                          {{ discount_allocation.discount_application.title }} (-<span class="product-price__price">{%- render 'price-org' with price: discount_allocation.amount -%}</span>)
+                          {{ discount_allocation.discount_application.title }} (-<span class="product-price__price">{%- render 'price-org' with price, price: discount_allocation.amount -%}</span>)
                         </li>
                       {%- endfor -%}
                     </ul>
@@ -63,23 +63,23 @@
                 <td data-label="{{ 'customer.order.sku' | t }}">{{ line_item.sku }}</td>
                 <td data-label="{{ 'customer.order.price' | t }}">
                   {%- if line_item.original_price != line_item.final_price -%}
-                    <s class="product-price__price">{%- render 'price-org' with price: line_item.original_price -%}</s>
+                    <s class="product-price__price">{%- render 'price-org' with price, price: line_item.original_price -%}</s>
                     <span class="product-price__price product-price__sale">
-                      {%- render 'price-org' with price: line_item.final_price -%}
+                      {%- render 'price-org' with price, price: line_item.final_price -%}
                     </span>
                   {%- else -%}
-                    <span class="product-price__price">{%- render 'price-org' with price: line_item.original_price -%}</span>
+                    <span class="product-price__price">{%- render 'price-org' with price, price: line_item.original_price -%}</span>
                   {%- endif -%}
                 </td>
                 <td data-label="{{ 'customer.order.quantity' | t }}">{{ line_item.quantity }}</td>
                 <td data-label="{{ 'customer.order.total' | t }}">
                   {%- if line_item.original_line_price != line_item.final_line_price -%}
-                    <s class="product-price__price">{%- render 'price-org' with price: line_item.original_line_price -%}</s>
+                    <s class="product-price__price">{%- render 'price-org' with price, price: line_item.original_line_price -%}</s>
                     <span class="product-price__price product-price__sale">
-                      {%- render 'price-org' with price: line_item.final_line_price -%}
+                      {%- render 'price-org' with price, price: line_item.final_line_price -%}
                     </span>
                   {%- else -%}
-                    <span class="product-price__price">{%- render 'price-org' with price: line_item.original_line_price -%}</span>  
+                    <span class="product-price__price">{%- render 'price-org' with price, price: line_item.original_line_price -%}</span>  
                   {%- endif -%}
                 </td>
               </tr>
@@ -89,7 +89,7 @@
               <tr class="responsive-table__row">
                 <td colspan="4" class="small--hide">{{ 'customer.order.subtotal' | t }}</td>
                 <td data-label="{{ 'customer.order.subtotal' | t }}">
-                  <span class="product-price__price">{%- render 'price-org' with price: order.subtotal_price -%}</span>
+                  <span class="product-price__price">{%- render 'price-org' with price, price: order.subtotal_price -%}</span>
                 </td>
               </tr>
 
@@ -98,7 +98,7 @@
                   <tr class="order_summary discount">
                     <td colspan="4" class="small--hide">{{ discount_application.title }} {{ 'customer.order.discount' | t }}</td>
                     <td data-label="{{ 'customer.order.discount' | t }}">
-                      -<span class="product-price__price">{%- render 'price-org' with price: discount_application.total_allocated_amount -%}</span>
+                      -<span class="product-price__price">{%- render 'price-org' with price, price: discount_application.total_allocated_amount -%}</span>
                     </td>
                   </tr>
                 {% endfor %}
@@ -108,7 +108,7 @@
                 <tr>
                   <td colspan="4" class="small--hide">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</td>
                   <td data-label="{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})">
-                    <span class="product-price__price">{%- render 'price-org' with price: shipping_method.price -%}</span>
+                    <span class="product-price__price">{%- render 'price-org' with price, price: shipping_method.price -%}</span>
                   </td>
                 </tr>
               {% endfor %}
@@ -117,14 +117,14 @@
                 <tr>
                   <td colspan="4" class="small--hide">{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</td>
                   <td data-label="{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)">
-                    <span class="product-price__price">{%- render 'price-org' with price: tax_line.price -%}</span>
+                    <span class="product-price__price">{%- render 'price-org' with price, price: tax_line.price -%}</span>
                   </td>
                 </tr>
               {% endfor %}
 
               <tr>
                 <td colspan="4" class="small--hide"><strong>{{ 'customer.order.total' | t }}</strong></td>
-                <td data-label="{{ 'customer.order.total' | t }}"><strong><span class="product-price__price">{%- render 'price-org' with price: order.total_price -%}</span> {{ order.currency }}</strong></td>
+                <td data-label="{{ 'customer.order.total' | t }}"><strong><span class="product-price__price">{%- render 'price-org' with price, price: order.total_price -%}</span> {{ order.currency }}</strong></td>
               </tr>
             </tfoot>
           </table>
@@ -146,3 +146,48 @@
     </div>
   </div>
 </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'price-org' with price: discount_allocation.amount -%}"
+  to: "{%- render 'price-org' with price, price: discount_allocation.amount -%}"
+  position: 2156..2228
+- from: "{%- render 'price-org' with price: line_item.original_price -%}"
+  to: "{%- render 'price-org' with price, price: line_item.original_price -%}"
+  position: 3645..3715
+- from: "{%- render 'price-org' with price: line_item.final_price -%}"
+  to: "{%- render 'price-org' with price, price: line_item.final_price -%}"
+  position: 3820..3887
+- from: "{%- render 'price-org' with price: line_item.original_price -%}"
+  to: "{%- render 'price-org' with price, price: line_item.original_price -%}"
+  position: 4005..4075
+- from: "{%- render 'price-org' with price: line_item.original_line_price -%}"
+  to: "{%- render 'price-org' with price, price: line_item.original_line_price -%}"
+  position: 4450..4525
+- from: "{%- render 'price-org' with price: line_item.final_line_price -%}"
+  to: "{%- render 'price-org' with price, price: line_item.final_line_price -%}"
+  position: 4630..4702
+- from: "{%- render 'price-org' with price: line_item.original_line_price -%}"
+  to: "{%- render 'price-org' with price, price: line_item.original_line_price -%}"
+  position: 4820..4895
+- from: "{%- render 'price-org' with price: order.subtotal_price -%}"
+  to: "{%- render 'price-org' with price, price: order.subtotal_price -%}"
+  position: 5322..5388
+- from: "{%- render 'price-org' with price: discount_application.total_allocated_amount
+    -%}"
+  to: "{%- render 'price-org' with price, price: discount_application.total_allocated_amount
+    -%}"
+  position: 5926..6015
+- from: "{%- render 'price-org' with price: shipping_method.price -%}"
+  to: "{%- render 'price-org' with price, price: shipping_method.price -%}"
+  position: 6510..6577
+- from: "{%- render 'price-org' with price: tax_line.price -%}"
+  to: "{%- render 'price-org' with price, price: tax_line.price -%}"
+  position: 7067..7127
+- from: "{%- render 'price-org' with price: order.total_price -%}"
+  to: "{%- render 'price-org' with price, price: order.total_price -%}"
+  position: 7451..7514
+{% endcomment %}

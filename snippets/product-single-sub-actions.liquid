@@ -1,8 +1,17 @@
 {%- capture sub_action -%}
-	{%- render 'product-single-compare-btn' with product: product -%}
+	{%- render 'product-single-compare-btn' with product, product: product -%}
 {%- endcapture -%}
 {%- if sub_action != '' -%}
 <div class="distance-top-ele">
 	{{ sub_action }}
 </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-single-compare-btn' with product: product -%}"
+  to: "{%- render 'product-single-compare-btn' with product, product: product -%}"
+  position: 28..102
+{%- endcomment -%}

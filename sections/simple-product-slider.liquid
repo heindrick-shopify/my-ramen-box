@@ -48,7 +48,7 @@ endif
 	<div class="row flex flex-align-ver"{% if section.settings.enable_banner and section.blocks.size > 0 and section.settings.pos_banner == 'left' %} style="flex-direction:row-reverse;"{% endif %}>
 		<div class="col-xs-12{% if section.settings.enable_banner and section.blocks.size > 0 %} col-sm-{{ 12 | minus: section.settings.col_banner }} gutter-ele-bottom-mb{% endif %}">
       {%- if section.settings.slider_nav_type == 'arrows' and section.settings.slider_autoplay_linear == false -%}
-        {%- render 'section-heading-slider' with use_touch_mobile: use_touch_mobile -%}
+        {%- render 'section-heading-slider' with use_touch_mobile, use_touch_mobile: use_touch_mobile -%}
         {%- assign arrow_slider = '"nextArrow":"#slick-next-' | append: section.id | append: '","prevArrow":"#slick-prev-' | append: section.id | append: '",' -%}
       {%- else -%}
         {%- render 'section-heading' -%}
@@ -82,51 +82,9 @@ endif
           {%- if render_products -%}
   	      	{%- for product in collection.products limit: limit -%}
               {%- unless list_type -%}
-    	      		{%- render 'product-grid-item' with
-                  product: product, 
-    		          use_slider: true, 
-    		          index: forloop.index, 
-    		          lazy_index: 0,
-    		          column_count: column_count, 
-    		          main_thumbnail: main_thumbnail, 
-    		          truncate_count: section.settings.product_name_size,
-    		          enable_product_options: section.settings.enable_product_options, 
-    		          show_review_stars: section.settings.show_review_stars,
-    		          enable_small_images: false,
-    		          show_wishlist_btn: section.settings.show_wishlist_btn,
-    		          small_image: '1x',
-    		          show_label : section.settings.show_label,
-    		          show_cart_btn: section.settings.show_cart_btn,
-    		          show_compare_btn: section.settings.show_compare_btn,
-    		          show_qs_btn: section.settings.show_qs_btn,
-    		          small_image_slider: false,
-    		          show_countdown_timer: section.settings.show_countdown_timer,
-    		          show_vendor: section.settings.show_vendor,
-    		          withinCollection: collection
-    		        -%}
+    	      		{%- render 'product-grid-item' with product, product: product, use_slider: true, index: forloop.index, lazy_index: 0, column_count: column_count, main_thumbnail: main_thumbnail, truncate_count: section.settings.product_name_size, enable_product_options: section.settings.enable_product_options, show_review_stars: section.settings.show_review_stars, enable_small_images: false, show_wishlist_btn: section.settings.show_wishlist_btn, small_image: '1x', show_label: section.settings.show_label, show_cart_btn: section.settings.show_cart_btn, show_compare_btn: section.settings.show_compare_btn, show_qs_btn: section.settings.show_qs_btn, small_image_slider: false, show_countdown_timer: section.settings.show_countdown_timer, show_vendor: section.settings.show_vendor, withinCollection: collection -%}
               {%- else -%}
-                {%- render 'product-list-item' with
-                  product: product, 
-                  use_slider: true, 
-                  index: forloop.index, 
-                  lazy_index: 0,
-                  column_count: column_count, 
-                  main_thumbnail: main_thumbnail, 
-                  truncate_count: section.settings.product_name_size,
-                  enable_product_options: section.settings.enable_product_options, 
-                  show_review_stars: section.settings.show_review_stars,
-                  enable_small_images: false,
-                  show_wishlist_btn: section.settings.show_wishlist_btn,
-                  small_image: '1x',
-                  show_label : section.settings.show_label,
-                  show_cart_btn: section.settings.show_cart_btn,
-                  show_compare_btn: section.settings.show_compare_btn,
-                  show_qs_btn: section.settings.show_qs_btn,
-                  small_image_slider: false,
-                  show_countdown_timer: section.settings.show_countdown_timer,
-                  show_vendor: section.settings.show_vendor,
-                  withinCollection: collection
-                -%}
+                {%- render 'product-list-item' with product, product: product, use_slider: true, index: forloop.index, lazy_index: 0, column_count: column_count, main_thumbnail: main_thumbnail, truncate_count: section.settings.product_name_size, enable_product_options: section.settings.enable_product_options, show_review_stars: section.settings.show_review_stars, enable_small_images: false, show_wishlist_btn: section.settings.show_wishlist_btn, small_image: '1x', show_label: section.settings.show_label, show_cart_btn: section.settings.show_cart_btn, show_compare_btn: section.settings.show_compare_btn, show_qs_btn: section.settings.show_qs_btn, small_image_slider: false, show_countdown_timer: section.settings.show_countdown_timer, show_vendor: section.settings.show_vendor, withinCollection: collection -%}
               {%- endunless -%}  
   	      	{%- endfor -%}
           {%- else -%}
@@ -177,10 +135,10 @@ endif
           <div class="sps__banner-text sps__banner-text-{{ section.id }}{{ block.id }}{% if block.settings.text_alignment_ver != 'top' %} flex{% if block.settings.text_alignment_ver == 'center' %} flex-align-ver{% endif %}{% endif %}" style="position: absolute;">
             <div class="text-{{ block.settings.text_alignment_hoz }}{% if block.settings.text_alignment_box == 'full' %} w100{% endif %}{% if bkg_style != '' %} sps__banner-bkg-{{ section.id }}{{ block.id }}{% endif %}"{% if bkg_style != '' %} style="{{ bkg_style }}"{% endif %}>
               {%- if block.settings.title != blank -%}
-              <h3 class="sps__banner-title-{{ section.id }}-{{ block.id }} margin0">{%- render 'simple-product-slider-price' with text: block.settings.title, priceText: block.settings.price -%}</h3>
+              <h3 class="sps__banner-title-{{ section.id }}-{{ block.id }} margin0">{%- render 'simple-product-slider-price' with text, text: block.settings.title, priceText: block.settings.price -%}</h3>
               {%- endif -%}
               {%- if block.settings.subtitle != blank -%}
-              <h4 class="sps__banner-subtitle-{{ section.id }}-{{ block.id }} margin0">{%- render 'simple-product-slider-price' with text: block.settings.subtitle, priceText: block.settings.price -%}</h4>
+              <h4 class="sps__banner-subtitle-{{ section.id }}-{{ block.id }} margin0">{%- render 'simple-product-slider-price' with text, text: block.settings.subtitle, priceText: block.settings.price -%}</h4>
               {%- endif -%}
               {%- if block.settings.btn_text != blank -%}
               <div class="sps__btn-{{ section.id }}-{{ block.id }}">
@@ -1001,4 +959,73 @@ endif
     }
   ]
 }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'section-heading-slider' with use_touch_mobile: use_touch_mobile
+    -%}"
+  to: "{%- render 'section-heading-slider' with use_touch_mobile, use_touch_mobile:
+    use_touch_mobile -%}"
+  position: 2146..2243
+- from: "{%- render 'product-grid-item' with\n                  product: product,
+    \n    \t\t          use_slider: true, \n    \t\t          index: forloop.index,
+    \n    \t\t          lazy_index: 0,\n    \t\t          column_count: column_count,
+    \n    \t\t          main_thumbnail: main_thumbnail, \n    \t\t          truncate_count:
+    section.settings.product_name_size,\n    \t\t          enable_product_options:
+    section.settings.enable_product_options, \n    \t\t          show_review_stars:
+    section.settings.show_review_stars,\n    \t\t          enable_small_images: false,\n
+    \   \t\t          show_wishlist_btn: section.settings.show_wishlist_btn,\n    \t\t
+    \         small_image: '1x',\n    \t\t          show_label : section.settings.show_label,\n
+    \   \t\t          show_cart_btn: section.settings.show_cart_btn,\n    \t\t          show_compare_btn:
+    section.settings.show_compare_btn,\n    \t\t          show_qs_btn: section.settings.show_qs_btn,\n
+    \   \t\t          small_image_slider: false,\n    \t\t          show_countdown_timer:
+    section.settings.show_countdown_timer,\n    \t\t          show_vendor: section.settings.show_vendor,\n
+    \   \t\t          withinCollection: collection\n    \t\t        -%}"
+  to: "{%- render 'product-grid-item' with product, product: product, use_slider:
+    true, index: forloop.index, lazy_index: 0, column_count: column_count, main_thumbnail:
+    main_thumbnail, truncate_count: section.settings.product_name_size, enable_product_options:
+    section.settings.enable_product_options, show_review_stars: section.settings.show_review_stars,
+    enable_small_images: false, show_wishlist_btn: section.settings.show_wishlist_btn,
+    small_image: '1x', show_label: section.settings.show_label, show_cart_btn: section.settings.show_cart_btn,
+    show_compare_btn: section.settings.show_compare_btn, show_qs_btn: section.settings.show_qs_btn,
+    small_image_slider: false, show_countdown_timer: section.settings.show_countdown_timer,
+    show_vendor: section.settings.show_vendor, withinCollection: collection -%}"
+  position: 6064..6863
+- from: "{%- render 'product-list-item' with\n                  product: product,
+    \n                  use_slider: true, \n                  index: forloop.index,
+    \n                  lazy_index: 0,\n                  column_count: column_count,
+    \n                  main_thumbnail: main_thumbnail, \n                  truncate_count:
+    section.settings.product_name_size,\n                  enable_product_options:
+    section.settings.enable_product_options, \n                  show_review_stars:
+    section.settings.show_review_stars,\n                  enable_small_images: false,\n
+    \                 show_wishlist_btn: section.settings.show_wishlist_btn,\n                  small_image:
+    '1x',\n                  show_label : section.settings.show_label,\n                  show_cart_btn:
+    section.settings.show_cart_btn,\n                  show_compare_btn: section.settings.show_compare_btn,\n
+    \                 show_qs_btn: section.settings.show_qs_btn,\n                  small_image_slider:
+    false,\n                  show_countdown_timer: section.settings.show_countdown_timer,\n
+    \                 show_vendor: section.settings.show_vendor,\n                  withinCollection:
+    collection\n                -%}"
+  to: "{%- render 'product-list-item' with product, product: product, use_slider:
+    true, index: forloop.index, lazy_index: 0, column_count: column_count, main_thumbnail:
+    main_thumbnail, truncate_count: section.settings.product_name_size, enable_product_options:
+    section.settings.enable_product_options, show_review_stars: section.settings.show_review_stars,
+    enable_small_images: false, show_wishlist_btn: section.settings.show_wishlist_btn,
+    small_image: '1x', show_label: section.settings.show_label, show_cart_btn: section.settings.show_cart_btn,
+    show_compare_btn: section.settings.show_compare_btn, show_qs_btn: section.settings.show_qs_btn,
+    small_image_slider: false, show_countdown_timer: section.settings.show_countdown_timer,
+    show_vendor: section.settings.show_vendor, withinCollection: collection -%}"
+  position: 6907..7706
+- from: "{%- render 'simple-product-slider-price' with text: block.settings.title,
+    priceText: block.settings.price -%}"
+  to: "{%- render 'simple-product-slider-price' with text, text: block.settings.title,
+    priceText: block.settings.price -%}"
+  position: 10952..11067
+- from: "{%- render 'simple-product-slider-price' with text: block.settings.subtitle,
+    priceText: block.settings.price -%}"
+  to: "{%- render 'simple-product-slider-price' with text, text: block.settings.subtitle,
+    priceText: block.settings.price -%}"
+  position: 11246..11364
+{%- endcomment -%}

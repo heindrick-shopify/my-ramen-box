@@ -8,15 +8,38 @@
         data-sizes="auto" alt="{{ img_alt | escape }}"{% render 'img-one-pixel' %} data-expand="-10">
         {%- case media.media_type -%}
           {%- when 'external_video' -%}
-            {%- render 'icon-play-video' with add_class: 'pg__thumb__link-video' -%}
+            {%- render 'icon-play-video' with add_class, add_class: 'pg__thumb__link-video' -%}
           {%- when 'video' -%}
-            {%- render 'icon-play-video' with add_class: 'pg__thumb__link-video' -%}
+            {%- render 'icon-play-video' with add_class, add_class: 'pg__thumb__link-video' -%}
           {%- when 'model' -%}
-            {%- render 'icon-3d-badge-full-color' with add_class: 'pg__thumb__link-video' -%}  
+            {%- render 'icon-3d-badge-full-color' with add_class, add_class: 'pg__thumb__link-video' -%}  
           {%- else -%}
             {%- if media.alt contains '{{video' or media.alt contains '{{youtube' or media.alt contains '{{vimeo' -%}
-                {%- render 'icon-play-video' with add_class: 'pg__thumb__link-video' -%}
+                {%- render 'icon-play-video' with add_class, add_class: 'pg__thumb__link-video' -%}
             {%- endif -%}  
         {%- endcase -%}
     </a>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'icon-play-video' with add_class: 'pg__thumb__link-video' -%}"
+  to: "{%- render 'icon-play-video' with add_class, add_class: 'pg__thumb__link-video'
+    -%}"
+  position: 1342..1425
+- from: "{%- render 'icon-play-video' with add_class: 'pg__thumb__link-video' -%}"
+  to: "{%- render 'icon-play-video' with add_class, add_class: 'pg__thumb__link-video'
+    -%}"
+  position: 1469..1552
+- from: "{%- render 'icon-3d-badge-full-color' with add_class: 'pg__thumb__link-video'
+    -%}"
+  to: "{%- render 'icon-3d-badge-full-color' with add_class, add_class: 'pg__thumb__link-video'
+    -%}"
+  position: 1596..1688
+- from: "{%- render 'icon-play-video' with add_class: 'pg__thumb__link-video' -%}"
+  to: "{%- render 'icon-play-video' with add_class, add_class: 'pg__thumb__link-video'
+    -%}"
+  position: 1848..1931
+{%- endcomment -%}

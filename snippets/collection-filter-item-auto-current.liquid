@@ -6,7 +6,7 @@
       {{ 'collections.general.active_filters' | t }}
     </h5>
     <a href="#" class="fw-bold expand-trigger open">
-      {%- render 'icon-collapse' with add_classes: 'cf__item__collapse' -%}
+      {%- render 'icon-collapse' with add_classes, add_classes: 'cf__item__collapse' -%}
     </a>
     <div class="cf__item__content expand-content w100">
     	<ul class="no-gutter margin0">
@@ -24,12 +24,12 @@
 	    									<span class="cf__link--current__content">
 								    			{%- if filter_item_parts[0] == 'price' -%}
 								    				{%- assign price_parts = filter_item_value | split: '-' -%}
-								    				<span class="cf__price cf__price-from dib">{%- render 'price' with price: price_parts[0] -%}</span>
+								    				<span class="cf__price cf__price-from dib">{%- render 'price' with price, price: price_parts[0] -%}</span>
 								    				<span class="cf__price__sep">-</span>
-								    				<span class="cf__price cf__price-to dib">{%- render 'price' with price: price_parts[1] -%}</span>
+								    				<span class="cf__price cf__price-to dib">{%- render 'price' with price, price: price_parts[1] -%}</span>
 								    			{%- elsif filter_item_parts[0] == 'ratings' -%}
 								    				{%- assign count_rating_stars = filter_item_value | plus: 0 -%}
-								    				{%- render 'rating-stars' with count_rating_stars: count_rating_stars -%}
+								    				{%- render 'rating-stars' with count_rating_stars, count_rating_stars: count_rating_stars -%}
 								    			{%- else -%}
 								    				{{ filter_item_value | replace: '-', ' ' }}
 								    			{%- endif -%}
@@ -47,4 +47,24 @@
     </div>
 	</div>
 </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'icon-collapse' with add_classes: 'cf__item__collapse' -%}"
+  to: "{%- render 'icon-collapse' with add_classes, add_classes: 'cf__item__collapse'
+    -%}"
+  position: 422..504
+- from: "{%- render 'price' with price: price_parts[0] -%}"
+  to: "{%- render 'price' with price, price: price_parts[0] -%}"
+  position: 1844..1900
+- from: "{%- render 'price' with price: price_parts[1] -%}"
+  to: "{%- render 'price' with price, price: price_parts[1] -%}"
+  position: 2019..2075
+- from: "{%- render 'rating-stars' with count_rating_stars: count_rating_stars -%}"
+  to: "{%- render 'rating-stars' with count_rating_stars, count_rating_stars: count_rating_stars
+    -%}"
+  position: 2242..2335
+{%- endcomment -%}

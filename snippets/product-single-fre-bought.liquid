@@ -1,4 +1,4 @@
-{%- capture fre_bought_content -%}{%- render 'product-single-fre-bought-content' with fre_handles: fre_handles, product: product, enable_rtl: enable_rtl -%}{%- endcapture -%}
+{%- capture fre_bought_content -%}{%- render 'product-single-fre-bought-content' with fre_handles, fre_handles: fre_handles, product: product, enable_rtl: enable_rtl -%}{%- endcapture -%}
 {%- if fre_bought_content != '' or section.settings.rule == 'auto' -%}
 <div class="fre-bought freb">
   <div class="row flex">
@@ -30,3 +30,15 @@
 	</div>
 </div>
 {%- endif %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-single-fre-bought-content' with fre_handles: fre_handles,
+    product: product, enable_rtl: enable_rtl -%}"
+  to: "{%- render 'product-single-fre-bought-content' with fre_handles, fre_handles:
+    fre_handles, product: product, enable_rtl: enable_rtl -%}"
+  position: 34..169
+{% endcomment %}

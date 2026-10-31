@@ -27,15 +27,7 @@
             {% paginate blog.articles by section.settings.limit %}
             <div class="row flex{% if layout == 'list' %} grid--list{% endif %}">
                 {% for article in blog.articles %}
-                  {% render 'article-grid-item' with
-                  article: article,
-                  layout: layout,
-                  blog_show_author: section.settings.blog_show_author,
-                  blog_show_date: section.settings.blog_show_date,
-                  forloop: forloop,
-                  enable_rtl: enable_rtl,
-                  add_classes: item_class
-                   %}
+                  {% render 'article-grid-item' with article, article: article, layout: layout, blog_show_author: section.settings.blog_show_author, blog_show_date: section.settings.blog_show_date, forloop: forloop, enable_rtl: enable_rtl, add_classes: item_class %}
                 {% endfor %}
             </div>
             {%- render 'pagination' with paginate as paginate -%}
@@ -147,3 +139,24 @@
     ]
   }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'article-grid-item' with
+                      article: article,
+                      layout: layout,
+                      blog_show_author: section.settings.blog_show_author,
+                      blog_show_date: section.settings.blog_show_date,
+                      forloop: forloop,
+                      enable_rtl: enable_rtl,
+                      add_classes: item_class
+                       %}
+  to: "{% render 'article-grid-item' with article, article: article, layout: layout,
+    blog_show_author: section.settings.blog_show_author, blog_show_date: section.settings.blog_show_date,
+    forloop: forloop, enable_rtl: enable_rtl, add_classes: item_class %}"
+  position: 1241..1489
+{% endcomment %}

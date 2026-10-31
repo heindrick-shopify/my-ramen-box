@@ -1,6 +1,6 @@
 <div class="header-mobile__top flex flex-align-ver flex-align-space-between" style="padding: 10px 0;">
 	<div class="flex flex-align-ver no-gutter">
-	<a class="mobile-nav-bar bt-sidebar-btn" href="#" title="menu-bar" data-target="#sidebar-mobile-nav" data-placement="{% unless settings.enable_rtl and settings.rtl_language_codes contains request.locale.iso_code %}left{% else %}right{% endunless %}" style="{% unless settings.enable_rtl and settings.rtl_language_codes contains request.locale.iso_code %}padding-right:10px;{% else %}padding-left:10px;{% endunless %}">{% render 'icon-bar' with add_class: 'ver-sub' %}</a>
+	<a class="mobile-nav-bar bt-sidebar-btn" href="#" title="menu-bar" data-target="#sidebar-mobile-nav" data-placement="{% unless settings.enable_rtl and settings.rtl_language_codes contains request.locale.iso_code %}left{% else %}right{% endunless %}" style="{% unless settings.enable_rtl and settings.rtl_language_codes contains request.locale.iso_code %}padding-right:10px;{% else %}padding-left:10px;{% endunless %}">{% render 'icon-bar' with add_class, add_class: 'ver-sub' %}</a>
 	 {%- comment -%}
       <a href="#" class="mobile-nav-bar icon-search dropdown_link mobile_search_icon" style="font-size:calc(var(--fs_header_link_mobile) + 2px);" title="" data-dropdown-rel="search">
       <i class="lnr-magnifying-glass"></i>
@@ -10,9 +10,27 @@
  
     {%- render 'header-mobile-logo' -%}
 	<div class="flex header__links header__links--flex" style="position: static;">
-		{%- render 'header__links--mobile' with use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+		{%- render 'header__links--mobile' with use_growave_account_app, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 	</div>
 </div>
  <div class="mobile_search_dropdown">
-      {%- render 'search-form' with hide_placeholder: true -%}
+      {%- render 'search-form' with hide_placeholder, hide_placeholder: true -%}
     </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'icon-bar' with add_class: 'ver-sub' %}"
+  to: "{% render 'icon-bar' with add_class, add_class: 'ver-sub' %}"
+  position: 567..627
+- from: "{%- render 'header__links--mobile' with use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  to: "{%- render 'header__links--mobile' with use_growave_account_app, use_growave_account_app:
+    use_growave_account_app, root_url: root_url -%}"
+  position: 1045..1182
+- from: "{%- render 'search-form' with hide_placeholder: true -%}"
+  to: "{%- render 'search-form' with hide_placeholder, hide_placeholder: true -%}"
+  position: 1242..1316
+{% endcomment %}

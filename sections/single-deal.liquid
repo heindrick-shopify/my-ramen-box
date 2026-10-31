@@ -47,7 +47,7 @@
           <h3 class="psd__title">{{ section.settings.deal_title | default: product.title }}</h3>
           {%- capture deal_price -%}<span class="product-price__price">{%- render 'price' with product.price_min -%}</span>{%- endcapture -%}
           <div class="psd__price gutter-ele-top gutter-ele-bottom">
-            {%- render 'product-variant-price' with variant: product.first_available_variant, product: product -%} 
+            {%- render 'product-variant-price' with variant, variant: product.first_available_variant, product: product -%} 
           </div>
           <div class="psd__desc gutter-ele-top gutter-ele-bottom rte">{{ section.settings.deal_desc | default: product.description }}</div>
           <div class="gutter-ele-top">
@@ -215,4 +215,15 @@
       }
     ]
   }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-variant-price' with variant: product.first_available_variant,
+    product: product -%}"
+  to: "{%- render 'product-variant-price' with variant, variant: product.first_available_variant,
+    product: product -%}"
+  position: 3503..3614
+{%- endcomment -%}

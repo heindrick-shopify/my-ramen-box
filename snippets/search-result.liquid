@@ -63,28 +63,7 @@
             <h4 class="gutter-ele-bottom">{{ settings.search_suggest_suggest_title }}</h6>
             <div class="grid grid--medium">
               {%- for product in suggest_collection.products limit: section.settings.limit -%}
-                {%- render 'product-grid-item' with
-                  product: product, 
-                  use_slider: false, 
-                  limit_first: 0, 
-                  index: forloop.index, 
-                  lazy_index: lazy_index,
-                  column_count: column_count, 
-                  main_thumbnail: section.settings.main_thumbnail, 
-                  image_size: '1x', 
-                  truncate_count: section.settings.product_name_size, enable_product_options: section.settings.enable_product_options,
-                  show_review_stars: section.settings.show_review_stars,
-                  enable_small_images: false,
-                  show_wishlist_btn: section.settings.show_wishlist_btn,
-                  small_image: '1x',
-                  show_label : section.settings.show_label,
-                  show_cart_btn: section.settings.show_cart_btn,
-                  show_wishlist : false,
-                  show_compare_btn: section.settings.show_compare_btn,
-                  show_qs_btn: section.settings.show_qs_btn,
-                  show_desc: true,
-                  additional_classes: 'transition'
-                -%}
+                {%- render 'product-grid-item' with product, product: product, use_slider: false, limit_first: 0, index: forloop.index, lazy_index: lazy_index, column_count: column_count, main_thumbnail: section.settings.main_thumbnail, image_size: '1x', truncate_count: section.settings.product_name_size, enable_product_options: section.settings.enable_product_options, show_review_stars: section.settings.show_review_stars, enable_small_images: false, show_wishlist_btn: section.settings.show_wishlist_btn, small_image: '1x', show_label: section.settings.show_label, show_cart_btn: section.settings.show_cart_btn, show_wishlist: false, show_compare_btn: section.settings.show_compare_btn, show_qs_btn: section.settings.show_qs_btn, show_desc: true, additional_classes: 'transition' -%}
               {%- endfor -%}
             </div>
             {%- if suggest_collection.products.size > section.settings.limit -%}
@@ -98,3 +77,33 @@
     </div>
   </div>
 </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-grid-item' with\n                  product: product,
+    \n                  use_slider: false, \n                  limit_first: 0, \n
+    \                 index: forloop.index, \n                  lazy_index: lazy_index,\n
+    \                 column_count: column_count, \n                  main_thumbnail:
+    section.settings.main_thumbnail, \n                  image_size: '1x', \n                  truncate_count:
+    section.settings.product_name_size, enable_product_options: section.settings.enable_product_options,\n
+    \                 show_review_stars: section.settings.show_review_stars,\n                  enable_small_images:
+    false,\n                  show_wishlist_btn: section.settings.show_wishlist_btn,\n
+    \                 small_image: '1x',\n                  show_label : section.settings.show_label,\n
+    \                 show_cart_btn: section.settings.show_cart_btn,\n                  show_wishlist
+    : false,\n                  show_compare_btn: section.settings.show_compare_btn,\n
+    \                 show_qs_btn: section.settings.show_qs_btn,\n                  show_desc:
+    true,\n                  additional_classes: 'transition'\n                -%}"
+  to: "{%- render 'product-grid-item' with product, product: product, use_slider:
+    false, limit_first: 0, index: forloop.index, lazy_index: lazy_index, column_count:
+    column_count, main_thumbnail: section.settings.main_thumbnail, image_size: '1x',
+    truncate_count: section.settings.product_name_size, enable_product_options: section.settings.enable_product_options,
+    show_review_stars: section.settings.show_review_stars, enable_small_images: false,
+    show_wishlist_btn: section.settings.show_wishlist_btn, small_image: '1x', show_label:
+    section.settings.show_label, show_cart_btn: section.settings.show_cart_btn, show_wishlist:
+    false, show_compare_btn: section.settings.show_compare_btn, show_qs_btn: section.settings.show_qs_btn,
+    show_desc: true, additional_classes: 'transition' -%}"
+  position: 4098..4870
+{% endcomment %}

@@ -1,5 +1,14 @@
 {%- if sizechart -%}
 <div class="product_single__size-chart">
-	<a class="sizechart-trigger{% if sizechart == 'inline' %} sizechart-trigger--inline{% endif %}" href="javascript:void(0);" data-modal-id="sizeChartModal{{ section.id }}" style="margin:0 -5px;">{%- render 'icon-ruler' with add_style: 'padding:0 5px;' -%}{{ 'products.product.size_chart' | t }}</a>
+	<a class="sizechart-trigger{% if sizechart == 'inline' %} sizechart-trigger--inline{% endif %}" href="javascript:void(0);" data-modal-id="sizeChartModal{{ section.id }}" style="margin:0 -5px;">{%- render 'icon-ruler' with add_style, add_style: 'padding:0 5px;' -%}{{ 'products.product.size_chart' | t }}</a>
 </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'icon-ruler' with add_style: 'padding:0 5px;' -%}"
+  to: "{%- render 'icon-ruler' with add_style, add_style: 'padding:0 5px;' -%}"
+  position: 256..327
+{%- endcomment -%}

@@ -11,10 +11,22 @@
 			{%- endif -%}
 			<li class="gutter-ele-small-top gutter-ele-small-bottom">
 				<a href="{{ link.url }}" title="{%- render 'nav-shortcode-ign', str: link.title -%}" class="mobile-nav__level3 mobile-nav__level3--{{ item_id }} dib por">
-					{%- render 'mobile-nav-label' with str: link.title, item_id: item_id, custom_label_classes: custom_label_classes, color_label: color_label, bkg_label: bkg_label -%}
+					{%- render 'mobile-nav-label' with str, str: link.title, item_id: item_id, custom_label_classes: custom_label_classes, color_label: color_label, bkg_label: bkg_label -%}
 				</a>
 			</li>
 		{%- endfor -%}
 	</ul>
 </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'mobile-nav-label' with str: link.title, item_id: item_id, custom_label_classes:
+    custom_label_classes, color_label: color_label, bkg_label: bkg_label -%}"
+  to: "{%- render 'mobile-nav-label' with str, str: link.title, item_id: item_id,
+    custom_label_classes: custom_label_classes, color_label: color_label, bkg_label:
+    bkg_label -%}"
+  position: 638..807
+{%- endcomment -%}

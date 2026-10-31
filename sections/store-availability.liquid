@@ -6,7 +6,7 @@
       <div class="store-availability-information-container">
         {%- if closest_location.available -%}
           <p class="store-availability-information__title">
-            {% render 'icon-check' with add_classes: 'store-availability-information__title__stock-icon' %}
+            {% render 'icon-check' with add_classes, add_classes: 'store-availability-information__title__stock-icon' %}
             {{ 'store_availability.general.pick_up_available_at_html' | t: location_name: closest_location.location.name }}
           </p>
           <p class="store-availability-information__stock store-availability-small-text">
@@ -21,7 +21,7 @@
           </button>
         {%- else -%}
           <p class="store-availability-information__title">
-            {% render 'icon-forbidden' with add_classes: 'store-availability-information__title__outstock-icon' %}
+            {% render 'icon-forbidden' with add_classes, add_classes: 'store-availability-information__title__outstock-icon' %}
             {{ 'store_availability.general.pick_up_unavailable_at_html' | t: location_name: closest_location.location.name }}
           </p>
           {%- if pick_up_availabilities.size > 1 -%}
@@ -36,7 +36,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" data-dismiss="modal" aria-label="Close" class="close">{% render 'icon-close' with add_class: 'flex flex-align-hoz' %}</button>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close">{% render 'icon-close' with add_class, add_class: 'flex flex-align-hoz' %}</button>
         </div>
         <div class="modal-body">
           <div class="store-availabilities-modal__header">
@@ -56,9 +56,9 @@
                 </h3>
                 <div class="store-availability-list__stock store-availability-small-text">
                   {%- if availability.available -%}
-                    {% render 'icon-check' with add_classes: 'store-availability-information__title__stock-icon' %} {{ 'store_availability.general.pick_up_available' | t }}, {{ availability.pick_up_time | downcase }}
+                    {% render 'icon-check' with add_classes, add_classes: 'store-availability-information__title__stock-icon' %} {{ 'store_availability.general.pick_up_available' | t }}, {{ availability.pick_up_time | downcase }}
                   {%- else -%}
-                    {% render 'icon-forbidden' with add_classes: 'store-availability-information__title__outstock-icon' %} {{ 'store_availability.general.pick_up_currently_unavailable' | t }}
+                    {% render 'icon-forbidden' with add_classes, add_classes: 'store-availability-information__title__outstock-icon' %} {{ 'store_availability.general.pick_up_currently_unavailable' | t }}
                   {%- endif -%}
                 </div>
                 {%- assign address = availability.location.address -%}
@@ -91,3 +91,33 @@
   "settings": []
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'icon-check' with add_classes: 'store-availability-information__title__stock-icon'
+    %}"
+  to: "{% render 'icon-check' with add_classes, add_classes: 'store-availability-information__title__stock-icon'
+    %}"
+  position: 452..560
+- from: "{% render 'icon-forbidden' with add_classes: 'store-availability-information__title__outstock-icon'
+    %}"
+  to: "{% render 'icon-forbidden' with add_classes, add_classes: 'store-availability-information__title__outstock-icon'
+    %}"
+  position: 1325..1440
+- from: "{% render 'icon-close' with add_class: 'flex flex-align-hoz' %}"
+  to: "{% render 'icon-close' with add_class, add_class: 'flex flex-align-hoz' %}"
+  position: 2204..2278
+- from: "{% render 'icon-check' with add_classes: 'store-availability-information__title__stock-icon'
+    %}"
+  to: "{% render 'icon-check' with add_classes, add_classes: 'store-availability-information__title__stock-icon'
+    %}"
+  position: 3229..3337
+- from: "{% render 'icon-forbidden' with add_classes: 'store-availability-information__title__outstock-icon'
+    %}"
+  to: "{% render 'icon-forbidden' with add_classes, add_classes: 'store-availability-information__title__outstock-icon'
+    %}"
+  position: 3490..3605
+{% endcomment %}

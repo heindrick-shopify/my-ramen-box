@@ -81,7 +81,7 @@
         {% if settings.social_youtube_link != blank %}
           <li>
             <a class="social-icons__link{% if show_network_name %} social-icons__links-network{% endif %} flex flex-align-ver" href="{{ settings.social_youtube_link | escape }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'YouTube' }}" target="_blank">
-              {% render 'icon-youtube' with style: 'vertical-align:middle;' %}
+              {% render 'icon-youtube' with style, style: 'vertical-align:middle;' %}
               {%- if show_network_name -%}<span class="socical-icons__name">{{ 'general.social.youtube' | t }}</span>{%- endif -%}
             </a>
           </li>
@@ -107,4 +107,13 @@
       </ul>
   	</div>
   {%- endif -%}
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'icon-youtube' with style: 'vertical-align:middle;' %}"
+  to: "{% render 'icon-youtube' with style, style: 'vertical-align:middle;' %}"
+  position: 5203..5274
+{%- endcomment -%}

@@ -9,14 +9,27 @@
 		<div class="por news__footer-wrap">
   		<input type="email" name="contact[email]" id="{{ news_input_id }}" class="w100{% if form.errors contains 'email' %} input--error{% endif %} news__input news__input--footer" autocapitalize="off" placeholder="{{ 'general.newsletter_form.email_placeholder' | t | escape }}">
       <button type="submit" class="button newsletter__submit flex flex-align-ver newsletter__submit--footer" name="commit" aria-label="button" style="background:none;border:none;position:absolute;{% unless settings.enable_rtl and settings.rtl_language_codes contains request.locale.iso_code %}right{% else %}left{% endunless %}:25px;top:0;bottom:0;padding:0;font-size:13px;">
-        <span class="hidden-sm">{{ 'general.newsletter_form.submit' | t }}</span>{%- render 'icon-chevron-right' with add_styles: 'font-size:8px;' -%}
+        <span class="hidden-sm">{{ 'general.newsletter_form.submit' | t }}</span>{%- render 'icon-chevron-right' with add_styles, add_styles: 'font-size:8px;' -%}
       </button>
     </div>
     {%- assign news_terms_input_id = news_form_id | append: '-terms' -%}
-    {%- render 'newsletter-terms' with inputId: news_terms_input_id -%}
+    {%- render 'newsletter-terms' with inputId, inputId: news_terms_input_id -%}
 	{% endform %}
 {%- elsif settings.news_platform == 'klaviyo' and settings.news_klaviyo_code != blank -%}
 	{{ settings.news_klaviyo_code }}	
 {%- elsif settings.news_platform == 'mailchimp' -%}
 	{{ settings.news_mailchimp_html }}
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'icon-chevron-right' with add_styles: 'font-size:8px;' -%}"
+  to: "{%- render 'icon-chevron-right' with add_styles, add_styles: 'font-size:8px;'
+    -%}"
+  position: 1211..1292
+- from: "{%- render 'newsletter-terms' with inputId: news_terms_input_id -%}"
+  to: "{%- render 'newsletter-terms' with inputId, inputId: news_terms_input_id -%}"
+  position: 1397..1473
+{%- endcomment -%}

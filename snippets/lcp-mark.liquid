@@ -1,1 +1,10 @@
-<!-- LCP_PRELOAD<link rel="preload" as="image" href="{{ image | img_url: '180x' }}" imagesrcset="{% render 'img-srcset' with image: image %}" imagesizes="{{ sizes | default: '100vw' }}">END_PRELOAD_LCP--> 
+<!-- LCP_PRELOAD<link rel="preload" as="image" href="{{ image | img_url: '180x' }}" imagesrcset="{% render 'img-srcset' with image, image: image %}" imagesizes="{{ sizes | default: '100vw' }}">END_PRELOAD_LCP--> {%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'img-srcset' with image: image %}"
+  to: "{% render 'img-srcset' with image, image: image %}"
+  position: 97..147
+{%- endcomment -%}

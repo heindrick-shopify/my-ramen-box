@@ -48,7 +48,7 @@
 			{%- if settings.enable_language_picker and shop.published_locales.size > 1 -%}
 			<hr>
 			<div class="block-mobile-nav">
-				{%- render 'ajax-sidebar-mobile-languages' with enable_rtl: enable_rtl -%}
+				{%- render 'ajax-sidebar-mobile-languages' with enable_rtl, enable_rtl: enable_rtl -%}
 			</div>
 			{%- endif -%}
     </div>
@@ -58,4 +58,14 @@
       </a>
     </div>
   </div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'ajax-sidebar-mobile-languages' with enable_rtl: enable_rtl -%}"
+  to: "{%- render 'ajax-sidebar-mobile-languages' with enable_rtl, enable_rtl: enable_rtl
+    -%}"
+  position: 1704..1790
+{%- endcomment -%}

@@ -54,10 +54,10 @@
   {%- if settings.favicon != blank -%}
     <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
   {%- endif -%}
-  {%- render 'css-variables' with enable_rtl: enable_rtl, base_font: base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font: heading_font, heading_font_bold: heading_font_bold -%}
-  {%- render 'styles-inline' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, base_font: base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font: heading_font, heading_font_bold: heading_font_bold -%}
-  {%- render 'theme-styles' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
-  {%- render 'script-inline' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, root_url: root_url -%}
+  {%- render 'css-variables' with enable_rtl, enable_rtl: enable_rtl, base_font: base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font: heading_font, heading_font_bold: heading_font_bold -%}
+  {%- render 'styles-inline' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, base_font: base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font: heading_font, heading_font_bold: heading_font_bold -%}
+  {%- render 'theme-styles' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
+  {%- render 'script-inline' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, root_url: root_url -%}
   {%- capture header_script -%}
   {{ content_for_header }}
   {%- endcapture -%}
@@ -80,7 +80,7 @@
     <div class="modal-dialog modal-lg modal-full" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" data-dismiss="modal" aria-label="Close" class="close">{% render 'icon-close' with add_class: 'flex flex-align-hoz' %}</button>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close">{% render 'icon-close' with add_class, add_class: 'flex flex-align-hoz' %}</button>
         </div>
         <div class="modal-body">
           <div class="row product-section-content">
@@ -121,4 +121,43 @@
   <div class="modal-backdrop fade in"></div>
 </body>
 </html>
-{%- endunless -%}
+{%- endunless -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'css-variables' with enable_rtl: enable_rtl, base_font: base_font,
+    base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic:
+    base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font:
+    heading_font, heading_font_bold: heading_font_bold -%}"
+  to: "{%- render 'css-variables' with enable_rtl, enable_rtl: enable_rtl, base_font:
+    base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold,
+    base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic,
+    heading_font: heading_font, heading_font_bold: heading_font_bold -%}"
+  position: 3223..3531
+- from: "{%- render 'styles-inline' with enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder, base_font: base_font, base_font_bolder: base_font_bolder,
+    base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic:
+    base_font_bold_italic, heading_font: heading_font, heading_font_bold: heading_font_bold
+    -%}"
+  to: "{%- render 'styles-inline' with enable_rtl, enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder, base_font: base_font, base_font_bolder:
+    base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic,
+    base_font_bold_italic: base_font_bold_italic, heading_font: heading_font, heading_font_bold:
+    heading_font_bold -%}"
+  position: 3534..3896
+- from: "{%- render 'theme-styles' with enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder -%}"
+  to: "{%- render 'theme-styles' with enable_rtl, enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder -%}"
+  position: 3899..4022
+- from: "{%- render 'script-inline' with enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder, root_url: root_url -%}"
+  to: "{%- render 'script-inline' with enable_rtl, enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder, root_url: root_url -%}"
+  position: 4025..4169
+- from: "{% render 'icon-close' with add_class: 'flex flex-align-hoz' %}"
+  to: "{% render 'icon-close' with add_class, add_class: 'flex flex-align-hoz' %}"
+  position: 6164..6238
+{%- endcomment -%}

@@ -94,10 +94,10 @@
   	<meta name="description" content="{{ settings.list_collection_meta_description | escape }}">
   {%- endunless -%}
   {%- render 'social-meta-tags' -%}
-  {%- render 'css-variables' with enable_rtl: enable_rtl, base_font: base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font: heading_font, heading_font_bold: heading_font_bold -%}
-  {%- render 'styles-inline' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, top_holder: top_holder, base_font: base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font: heading_font, heading_font_bold: heading_font_bold -%}
-  {%- render 'theme-styles' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
-  {%- render 'script-inline' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, root_url: root_url -%}
+  {%- render 'css-variables' with enable_rtl, enable_rtl: enable_rtl, base_font: base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font: heading_font, heading_font_bold: heading_font_bold -%}
+  {%- render 'styles-inline' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, top_holder: top_holder, base_font: base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font: heading_font, heading_font_bold: heading_font_bold -%}
+  {%- render 'theme-styles' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
+  {%- render 'script-inline' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, root_url: root_url -%}
   {%- render 'custom-css' -%}
   {%- capture header_script -%}
   {{ content_for_header }}
@@ -140,9 +140,9 @@
     {%- endunless -%}
   {%- endif -%}
   {%- render 'general-rich-snippets' -%}
-  {%- render 'promotion' with left_holder: left_holder, right_holder: right_holder, top_holder: top_holder -%}
-  {%- render 'header' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
-   {%- render 'sidebar-canvas' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+  {%- render 'promotion' with left_holder, left_holder: left_holder, right_holder: right_holder, top_holder: top_holder -%}
+  {%- render 'header' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+   {%- render 'sidebar-canvas' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
   {%- if template.name != 'index' and template.suffix != 'contact' and template.name != 'product' and template.name != 'collection' -%}
     {%- render 'breadcrumbs' -%}
   {%- endif -%}
@@ -167,10 +167,10 @@
   {%- render 'popups' -%}
   {%- if settings.show_bottom_mobile_toolbar -%}
     {%- if template.name != 'collection' and template.name != 'search' -%}
-      {%- render 'bottom-mobile-toolbar' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, has_collection_filter: false, has_search_filter: false, root_url: root_url -%}
+      {%- render 'bottom-mobile-toolbar' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, has_collection_filter: false, has_search_filter: false, root_url: root_url -%}
     {%- endif -%}
   {%- endif -%}
-  {%- render 'back-top-button' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
+  {%- render 'back-top-button' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
   {%- render 'search-full' -%}
   {%- render 'currency-plus-form' -%}
   {%- render 'theme-scripts' -%}
@@ -197,3 +197,71 @@
   
 </body>
 </html>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'css-variables' with enable_rtl: enable_rtl, base_font: base_font,
+    base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic:
+    base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font:
+    heading_font, heading_font_bold: heading_font_bold -%}"
+  to: "{%- render 'css-variables' with enable_rtl, enable_rtl: enable_rtl, base_font:
+    base_font, base_font_bolder: base_font_bolder, base_font_bold: base_font_bold,
+    base_font_italic: base_font_italic, base_font_bold_italic: base_font_bold_italic,
+    heading_font: heading_font, heading_font_bold: heading_font_bold -%}"
+  position: 5229..5537
+- from: "{%- render 'styles-inline' with enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder, top_holder: top_holder, base_font: base_font, base_font_bolder:
+    base_font_bolder, base_font_bold: base_font_bold, base_font_italic: base_font_italic,
+    base_font_bold_italic: base_font_bold_italic, heading_font: heading_font, heading_font_bold:
+    heading_font_bold -%}"
+  to: "{%- render 'styles-inline' with enable_rtl, enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder, top_holder: top_holder, base_font: base_font,
+    base_font_bolder: base_font_bolder, base_font_bold: base_font_bold, base_font_italic:
+    base_font_italic, base_font_bold_italic: base_font_bold_italic, heading_font:
+    heading_font, heading_font_bold: heading_font_bold -%}"
+  position: 5540..5926
+- from: "{%- render 'theme-styles' with enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder -%}"
+  to: "{%- render 'theme-styles' with enable_rtl, enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder -%}"
+  position: 5929..6052
+- from: "{%- render 'script-inline' with enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder, root_url: root_url -%}"
+  to: "{%- render 'script-inline' with enable_rtl, enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder, root_url: root_url -%}"
+  position: 6055..6199
+- from: "{%- render 'promotion' with left_holder: left_holder, right_holder: right_holder,
+    top_holder: top_holder -%}"
+  to: "{%- render 'promotion' with left_holder, left_holder: left_holder, right_holder:
+    right_holder, top_holder: top_holder -%}"
+  position: 8804..8925
+- from: "{%- render 'header' with enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder, use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  to: "{%- render 'header' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder, use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  position: 8928..9115
+- from: "{%- render 'sidebar-canvas' with enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder, use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  to: "{%- render 'sidebar-canvas' with enable_rtl, enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder, use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  position: 9119..9314
+- from: "{%- render 'bottom-mobile-toolbar' with enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder, has_collection_filter: false, has_search_filter:
+    false, root_url: root_url -%}"
+  to: "{%- render 'bottom-mobile-toolbar' with enable_rtl, enable_rtl: enable_rtl,
+    left_holder: left_holder, right_holder: right_holder, has_collection_filter: false,
+    has_search_filter: false, root_url: root_url -%}"
+  position: 10381..10589
+- from: "{%- render 'back-top-button' with enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder -%}"
+  to: "{%- render 'back-top-button' with enable_rtl, enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder -%}"
+  position: 10626..10752
+{% endcomment %}

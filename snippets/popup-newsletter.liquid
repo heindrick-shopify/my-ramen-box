@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content"{% if settings.news_bkg_color != blank %} style="background-color: {{ settings.news_bkg_color }};"{% endif %}>
       <div class="modal-header">
-        <button type="button" data-dismiss="modal" aria-label="Close" class="close">{% render 'icon-close' with add_class: 'flex flex-align-hoz' %}</button>
+        <button type="button" data-dismiss="modal" aria-label="Close" class="close">{% render 'icon-close' with add_class, add_class: 'flex flex-align-hoz' %}</button>
       </div>
       <div class="modal-body">
       	<div class="row flex flex-align-ver flex-align-hoz por">
@@ -26,7 +26,7 @@
                       {%- render 'icon-paper-plane' -%}
                     </button>
                   </div>
-                  {%- render 'newsletter-terms' with inputId: 'newsTermPopup' -%}
+                  {%- render 'newsletter-terms' with inputId, inputId: 'newsTermPopup' -%}
                 {% endform %}
               {%- elsif settings.news_platform == 'klaviyo' and settings.news_klaviyo_code != blank -%}
                 {{ settings.news_klaviyo_code }}  
@@ -52,4 +52,16 @@
     </div>
   </div>
 </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'icon-close' with add_class: 'flex flex-align-hoz' %}"
+  to: "{% render 'icon-close' with add_class, add_class: 'flex flex-align-hoz' %}"
+  position: 530..604
+- from: "{%- render 'newsletter-terms' with inputId: 'newsTermPopup' -%}"
+  to: "{%- render 'newsletter-terms' with inputId, inputId: 'newsTermPopup' -%}"
+  position: 2398..2470
+{%- endcomment -%}

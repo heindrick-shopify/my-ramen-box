@@ -8,9 +8,9 @@
     {% else %}
       <span class="product-price__price">{%- render 'price' with current_variant.price -%}</span>
     {% endif %}
-    {%- render 'product-price-unit' with variant: current_variant, is_single: true -%}
+    {%- render 'product-price-unit' with variant, variant: current_variant, is_single: true -%}
   </div>
-  {%- render 'product-single-discount-text' with product: product, variant: current_variant, obj: obj, left_holder: left_holder -%}
+  {%- render 'product-single-discount-text' with product, product: product, variant: current_variant, obj: obj, left_holder: left_holder -%}
 </div>
 {%- assign show_shipping_policy = false -%}
 {%- if show_shipping_policy_link and shop.shipping_policy.body != blank -%}
@@ -25,4 +25,20 @@
       {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
     {%- endif -%}
   </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-price-unit' with variant: current_variant, is_single:
+    true -%}"
+  to: "{%- render 'product-price-unit' with variant, variant: current_variant, is_single:
+    true -%}"
+  position: 664..755
+- from: "{%- render 'product-single-discount-text' with product: product, variant:
+    current_variant, obj: obj, left_holder: left_holder -%}"
+  to: "{%- render 'product-single-discount-text' with product, product: product, variant:
+    current_variant, obj: obj, left_holder: left_holder -%}"
+  position: 767..905
+{%- endcomment -%}

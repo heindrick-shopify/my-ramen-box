@@ -51,4 +51,17 @@
 	{%- endif -%}	
 {%- endfor -%}
 {%- endcapture -%}
-{%- render 'collection-filter-item-display' with block: block, filter_item_content: tag_list, use_scroll: true, force_no_first: force_no_first, has_current: has_current -%}
+{%- render 'collection-filter-item-display' with block, block: block, filter_item_content: tag_list, use_scroll: true, force_no_first: force_no_first, has_current: has_current -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'collection-filter-item-display' with block: block, filter_item_content:
+    tag_list, use_scroll: true, force_no_first: force_no_first, has_current: has_current
+    -%}"
+  to: "{%- render 'collection-filter-item-display' with block, block: block, filter_item_content:
+    tag_list, use_scroll: true, force_no_first: force_no_first, has_current: has_current
+    -%}"
+  position: 2791..2970
+{%- endcomment -%}

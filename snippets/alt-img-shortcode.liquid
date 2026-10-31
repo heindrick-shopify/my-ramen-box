@@ -27,13 +27,13 @@
 			{%- assign sc_final = capture_sc | replace: sc_key, '' | strip -%}
 			{%- if sc_type == 'video' -%}
 				{%- assign video_url = sc_final | file_url -%}
-				{%- render 'product-single-main-video' with video_type: 'mp4', video_url: video_url, media: media -%}
+				{%- render 'product-single-main-video' with video_type, video_type: 'mp4', video_url: video_url, media: media -%}
 			{%- elsif sc_type == 'youtube' -%}
-				{%- render 'product-single-main-video' with video_type: 'youtube', video_id: sc_final, media: media -%}
+				{%- render 'product-single-main-video' with video_type, video_type: 'youtube', video_id: sc_final, media: media -%}
 			{%- else -%}
 				<div data-player-id="vimeo-player-{{ media.id }}" data-video-id="{{ sc_final }}" data-image-id="{{ media.id }}" class="vimeo-player pg__video pg__video--vimeo pg__main__link" style="position: relative;padding-bottom:50%;">
 				</div>
-				{%- render 'product-single-main-video' with video_type: 'vimeo', video_id: sc_final, media: media -%}
+				{%- render 'product-single-main-video' with video_type, video_type: 'vimeo', video_id: sc_final, media: media -%}
 			{%- endif -%}
 		{%- else -%}
 			{%- assign capture_sc = capture_sc | append: ' ' | append: word -%}
@@ -41,4 +41,25 @@
 		{%- endif -%}
 	{%- endif -%}
 {%- endfor -%}
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-single-main-video' with video_type: 'mp4', video_url:
+    video_url, media: media -%}"
+  to: "{%- render 'product-single-main-video' with video_type, video_type: 'mp4',
+    video_url: video_url, media: media -%}"
+  position: 1166..1279
+- from: "{%- render 'product-single-main-video' with video_type: 'youtube', video_id:
+    sc_final, media: media -%}"
+  to: "{%- render 'product-single-main-video' with video_type, video_type: 'youtube',
+    video_id: sc_final, media: media -%}"
+  position: 1322..1437
+- from: "{%- render 'product-single-main-video' with video_type: 'vimeo', video_id:
+    sc_final, media: media -%}"
+  to: "{%- render 'product-single-main-video' with video_type, video_type: 'vimeo',
+    video_id: sc_final, media: media -%}"
+  position: 1696..1809
+{%- endcomment -%}

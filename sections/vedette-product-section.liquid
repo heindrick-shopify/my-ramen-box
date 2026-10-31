@@ -44,7 +44,7 @@
       {%- endcapture -%}
 		  <div class="product-single pg row" data-product-handle="{{ product.handle }}" data-zoom-scope="single" data-ignore-sold-out-text="1">
         <div class="col-xs-12 {% unless section.settings.large_images_grid %}col-md-6{% else %}col-md-7{% endunless %}{% if enable_rtl %} f-right{% endif %}{% if section.settings.sticky_content == 'images' %} pos-sticky pos-sticky--{{ section.id }}{% endif %}{% if section.settings.large_images_grid %} gutter-ele-bottom-tbs{% endif %}">
-          {%- render 'product-single-media' with product: product, featured_media: featured_media, large_images_grid: section.settings.large_images_grid, enable_rtl: enable_rtl -%}
+          {%- render 'product-single-media' with product, product: product, featured_media: featured_media, large_images_grid: section.settings.large_images_grid, enable_rtl: enable_rtl -%}
         </div>
         <div class="col-xs-12 {% unless section.settings.large_images_grid %}col-md-6{% else %}col-md-5{% endunless %} gutter-ele-top-tbs{% if section.settings.sticky_content == 'information' %} pos-sticky pos-sticky--{{ section.id }}{% endif %}">
           {%- for block in section.blocks -%}
@@ -62,7 +62,7 @@
                       assign sizechart = current_sizechart
                     endunless
                   -%}
-                  {%- render 'product-single-block-list' with product:product, current_variant: current_variant, block: block, sizechart: sizechart, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
+                  {%- render 'product-single-block-list' with product.product, product: product, current_variant: current_variant, block: block, sizechart: sizechart, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
                 {%- endif -%}
               {%- else -%}
                 {%- if block.type == 'popup' -%}
@@ -76,7 +76,7 @@
                 {%- elsif block.type == 'quantity_buy_buttons' -%}
                   {%- assign has_quantity_box = block.settings.show_quantity_selector -%}
                 {%- endif -%}  
-                {%- render 'product-single-block-list' with product: product, current_variant: current_variant, block: block, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, product_form_id: product_form_id, description: description, inline_button: inline_button -%}  
+                {%- render 'product-single-block-list' with product, product: product, current_variant: current_variant, block: block, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, product_form_id: product_form_id, description: description, inline_button: inline_button -%}  
               {%- endif -%}
             {%- else -%}
               {%- render block -%}
@@ -1541,4 +1541,33 @@ theme.requireCss.push("vedette");
       }
     ]
   }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-single-media' with product: product, featured_media:
+    featured_media, large_images_grid: section.settings.large_images_grid, enable_rtl:
+    enable_rtl -%}"
+  to: "{%- render 'product-single-media' with product, product: product, featured_media:
+    featured_media, large_images_grid: section.settings.large_images_grid, enable_rtl:
+    enable_rtl -%}"
+  position: 3154..3333
+- from: "{%- render 'product-single-block-list' with product:product, current_variant:
+    current_variant, block: block, sizechart: sizechart, enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder -%}"
+  to: "{%- render 'product-single-block-list' with product.product, product: product,
+    current_variant: current_variant, block: block, sizechart: sizechart, enable_rtl:
+    enable_rtl, left_holder: left_holder, right_holder: right_holder -%}"
+  position: 4476..4705
+- from: "{%- render 'product-single-block-list' with product: product, current_variant:
+    current_variant, block: block, enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder, product_form_id: product_form_id, description: description,
+    inline_button: inline_button -%}"
+  to: "{%- render 'product-single-block-list' with product, product: product, current_variant:
+    current_variant, block: block, enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder, product_form_id: product_form_id, description: description,
+    inline_button: inline_button -%}"
+  position: 5477..5766
+{%- endcomment -%}

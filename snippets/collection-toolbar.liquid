@@ -5,7 +5,7 @@
 		{%- assign item_size = section.settings.item_size -%}
 		{%- if section.settings.filter_enable -%}
 		<div class="ct__filter--trigger visible-sm">
-			<a class="bt-sidebar-btn ct__filter--btn flex flex-align-ver flex-align-hoz ct__filter--btn-open ct__toolbar__typo" href="#" data-target="#sidebar-filter" data-placement="{{ left_holder }}" data-placement-mobile="up" title="{{ 'collections.general.filter' | t | escape }}">{%- render 'icon-filter' with add_class: 'lh1 ver-sub' -%}<span class="lh1 ver-sub">{{ 'collections.general.filter' | t }}</span></a>
+			<a class="bt-sidebar-btn ct__filter--btn flex flex-align-ver flex-align-hoz ct__filter--btn-open ct__toolbar__typo" href="#" data-target="#sidebar-filter" data-placement="{{ left_holder }}" data-placement-mobile="up" title="{{ 'collections.general.filter' | t | escape }}">{%- render 'icon-filter' with add_class, add_class: 'lh1 ver-sub' -%}<span class="lh1 ver-sub">{{ 'collections.general.filter' | t }}</span></a>
 		</div>
 		{%- endif -%}
 		{%- if section.settings.toolbar_sort_enable -%}
@@ -48,4 +48,13 @@
 		{%- endif -%}
 	</div>
 </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'icon-filter' with add_class: 'lh1 ver-sub' -%}"
+  to: "{%- render 'icon-filter' with add_class, add_class: 'lh1 ver-sub' -%}"
+  position: 754..823
+{%- endcomment -%}

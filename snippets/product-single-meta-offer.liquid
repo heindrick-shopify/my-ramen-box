@@ -68,6 +68,15 @@
       }{% if count != variant_count %},{% endif %}
       {%- endif -%}
     {%- endfor -%}
-  ]{%- endunless -%}{%- render 'product-single-meta-review' with product: product -%}
+  ]{%- endunless -%}{%- render 'product-single-meta-review' with product, product: product -%}
 }
-</script>
+</script>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-single-meta-review' with product: product -%}"
+  to: "{%- render 'product-single-meta-review' with product, product: product -%}"
+  position: 3446..3520
+{%- endcomment -%}

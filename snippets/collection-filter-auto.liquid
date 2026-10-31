@@ -16,7 +16,7 @@
         assign has_auto_current = true
       endif
     -%}
-    {%- render 'collection-filter-item-auto-current' with filter_param_value: filter_param_value -%}
+    {%- render 'collection-filter-item-auto-current' with filter_param_value, filter_param_value: filter_param_value -%}
     <div class="cf__content">
       {%- for block in section.blocks -%}
         {%- assign filter_item_type = 'collection-' | append: block.type -%}
@@ -40,11 +40,11 @@
                     {%- assign is_current = true -%}
                     {%- assign has_current = true -%}
                   {%- endif -%}
-                  {%- render 'collection-filter-item-auto' with filter_item_name_with_values_array: filter_item_name_with_values_array, filter_item_name_with_value: filter_item_name_with_value, value: type_parts[0], count: type_parts[1], is_current: is_current -%}
+                  {%- render 'collection-filter-item-auto' with filter_item_name_with_values_array, filter_item_name_with_values_array: filter_item_name_with_values_array, filter_item_name_with_value: filter_item_name_with_value, value: type_parts[0], count: type_parts[1], is_current: is_current -%}
                 {%- endif -%}
               {%- endfor -%}
             {%- endcapture -%}
-            {%- render 'collection-filter-item-display' with block: block, filter_item_content: filter_item_content, is_auto: true, option_name: 'type', force_no_first: has_auto_current, use_scroll : true, has_current: has_current -%}
+            {%- render 'collection-filter-item-display' with block, block: block, filter_item_content: filter_item_content, is_auto: true, option_name: 'type', force_no_first: has_auto_current, use_scroll: true, has_current: has_current -%}
           {%- endunless -%}
         {%- elsif block.type == 'filter-item-product-brand' -%}
           {%- unless collection.current_vendor -%}
@@ -60,11 +60,11 @@
                     {%- assign is_current = true -%}
                     {%- assign has_current = true -%}
                   {%- endif -%}
-                  {%- render 'collection-filter-item-auto' with value: brand_parts[0], count: brand_parts[1], is_current: is_current -%}
+                  {%- render 'collection-filter-item-auto' with value, value: brand_parts[0], count: brand_parts[1], is_current: is_current -%}
                 {%- endif -%}
               {%- endfor -%}
             {%- endcapture -%}
-            {%- render 'collection-filter-item-display' with block: block, filter_item_content: filter_item_content, is_auto: true, option_name: 'brand', force_no_first: has_auto_current, use_scroll : true, has_current: has_current -%}
+            {%- render 'collection-filter-item-display' with block, block: block, filter_item_content: filter_item_content, is_auto: true, option_name: 'brand', force_no_first: has_auto_current, use_scroll: true, has_current: has_current -%}
           {%- endunless -%}  
         {%- elsif block.type == 'filter-item-checkbox' -%}
           {%- if block.settings.auto_filter_option_name != blank -%}
@@ -80,11 +80,11 @@
                     {%- assign is_current = true -%}
                     {%- assign has_current = true -%}
                   {%- endif -%}
-                  {%- render 'collection-filter-item-auto' with value: filter_item_parts[1], count: filter_item_parts[2], is_current: is_current -%}
+                  {%- render 'collection-filter-item-auto' with value, value: filter_item_parts[1], count: filter_item_parts[2], is_current: is_current -%}
                 {%- endif -%}
               {%- endfor -%}
             {%- endcapture -%}
-            {%- render 'collection-filter-item-display' with block: block, filter_item_content: filter_item_content, is_auto: true, force_no_first: has_auto_current, use_scroll : true, has_current: has_current -%}
+            {%- render 'collection-filter-item-display' with block, block: block, filter_item_content: filter_item_content, is_auto: true, force_no_first: has_auto_current, use_scroll: true, has_current: has_current -%}
           {%- endif -%}
         {%- elsif block.type == 'filter-item-ratings' -%}
           {%- assign has_current = false -%}
@@ -104,14 +104,14 @@
                 <li class="w100 cf__item__link">
                   <a href="#" data-value="{{ rating_level }}" class="cf__link cf__link--auto cf__link--option cf__link--rating{% if is_current %} current{% endif %} flex flex-align-space-between">
                     <span>
-                      {%- render 'rating-stars' with count_rating_stars: rating_level -%}
+                      {%- render 'rating-stars' with count_rating_stars, count_rating_stars: rating_level -%}
                     </span>
                     {%- unless is_current -%}
                       <span>{{ rating_products_count }}</span>
                     {%- else -%}
                       <div class="flex flex-align-ver">
                         <span>{{ rating_products_count }}</span>
-                        {%- render 'icon-close' with add_class: 'cf__link--rating__close alternative' -%}
+                        {%- render 'icon-close' with add_class, add_class: 'cf__link--rating__close alternative' -%}
                       </div>  
                     {%- endunless -%}
                   </a>
@@ -120,14 +120,14 @@
                 <li class="w100 cf__item__link">
                   <a href="#" data-value="{{ rating_level }}" class="cf__link cf__link--auto cf__link--option cf__link--rating flex flex-align-space-between{% if is_current %} current{% endif %}">
                     <span>
-                      {%- render 'rating-stars' with count_rating_stars: rating_level -%}
+                      {%- render 'rating-stars' with count_rating_stars, count_rating_stars: rating_level -%}
                     </span>
                     {%- unless is_current -%}
                       <span>0</span>
                     {%- else -%}
                       <div class="flex flex-align-ver">
                         <span>0</span>
-                        {%- render 'icon-close' with add_class: 'cf__link--rating__close alternative' -%}
+                        {%- render 'icon-close' with add_class, add_class: 'cf__link--rating__close alternative' -%}
                       </div>  
                     {%- endunless -%}
                   </a>
@@ -135,7 +135,7 @@
               {%- endif -%}
             {%- endfor -%}
           {%- endcapture -%}
-          {%- render 'collection-filter-item-display' with block: block, filter_item_content: filter_item_content, is_auto: true, option_name: 'ratings', force_no_first: has_auto_current, use_scroll: true, has_current: has_current -%}
+          {%- render 'collection-filter-item-display' with block, block: block, filter_item_content: filter_item_content, is_auto: true, option_name: 'ratings', force_no_first: has_auto_current, use_scroll: true, has_current: has_current -%}
         {%- elsif block.type == 'filter-item-metafields' -%}
           {%- assign namespace = block.settings.namespace | handleize -%}
           {%- assign key = block.settings.key | handleize -%}
@@ -153,13 +153,100 @@
                   {%- assign is_current = true -%}
                   {%- assign has_current = true -%}
                 {%- endif -%}
-                {%- render 'collection-filter-item-auto' with value: metafield_parts[1], count: metafield_parts[2], is_current: is_current -%}
+                {%- render 'collection-filter-item-auto' with value, value: metafield_parts[1], count: metafield_parts[2], is_current: is_current -%}
               {%- endif -%}  
             {%- endfor -%}
           {%- endcapture -%}
-          {%- render 'collection-filter-item-display' with block: block, filter_item_content: filter_item_content, is_auto: true, option_name: option_field_name, force_no_first: has_auto_current, use_scroll : true, has_current: has_current -%}
+          {%- render 'collection-filter-item-display' with block, block: block, filter_item_content: filter_item_content, is_auto: true, option_name: option_field_name, force_no_first: has_auto_current, use_scroll: true, has_current: has_current -%}
         {%- endif -%}  
       {%- endfor -%}
     </div>
   {%- endif -%}
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'collection-filter-item-auto-current' with filter_param_value:
+    filter_param_value -%}"
+  to: "{%- render 'collection-filter-item-auto-current' with filter_param_value, filter_param_value:
+    filter_param_value -%}"
+  position: 800..916
+- from: "{%- render 'collection-filter-item-auto' with filter_item_name_with_values_array:
+    filter_item_name_with_values_array, filter_item_name_with_value: filter_item_name_with_value,
+    value: type_parts[0], count: type_parts[1], is_current: is_current -%}"
+  to: "{%- render 'collection-filter-item-auto' with filter_item_name_with_values_array,
+    filter_item_name_with_values_array: filter_item_name_with_values_array, filter_item_name_with_value:
+    filter_item_name_with_value, value: type_parts[0], count: type_parts[1], is_current:
+    is_current -%}"
+  position: 2856..3138
+- from: "{%- render 'collection-filter-item-display' with block: block, filter_item_content:
+    filter_item_content, is_auto: true, option_name: 'type', force_no_first: has_auto_current,
+    use_scroll : true, has_current: has_current -%}"
+  to: "{%- render 'collection-filter-item-display' with block, block: block, filter_item_content:
+    filter_item_content, is_auto: true, option_name: 'type', force_no_first: has_auto_current,
+    use_scroll: true, has_current: has_current -%}"
+  position: 3241..3469
+- from: "{%- render 'collection-filter-item-auto' with value: brand_parts[0], count:
+    brand_parts[1], is_current: is_current -%}"
+  to: "{%- render 'collection-filter-item-auto' with value, value: brand_parts[0],
+    count: brand_parts[1], is_current: is_current -%}"
+  position: 4349..4474
+- from: "{%- render 'collection-filter-item-display' with block: block, filter_item_content:
+    filter_item_content, is_auto: true, option_name: 'brand', force_no_first: has_auto_current,
+    use_scroll : true, has_current: has_current -%}"
+  to: "{%- render 'collection-filter-item-display' with block, block: block, filter_item_content:
+    filter_item_content, is_auto: true, option_name: 'brand', force_no_first: has_auto_current,
+    use_scroll: true, has_current: has_current -%}"
+  position: 4577..4806
+- from: "{%- render 'collection-filter-item-auto' with value: filter_item_parts[1],
+    count: filter_item_parts[2], is_current: is_current -%}"
+  to: "{%- render 'collection-filter-item-auto' with value, value: filter_item_parts[1],
+    count: filter_item_parts[2], is_current: is_current -%}"
+  position: 5835..5972
+- from: "{%- render 'collection-filter-item-display' with block: block, filter_item_content:
+    filter_item_content, is_auto: true, force_no_first: has_auto_current, use_scroll
+    : true, has_current: has_current -%}"
+  to: "{%- render 'collection-filter-item-display' with block, block: block, filter_item_content:
+    filter_item_content, is_auto: true, force_no_first: has_auto_current, use_scroll:
+    true, has_current: has_current -%}"
+  position: 6075..6282
+- from: "{%- render 'rating-stars' with count_rating_stars: rating_level -%}"
+  to: "{%- render 'rating-stars' with count_rating_stars, count_rating_stars: rating_level
+    -%}"
+  position: 7580..7667
+- from: "{%- render 'icon-close' with add_class: 'cf__link--rating__close alternative'
+    -%}"
+  to: "{%- render 'icon-close' with add_class, add_class: 'cf__link--rating__close
+    alternative' -%}"
+  position: 7983..8075
+- from: "{%- render 'rating-stars' with count_rating_stars: rating_level -%}"
+  to: "{%- render 'rating-stars' with count_rating_stars, count_rating_stars: rating_level
+    -%}"
+  position: 8512..8599
+- from: "{%- render 'icon-close' with add_class: 'cf__link--rating__close alternative'
+    -%}"
+  to: "{%- render 'icon-close' with add_class, add_class: 'cf__link--rating__close
+    alternative' -%}"
+  position: 8863..8955
+- from: "{%- render 'collection-filter-item-display' with block: block, filter_item_content:
+    filter_item_content, is_auto: true, option_name: 'ratings', force_no_first: has_auto_current,
+    use_scroll: true, has_current: has_current -%}"
+  to: "{%- render 'collection-filter-item-display' with block, block: block, filter_item_content:
+    filter_item_content, is_auto: true, option_name: 'ratings', force_no_first: has_auto_current,
+    use_scroll: true, has_current: has_current -%}"
+  position: 9166..9397
+- from: "{%- render 'collection-filter-item-auto' with value: metafield_parts[1],
+    count: metafield_parts[2], is_current: is_current -%}"
+  to: "{%- render 'collection-filter-item-auto' with value, value: metafield_parts[1],
+    count: metafield_parts[2], is_current: is_current -%}"
+  position: 10533..10666
+- from: "{%- render 'collection-filter-item-display' with block: block, filter_item_content:
+    filter_item_content, is_auto: true, option_name: option_field_name, force_no_first:
+    has_auto_current, use_scroll : true, has_current: has_current -%}"
+  to: "{%- render 'collection-filter-item-display' with block, block: block, filter_item_content:
+    filter_item_content, is_auto: true, option_name: option_field_name, force_no_first:
+    has_auto_current, use_scroll: true, has_current: has_current -%}"
+  position: 10763..11002
+{%- endcomment -%}

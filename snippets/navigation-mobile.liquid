@@ -27,7 +27,7 @@
 							{%- if l.links != blank -%}
 								{%- assign has_children = true -%}
 							{%- endif -%}
-							{%- render 'mobile-nav-top-item-link' with title: l.title, url: l.url, sep_label: false, has_children: has_children, item_id: item.id, custom_label_classes: custom_label_classes -%}
+							{%- render 'mobile-nav-top-item-link' with title, title: l.title, url: l.url, sep_label: false, has_children: has_children, item_id: item.id, custom_label_classes: custom_label_classes -%}
 							{%- unless added_css_level1 -%}
 								{%- capture level1_css -%}
 									.mobile-nav__item__label--{{ item.id }}{color:{{ item.settings.color_label }};background:{{ item.settings.bkg_label }};}
@@ -41,9 +41,9 @@
 									<div class="mobile-nav__children mobile-nav__children--mega flex w100 gutter-ele-bottom" style="display:none;">
 										{%- case item.settings.children_style -%}
 											{%- when 'style1' -%}
-												{%- render 'mobile-nav-children-links-style1' with links: l.links, two_columns: item.settings.two_columns, no_gutter_left_class: no_gutter_left_class, no_gutter_right_class: no_gutter_right_class, item_id: item.id, custom_label_classes: custom_label_classes -%}
+												{%- render 'mobile-nav-children-links-style1' with links, links: l.links, two_columns: item.settings.two_columns, no_gutter_left_class: no_gutter_left_class, no_gutter_right_class: no_gutter_right_class, item_id: item.id, custom_label_classes: custom_label_classes -%}
 											{%- else -%}
-												{%- render 'mobile-nav-children-links-style2' with links: l.links, item_id: item.id, custom_label_classes: custom_label_classes, no_gutter_left_class: no_gutter_left_class, no_gutter_right_class: no_gutter_right_class -%}
+												{%- render 'mobile-nav-children-links-style2' with links, links: l.links, item_id: item.id, custom_label_classes: custom_label_classes, no_gutter_left_class: no_gutter_left_class, no_gutter_right_class: no_gutter_right_class -%}
 										{%- endcase -%}
 									</div>
 								{%- endif -%}
@@ -64,7 +64,7 @@
 					{%- assign has_children = true -%}
 				{%- endif -%}
 				<li class="mobile-nav__item{% if has_children %} mobile-nav__item--parent{% endif %} mobile-nav__item--level1{% if item.settings.custom_class != blank %} {{ item.settings.custom_class | escape }}{% endif %}" {{ item.shopify_attributes }}>
-					{%- render 'mobile-nav-top-item-link' with title: item.settings.title, url: item.settings.url, has_children: has_children, item_id: item.id, custom_label_classes: custom_label_classes -%}
+					{%- render 'mobile-nav-top-item-link' with title, title: item.settings.title, url: item.settings.url, has_children: has_children, item_id: item.id, custom_label_classes: custom_label_classes -%}
 					{%- unless added_css_level1 -%}
 						{%- capture level1_css -%}
 							.mobile-nav__item__label--{{ item.id }}{color:{{ item.settings.color_label }};background:{{ item.settings.bkg_label }};}
@@ -91,15 +91,15 @@
 										{%- assign image_url_index = 'image_url_' | append: i -%}
 										{%- assign html_index = 'html_' | append: i -%}
 										<div class="mobile-nav__children__block col-xs-{{ item.settings[width_index] }} flex gutter-ele-top gutter-ele-bottom">
-											{%- render 'mobile-nav-render-level2' with title: item.settings[title_index], url: item.settings[url_index], item_id: item.id, custom_label_classes: custom_label_classes -%}
+											{%- render 'mobile-nav-render-level2' with title, title: item.settings[title_index], url: item.settings[url_index], item_id: item.id, custom_label_classes: custom_label_classes -%}
 											<div class="mobile-nav__children__inner w100">
 												{%- assign has_content_before = false -%}
 												{%- assign links = linklists[item.settings[link_list_index]] -%}
 												{%- if links != blank -%}
 													{%- unless item.settings[link_list_two_columns_index] -%}
-														{%- render 'mobile-nav-render-links' with links: links.links, item_id: item.id, custom_label_classes: custom_label_classes, color_label: item.settings[color_label_index], bkg_label: item.settings[bkg_label_index] -%}
+														{%- render 'mobile-nav-render-links' with links, links: links.links, item_id: item.id, custom_label_classes: custom_label_classes, color_label: item.settings[color_label_index], bkg_label: item.settings[bkg_label_index] -%}
 													{%- else -%}
-														{%- render 'mobile-nav-render-links-two-columns' with links: links.links, no_gutter_left_class: no_gutter_left_class, no_gutter_right_class: no_gutter_right_class, item_id: item.id, custom_label_classes: custom_label_classes, color_label: item.settings[color_label_index], bkg_label: item.settings[bkg_label_index] -%}
+														{%- render 'mobile-nav-render-links-two-columns' with links, links: links.links, no_gutter_left_class: no_gutter_left_class, no_gutter_right_class: no_gutter_right_class, item_id: item.id, custom_label_classes: custom_label_classes, color_label: item.settings[color_label_index], bkg_label: item.settings[bkg_label_index] -%}
 													{%- endunless -%}
 													{%- assign has_content_before = true -%}
 												{%- endif -%}
@@ -164,3 +164,63 @@
 .mobile-nav__item__label{ {{ left_holder }}:auto;{{ right_holder }}:0;}
 {{ style }}
 {%- endstyle -%}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'mobile-nav-top-item-link' with title: l.title, url: l.url, sep_label:
+    false, has_children: has_children, item_id: item.id, custom_label_classes: custom_label_classes
+    -%}"
+  to: "{%- render 'mobile-nav-top-item-link' with title, title: l.title, url: l.url,
+    sep_label: false, has_children: has_children, item_id: item.id, custom_label_classes:
+    custom_label_classes -%}"
+  position: 1360..1548
+- from: "{%- render 'mobile-nav-children-links-style1' with links: l.links, two_columns:
+    item.settings.two_columns, no_gutter_left_class: no_gutter_left_class, no_gutter_right_class:
+    no_gutter_right_class, item_id: item.id, custom_label_classes: custom_label_classes
+    -%}"
+  to: "{%- render 'mobile-nav-children-links-style1' with links, links: l.links, two_columns:
+    item.settings.two_columns, no_gutter_left_class: no_gutter_left_class, no_gutter_right_class:
+    no_gutter_right_class, item_id: item.id, custom_label_classes: custom_label_classes
+    -%}"
+  position: 2355..2623
+- from: "{%- render 'mobile-nav-children-links-style2' with links: l.links, item_id:
+    item.id, custom_label_classes: custom_label_classes, no_gutter_left_class: no_gutter_left_class,
+    no_gutter_right_class: no_gutter_right_class -%}"
+  to: "{%- render 'mobile-nav-children-links-style2' with links, links: l.links, item_id:
+    item.id, custom_label_classes: custom_label_classes, no_gutter_left_class: no_gutter_left_class,
+    no_gutter_right_class: no_gutter_right_class -%}"
+  position: 2660..2888
+- from: "{%- render 'mobile-nav-top-item-link' with title: item.settings.title, url:
+    item.settings.url, has_children: has_children, item_id: item.id, custom_label_classes:
+    custom_label_classes -%}"
+  to: "{%- render 'mobile-nav-top-item-link' with title, title: item.settings.title,
+    url: item.settings.url, has_children: has_children, item_id: item.id, custom_label_classes:
+    custom_label_classes -%}"
+  position: 3963..4157
+- from: "{%- render 'mobile-nav-render-level2' with title: item.settings[title_index],
+    url: item.settings[url_index], item_id: item.id, custom_label_classes: custom_label_classes
+    -%}"
+  to: "{%- render 'mobile-nav-render-level2' with title, title: item.settings[title_index],
+    url: item.settings[url_index], item_id: item.id, custom_label_classes: custom_label_classes
+    -%}"
+  position: 5885..6065
+- from: "{%- render 'mobile-nav-render-links' with links: links.links, item_id: item.id,
+    custom_label_classes: custom_label_classes, color_label: item.settings[color_label_index],
+    bkg_label: item.settings[bkg_label_index] -%}"
+  to: "{%- render 'mobile-nav-render-links' with links, links: links.links, item_id:
+    item.id, custom_label_classes: custom_label_classes, color_label: item.settings[color_label_index],
+    bkg_label: item.settings[bkg_label_index] -%}"
+  position: 6378..6601
+- from: "{%- render 'mobile-nav-render-links-two-columns' with links: links.links,
+    no_gutter_left_class: no_gutter_left_class, no_gutter_right_class: no_gutter_right_class,
+    item_id: item.id, custom_label_classes: custom_label_classes, color_label: item.settings[color_label_index],
+    bkg_label: item.settings[bkg_label_index] -%}"
+  to: "{%- render 'mobile-nav-render-links-two-columns' with links, links: links.links,
+    no_gutter_left_class: no_gutter_left_class, no_gutter_right_class: no_gutter_right_class,
+    item_id: item.id, custom_label_classes: custom_label_classes, color_label: item.settings[color_label_index],
+    bkg_label: item.settings[bkg_label_index] -%}"
+  position: 6642..6967
+{% endcomment %}

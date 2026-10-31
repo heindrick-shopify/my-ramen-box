@@ -1,1 +1,12 @@
-{%- render 'product-group-variants' with product: product, enable_product_options: true, color_size: '45x', is_single_view: true, is_show_sub_info: true -%}
+{%- render 'product-group-variants' with product, product: product, enable_product_options: true, color_size: '45x', is_single_view: true, is_show_sub_info: true -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-group-variants' with product: product, enable_product_options:
+    true, color_size: '45x', is_single_view: true, is_show_sub_info: true -%}"
+  to: "{%- render 'product-group-variants' with product, product: product, enable_product_options:
+    true, color_size: '45x', is_single_view: true, is_show_sub_info: true -%}"
+  position: 0..165
+{%- endcomment -%}

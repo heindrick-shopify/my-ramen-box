@@ -8,14 +8,7 @@
   {%- unless collection == blank or collection.products.size == 0 -%}
     {%- if request.design_mode or template.suffix == 'ajax' -%}
       {%- for product in collection.products limit:limit -%}
-        {%- render 'product-columns-item' with
-          product: product,
-          main_thumbnail: main_thumbnail,
-          truncate_count: truncate_count,
-          show_review_stars: show_review_stars,
-          slide_per_row: slide_per_row,
-          index: forloop.index
-        -%}
+        {%- render 'product-columns-item' with product, product: product, main_thumbnail: main_thumbnail, truncate_count: truncate_count, show_review_stars: show_review_stars, slide_per_row: slide_per_row, index: forloop.index -%}
       {%- endfor -%}
     {%- endif -%}
   {%- else -%}
@@ -38,4 +31,23 @@
       </div>
     {%- endfor -%}
   {%- endunless -%}
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {%- render 'product-columns-item' with
+              product: product,
+              main_thumbnail: main_thumbnail,
+              truncate_count: truncate_count,
+              show_review_stars: show_review_stars,
+              slide_per_row: slide_per_row,
+              index: forloop.index
+            -%}
+  to: "{%- render 'product-columns-item' with product, product: product, main_thumbnail:
+    main_thumbnail, truncate_count: truncate_count, show_review_stars: show_review_stars,
+    slide_per_row: slide_per_row, index: forloop.index -%}"
+  position: 647..869
+{%- endcomment -%}

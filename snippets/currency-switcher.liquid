@@ -2,7 +2,7 @@
 <div class="bt-dropdown currency-switcher cs{% unless no_full_height %} h100{% endunless %}{% unless flex_trigger %} flex flex-align-ver{% endunless %}{% if add_wrap_classes %} {{ add_wrap_classes }}{% endif %}"{% if data_group %} data-group="{{ data_group | escape }}"{% endif %} style="position:relative;">
 	<a class="bt-dropdown__trigger header__link{% if flex_trigger %} flex flex-align-ver{% else %} dib{% endif %}{% if addition_classes %} {{ addition_classes }}{% endif %}" title="{{ 'general.currency.switcher' | t | escape }}" href="javascript:void(0);" rel="nofollow">
 		{%- if show_currency_icon -%}
-			{%- render 'icon-currency' with add_class: 'ver-sub' -%}
+			{%- render 'icon-currency' with add_class, add_class: 'ver-sub' -%}
 		{%- endif -%}
 		<span class="cs__current-code{% if hide_currency_code %} hide{% endif %}">
 			{%- if settings.currency_converter_engine == 'shopify' -%}
@@ -27,4 +27,13 @@
 		</ul>
 	</div>
 </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'icon-currency' with add_class: 'ver-sub' -%}"
+  to: "{%- render 'icon-currency' with add_class, add_class: 'ver-sub' -%}"
+  position: 658..725
+{%- endcomment -%}

@@ -16,7 +16,7 @@
       {%- assign has_lcp = false -%}
       {%- if settings.breadcrumbs_enble_bkg and settings.breadcrumbs_bkg_image -%}
         {%- assign has_lcp = true -%}
-        {%- render 'lcp-mark' with image: settings.breadcrumbs_bkg_image -%}
+        {%- render 'lcp-mark' with image, image: settings.breadcrumbs_bkg_image -%}
       {%- endif -%}
       {%- for block in section.blocks -%}
         <div class="col-xs-12">
@@ -24,9 +24,9 @@
           {%- when 'description' -%}
             {%- render 'collection-description', enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
           {%- when 'banner' -%}
-            {%- render 'collection-banner' with has_lcp: has_lcp, block: block, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%} 
+            {%- render 'collection-banner' with has_lcp, has_lcp: has_lcp, block: block, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%} 
           {%- when 'products-filter' -%}
-            {%- render 'collection-products-filter' with block: block, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, has_collection_filter: section.settings.filter_enable -%}
+            {%- render 'collection-products-filter' with block, block: block, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, has_collection_filter: section.settings.filter_enable -%}
           {%- else -%}
             {%- render block -%}       
           {%- endcase -%}
@@ -37,7 +37,7 @@
 </div>
 {%- if settings.recent_view_enable and settings.recent_view_collection_enable -%}
   <div class="recent-view rv w100" style="position:fixed;top:auto;right:0;">
-    <h4 class="container-fluid rv__title dib margin0 rv__shadow pull-right"><span class="rv__number">0</span>{{ 'collections.general.recent_view' | t }}{%- render 'icon-arrow-down' with custom_classes: 'rv__title__icon dib transition' -%}</h4>
+    <h4 class="container-fluid rv__title dib margin0 rv__shadow pull-right"><span class="rv__number">0</span>{{ 'collections.general.recent_view' | t }}{%- render 'icon-arrow-down' with custom_classes, custom_classes: 'rv__title__icon dib transition' -%}</h4>
     <div class="rv__wrap-content rv__shadow custom-scrollbar" style="display:none;">
       <div class="container-fluid gutter-top gutter-bottom">
         <div class="rv__content grid grid--small use-touch-mobile">
@@ -46,7 +46,7 @@
     </div>
   </div>
 {%- endif -%}
-{%- render 'bottom-mobile-toolbar' with enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, has_collection_filter: section.settings.filter_enable -%}
+{%- render 'bottom-mobile-toolbar' with enable_rtl, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder, has_collection_filter: section.settings.filter_enable -%}
 {% schema %}
   {
     "name": "Collection pages",
@@ -340,4 +340,37 @@
     ],
     "templates": ["collection"]
   }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'lcp-mark' with image: settings.breadcrumbs_bkg_image -%}"
+  to: "{%- render 'lcp-mark' with image, image: settings.breadcrumbs_bkg_image -%}"
+  position: 753..828
+- from: "{%- render 'collection-banner' with has_lcp: has_lcp, block: block, enable_rtl:
+    enable_rtl, left_holder: left_holder, right_holder: right_holder -%}"
+  to: "{%- render 'collection-banner' with has_lcp, has_lcp: has_lcp, block: block,
+    enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}"
+  position: 1176..1333
+- from: "{%- render 'collection-products-filter' with block: block, enable_rtl: enable_rtl,
+    left_holder: left_holder, right_holder: right_holder, has_collection_filter: section.settings.filter_enable
+    -%}"
+  to: "{%- render 'collection-products-filter' with block, block: block, enable_rtl:
+    enable_rtl, left_holder: left_holder, right_holder: right_holder, has_collection_filter:
+    section.settings.filter_enable -%}"
+  position: 1390..1591
+- from: "{%- render 'icon-arrow-down' with custom_classes: 'rv__title__icon dib transition'
+    -%}"
+  to: "{%- render 'icon-arrow-down' with custom_classes, custom_classes: 'rv__title__icon
+    dib transition' -%}"
+  position: 2066..2168
+- from: "{%- render 'bottom-mobile-toolbar' with enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder, has_collection_filter: section.settings.filter_enable
+    -%}"
+  to: "{%- render 'bottom-mobile-toolbar' with enable_rtl, enable_rtl: enable_rtl,
+    left_holder: left_holder, right_holder: right_holder, has_collection_filter: section.settings.filter_enable
+    -%}"
+  position: 2459..2646
+{%- endcomment -%}

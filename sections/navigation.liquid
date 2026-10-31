@@ -1,4 +1,4 @@
-{%- render 'navigation' with section: section -%}
+{%- render 'navigation' with section, section: section -%}
 {% schema %}
 {
   "name": "Powerful Megamenu",
@@ -2354,3 +2354,13 @@
   }
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'navigation' with section: section -%}"
+  to: "{%- render 'navigation' with section, section: section -%}"
+  position: 0..58
+{% endcomment %}

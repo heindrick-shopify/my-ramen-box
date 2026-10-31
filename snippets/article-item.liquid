@@ -14,13 +14,13 @@
       <div class="article__comment-count article__comment-count--list">
         {% if article.comments_enabled? and article.comments_count == 0 %}
           <a href="{{ article.url }}#comment_form" title="{{ 'blogs.comments.no_comment' | t | escape }}" class="no-gutter flex flex-align-ver">
-            {%- render 'icon-comment' with add_class: 'article__comment-icon' -%}<span>{{ 'blogs.comments.no_comment' | t }}</span>
+            {%- render 'icon-comment' with add_class, add_class: 'article__comment-icon' -%}<span>{{ 'blogs.comments.no_comment' | t }}</span>
           </a>
         {% endif %}
 
         {% if article.comments_enabled? and article.comments_count > 0 %}
           <a href="{{ article.url }}#comments" title="{{ 'blogs.comments.comments_with_count' | t: count: article.comments_count | escape }}" class="no-gutter flex flex-align-ver">
-            {%- render 'icon-comment' with add_class: 'article__comment-icon' -%}<span>{{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}</span>
+            {%- render 'icon-comment' with add_class, add_class: 'article__comment-icon' -%}<span>{{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}</span>
           </a>
         {% endif %}
       </div>
@@ -56,12 +56,36 @@
           <strong>{{ 'blogs.article.read_more' | t }} {% unless enable_rtl %}→{% else %}←{% endunless %}</strong>
         </a>
         {%- if article.image != blank -%}
-          {%- render 'social-sharing' with share_permalink: article.url, share_title: article.title, share_image: article.image -%}
+          {%- render 'social-sharing' with share_permalink, share_permalink: article.url, share_title: article.title, share_image: article.image -%}
         {%- else -%}
-          {%- render 'social-sharing' with share_permalink: article.url, share_title: article.title -%}
+          {%- render 'social-sharing' with share_permalink, share_permalink: article.url, share_title: article.title -%}
         {%- endif -%}
       </div>
     </div>
   </div>
   {%- unless forloop.last -%}<hr>{%- endunless -%}
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'icon-comment' with add_class: 'article__comment-icon' -%}"
+  to: "{%- render 'icon-comment' with add_class, add_class: 'article__comment-icon'
+    -%}"
+  position: 928..1008
+- from: "{%- render 'icon-comment' with add_class: 'article__comment-icon' -%}"
+  to: "{%- render 'icon-comment' with add_class, add_class: 'article__comment-icon'
+    -%}"
+  position: 1362..1442
+- from: "{%- render 'social-sharing' with share_permalink: article.url, share_title:
+    article.title, share_image: article.image -%}"
+  to: "{%- render 'social-sharing' with share_permalink, share_permalink: article.url,
+    share_title: article.title, share_image: article.image -%}"
+  position: 3252..3390
+- from: "{%- render 'social-sharing' with share_permalink: article.url, share_title:
+    article.title -%}"
+  to: "{%- render 'social-sharing' with share_permalink, share_permalink: article.url,
+    share_title: article.title -%}"
+  position: 3422..3532
+{%- endcomment -%}

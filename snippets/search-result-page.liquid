@@ -12,6 +12,15 @@
         </li>
     {% endfor %}
 </ul>
-{%- render 'search-result-pagination' with paginate: paginate -%}
+{%- render 'search-result-pagination' with paginate, paginate: paginate -%}
 {% endpaginate %}
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'search-result-pagination' with paginate: paginate -%}"
+  to: "{%- render 'search-result-pagination' with paginate, paginate: paginate -%}"
+  position: 551..626
+{%- endcomment -%}

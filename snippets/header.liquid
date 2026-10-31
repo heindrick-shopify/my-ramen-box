@@ -39,44 +39,145 @@
 		<header class="header header--desktop header--{{ settings.header_style }}{% if is_fixed_header %} w100{% endif %}{% if has_border_bottom %} header--border-bottom{% endif %} site-header hidden-xs hidden-sm{% if settings.use_sticky %}{% if settings.header_style == 'style1' or settings.header_style == 'style4' or settings.header_style == 'style5' or settings.header_style == 'style7' or settings.header_style == 'style8' %} use-sticky--desktop-collapse{% endif %}{% endif %} por">
 		  {%- case settings.header_style -%}
 			  {%- when 'style1' -%}
-			    {%- render 'header-style1' with left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+			    {%- render 'header-style1' with left_holder, left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 			  {%- when 'style2' -%}
-			    {%- render 'header-style2' with left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+			    {%- render 'header-style2' with left_holder, left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 			  {%- when 'style3' -%}
-			    {%- render 'header-style3' with left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+			    {%- render 'header-style3' with left_holder, left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 			  {%- when 'style4' -%}
-			    {%- render 'header-style4' with left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+			    {%- render 'header-style4' with left_holder, left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 			  {%- when 'style5' -%}
-			    {%- render 'header-style5' with left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+			    {%- render 'header-style5' with left_holder, left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 			  {%- when 'style6' -%}
-			    {%- render 'header-style6' with left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+			    {%- render 'header-style6' with left_holder, left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 			  {%- when 'style7' -%}
-			    {%- render 'header-style7' with left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+			    {%- render 'header-style7' with left_holder, left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 			  {%- when 'style8' -%}
-			    {%- render 'header-style8' with left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+			    {%- render 'header-style8' with left_holder, left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 			  {%- when 'style9' -%}
-			    {%- render 'header-style9' with left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+			    {%- render 'header-style9' with left_holder, left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 			  {%- else -%}
-			    {%- render 'header-style10' with left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+			    {%- render 'header-style10' with left_holder, left_holder: left_holder, right_holder: right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 			{%- endcase -%}
 		</header>
 		<div class="header header--mobile visible-xs visible-sm por{% if settings.use_sticky %} use-sticky use-sticky--mobile use-sticky--transition{% endif %}">
 			<div class="container-fluid">
 				{%- case settings.header_style_mobile -%}
 				  {%- when 'style1' -%}
-				    {%- render 'header-mobile-style1' with use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+				    {%- render 'header-mobile-style1' with use_growave_account_app, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 				  {%- when 'style2' -%}
-				    {%- render 'header-mobile-style2' with use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+				    {%- render 'header-mobile-style2' with use_growave_account_app, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 				  {%- when 'style3' -%}
-				    {%- render 'header-mobile-style3' with use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+				    {%- render 'header-mobile-style3' with use_growave_account_app, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 				  {%- when 'style4' -%}
-				    {%- render 'header-mobile-style4' with use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+				    {%- render 'header-mobile-style4' with use_growave_account_app, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 				  {%- else -%}
-				    {%- render 'header-mobile-style5' with use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+				    {%- render 'header-mobile-style5' with use_growave_account_app, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
 				{%- endcase -%}
 			</div>
 		</div>
 	</div>
 </div>
 <style rel="stylesheet" media="all and (max-width:991px)">.header-sticker__inner{background:{{ settings.bkg_header_mobile | default: '#fff' }};}</style>
-{%- if style_header_fixed != '' -%}<style rel="stylesheet" media="all and (min-width:992px)">.header-sticker__inner{ {{ style_header_fixed }} }</style>{%- endif -%}
+{%- if style_header_fixed != '' -%}<style rel="stylesheet" media="all and (min-width:992px)">.header-sticker__inner{ {{ style_header_fixed }} }</style>{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'header-style1' with left_holder: left_holder, right_holder: right_holder,
+    enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url:
+    root_url -%}"
+  to: "{%- render 'header-style1' with left_holder, left_holder: left_holder, right_holder:
+    right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  position: 2681..2876
+- from: "{%- render 'header-style2' with left_holder: left_holder, right_holder: right_holder,
+    enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url:
+    root_url -%}"
+  to: "{%- render 'header-style2' with left_holder, left_holder: left_holder, right_holder:
+    right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  position: 2911..3106
+- from: "{%- render 'header-style3' with left_holder: left_holder, right_holder: right_holder,
+    enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url:
+    root_url -%}"
+  to: "{%- render 'header-style3' with left_holder, left_holder: left_holder, right_holder:
+    right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  position: 3141..3336
+- from: "{%- render 'header-style4' with left_holder: left_holder, right_holder: right_holder,
+    enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url:
+    root_url -%}"
+  to: "{%- render 'header-style4' with left_holder, left_holder: left_holder, right_holder:
+    right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  position: 3371..3566
+- from: "{%- render 'header-style5' with left_holder: left_holder, right_holder: right_holder,
+    enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url:
+    root_url -%}"
+  to: "{%- render 'header-style5' with left_holder, left_holder: left_holder, right_holder:
+    right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  position: 3601..3796
+- from: "{%- render 'header-style6' with left_holder: left_holder, right_holder: right_holder,
+    enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url:
+    root_url -%}"
+  to: "{%- render 'header-style6' with left_holder, left_holder: left_holder, right_holder:
+    right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  position: 3831..4026
+- from: "{%- render 'header-style7' with left_holder: left_holder, right_holder: right_holder,
+    enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url:
+    root_url -%}"
+  to: "{%- render 'header-style7' with left_holder, left_holder: left_holder, right_holder:
+    right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  position: 4061..4256
+- from: "{%- render 'header-style8' with left_holder: left_holder, right_holder: right_holder,
+    enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url:
+    root_url -%}"
+  to: "{%- render 'header-style8' with left_holder, left_holder: left_holder, right_holder:
+    right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  position: 4291..4486
+- from: "{%- render 'header-style9' with left_holder: left_holder, right_holder: right_holder,
+    enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app, root_url:
+    root_url -%}"
+  to: "{%- render 'header-style9' with left_holder, left_holder: left_holder, right_holder:
+    right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  position: 4521..4716
+- from: "{%- render 'header-style10' with left_holder: left_holder, right_holder:
+    right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  to: "{%- render 'header-style10' with left_holder, left_holder: left_holder, right_holder:
+    right_holder, enable_rtl: enable_rtl, use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  position: 4742..4938
+- from: "{%- render 'header-mobile-style1' with use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  to: "{%- render 'header-mobile-style1' with use_growave_account_app, use_growave_account_app:
+    use_growave_account_app, root_url: root_url -%}"
+  position: 5241..5377
+- from: "{%- render 'header-mobile-style2' with use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  to: "{%- render 'header-mobile-style2' with use_growave_account_app, use_growave_account_app:
+    use_growave_account_app, root_url: root_url -%}"
+  position: 5414..5550
+- from: "{%- render 'header-mobile-style3' with use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  to: "{%- render 'header-mobile-style3' with use_growave_account_app, use_growave_account_app:
+    use_growave_account_app, root_url: root_url -%}"
+  position: 5587..5723
+- from: "{%- render 'header-mobile-style4' with use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  to: "{%- render 'header-mobile-style4' with use_growave_account_app, use_growave_account_app:
+    use_growave_account_app, root_url: root_url -%}"
+  position: 5760..5896
+- from: "{%- render 'header-mobile-style5' with use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  to: "{%- render 'header-mobile-style5' with use_growave_account_app, use_growave_account_app:
+    use_growave_account_app, root_url: root_url -%}"
+  position: 5924..6060
+{%- endcomment -%}

@@ -11,7 +11,7 @@
 -%}
 {%- render 'section-background-start' -%}
 <div class="container{% if section.settings.full_width %}-fluid{% endif %}{% render 'section-gutters-nobkg' %}{% if section.settings.small_top_gutter %} gutter-top{% endif %}{% if section.settings.small_bottom_gutter %} gutter-bottom{% endif %} info-list" data-section-id="{{ section.id }}" data-section-type="info-list" id="info-list-{{ section.id }}">
-    {%- render 'section-heading' with section_heading_custom_class: 'hidden-sm hidden-md hidden-lg' -%}
+    {%- render 'section-heading' with section_heading_custom_class, section_heading_custom_class: 'hidden-sm hidden-md hidden-lg' -%}
     <div class="section__content">
       <div class="row flex">
         <div class="col-xs-12 col-sm-6 gutter-ele-bottom-tbs">
@@ -27,7 +27,7 @@
           {%- endif -%}
         </div>
         <div class="col-xs-12 col-sm-6 gutter-ele-top-tbs">
-          {%- render 'section-heading' with heading_align: 'left', section_heading_custom_class: 'hidden-xs' -%}
+          {%- render 'section-heading' with heading_align, heading_align: 'left', section_heading_custom_class: 'hidden-xs' -%}
           <div class="info-list__items">
             {%- if section.blocks.size > 0 -%}
               {%- for block in section.blocks -%}
@@ -71,7 +71,7 @@
     </div>
 </div>
 {%- render 'section-background-end' -%}
-{% style %}{%- render 'preload-info-list.css' with left_holder: left_holder, right_holder: right_holder -%}{% endstyle %}
+{% style %}{%- render 'preload-info-list.css' with left_holder, left_holder: left_holder, right_holder: right_holder -%}{% endstyle %}
 {% schema %}
   {
     "name": "Information list",
@@ -246,4 +246,25 @@
       }
     ]
   }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'section-heading' with section_heading_custom_class: 'hidden-sm
+    hidden-md hidden-lg' -%}"
+  to: "{%- render 'section-heading' with section_heading_custom_class, section_heading_custom_class:
+    'hidden-sm hidden-md hidden-lg' -%}"
+  position: 722..851
+- from: "{%- render 'section-heading' with heading_align: 'left', section_heading_custom_class:
+    'hidden-xs' -%}"
+  to: "{%- render 'section-heading' with heading_align, heading_align: 'left', section_heading_custom_class:
+    'hidden-xs' -%}"
+  position: 1840..1957
+- from: "{%- render 'preload-info-list.css' with left_holder: left_holder, right_holder:
+    right_holder -%}"
+  to: "{%- render 'preload-info-list.css' with left_holder, left_holder: left_holder,
+    right_holder: right_holder -%}"
+  position: 3984..4093
+{%- endcomment -%}

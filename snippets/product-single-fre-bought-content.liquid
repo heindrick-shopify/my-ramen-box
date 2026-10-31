@@ -23,7 +23,7 @@
 							{%- assign fre_compare_price = fre_compare_price | plus: fre_current_variant.price -%}	
 						{%- endif -%}
 					{%- endif -%}
-				  {%- render 'product-single-fre-bought-widget-item' with fre_product: fre_product, fre_current_variant: fre_current_variant, fre_show: fre_show -%}
+				  {%- render 'product-single-fre-bought-widget-item' with fre_product, fre_product: fre_product, fre_current_variant: fre_current_variant, fre_show: fre_show -%}
 					{%- assign fre_show = fre_show | plus: 1 -%}
 				{%- endunless -%}
 			{%- endif -%}
@@ -44,7 +44,7 @@
 							{%- assign fre_compare_price = fre_compare_price | plus: fre_current_variant.price -%}	
 						{%- endif -%}
 					{%- endif -%}
-				  {%- render 'product-single-fre-bought-widget-item' with fre_product: fre_product, fre_current_variant: fre_current_variant, fre_show: fre_show -%}
+				  {%- render 'product-single-fre-bought-widget-item' with fre_product, fre_product: fre_product, fre_current_variant: fre_current_variant, fre_show: fre_show -%}
 				  {%- assign fre_show = fre_show | plus: 1 -%}
 				{%- endunless -%}
 			{%- endif -%}
@@ -76,4 +76,20 @@
 		<span class="fw-bold">{{ 'products.product.fre_bought_add' | t }}</span>
 	</button>
 </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-single-fre-bought-widget-item' with fre_product: fre_product,
+    fre_current_variant: fre_current_variant, fre_show: fre_show -%}"
+  to: "{%- render 'product-single-fre-bought-widget-item' with fre_product, fre_product:
+    fre_product, fre_current_variant: fre_current_variant, fre_show: fre_show -%}"
+  position: 1418..1577
+- from: "{%- render 'product-single-fre-bought-widget-item' with fre_product: fre_product,
+    fre_current_variant: fre_current_variant, fre_show: fre_show -%}"
+  to: "{%- render 'product-single-fre-bought-widget-item' with fre_product, fre_product:
+    fre_product, fre_current_variant: fre_current_variant, fre_show: fre_show -%}"
+  position: 2625..2784
+{%- endcomment -%}

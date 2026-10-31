@@ -4,8 +4,19 @@
 		{%- unless product.available -%}
 	    <span class="product-price__sold-out">{{ 'products.product.sold_out' | t }}</span>
 	  {%- endunless -%}
-	  {%- render 'product-price-unit' with variant: product.first_available_variant -%}
+	  {%- render 'product-price-unit' with variant, variant: product.first_available_variant -%}
 	</div>
 {%- else -%}
 	{%- render 'product-variant-price', variant: product.first_available_variant, product: product -%}
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-price-unit' with variant: product.first_available_variant
+    -%}"
+  to: "{%- render 'product-price-unit' with variant, variant: product.first_available_variant
+    -%}"
+  position: 399..489
+{%- endcomment -%}

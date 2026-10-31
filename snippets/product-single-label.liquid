@@ -1,5 +1,5 @@
 <div class="pg__lbs text-center">
-	{%- render 'label-sale' with product: product -%}
+	{%- render 'label-sale' with product, product: product -%}
 	{%- for tag in product.tags -%}
 	{%- if tag == 'best' or tag == 'new' or tag == 'trend' -%}
 	{%- assign label_active = tag | append : '_active' -%}
@@ -19,4 +19,13 @@
 	{%- endif -%}
 	{%- endif -%}
 	{%- endfor -%}
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'label-sale' with product: product -%}"
+  to: "{%- render 'label-sale' with product, product: product -%}"
+  position: 35..93
+{%- endcomment -%}

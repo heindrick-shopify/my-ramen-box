@@ -50,10 +50,10 @@
 			        {{ fre_product.title | truncatewords: 5 }}
 			      </a>
 			      <div class="gutter-top gutter-ele-top-tbs">
-				      {%- render 'product-variant-price' with fre_current_variant as variant, fre_product as product  -%}
+				      {%- render 'product-variant-price' with fre_current_variant as variant -%}
 				    </div>
 			      <div class="gutter-top gutter-ele-top-tbs">
-			      	{%- render 'product-review' with product: fre_product -%}
+			      	{%- render 'product-review' with product, product: fre_product -%}
 			      </div>
 			      <div class="qty-box qty-box--small flex flex-align-ver flex-align-space-between distance-top-ele">
 					    <a href="#" class="qty-box__ctrl qty-box__ctrl--descrease flex flex-align-hoz flex-align-ver" aria-label="button">
@@ -67,7 +67,7 @@
 					  <div class="">
 					  	{%- unless product.has_only_default_variant or enable_product_options == false -%}
 							<div class="pg__options pg__options--fre gutter-ele-top">
-				        {%- render 'product-single-variants' with product: fre_product -%}
+				        {%- render 'product-single-variants' with product, product: fre_product -%}
 				      </div>
 				      {%- endunless -%}
 				      <select name="id" class="variant-id hide">
@@ -128,4 +128,20 @@
 		</div>
 	</div>
 </div>
-{%- endif %}
+{%- endif %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-variant-price' with fre_current_variant as variant, fre_product
+    as product  -%}"
+  to: "{%- render 'product-variant-price' with fre_current_variant as variant -%}"
+  position: 3475..3549
+- from: "{%- render 'product-review' with product: fre_product -%}"
+  to: "{%- render 'product-review' with product, product: fre_product -%}"
+  position: 3628..3694
+- from: "{%- render 'product-single-variants' with product: fre_product -%}"
+  to: "{%- render 'product-single-variants' with product, product: fre_product -%}"
+  position: 4522..4597
+{%- endcomment -%}

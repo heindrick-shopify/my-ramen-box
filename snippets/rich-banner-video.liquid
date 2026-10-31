@@ -1,4 +1,4 @@
-<div class="{% render 'rich-banner-item-size' with block: block, item_size_class: item_size_class %} banner-item banner-item--{{ block.id }}{% if block.settings.hide_on_mobile %} hidden-xs{% endif %}{% if block.settings.hide_on_desktop %} hidden-sm hidden-md hidden-lg{% endif %}{% if section.settings.enable_slider %}{{ slider_class }}{% if current_index_mobile > lazyload_index_mobile %} ov-slider-mb{% endif %}{% if current_index_tb > lazyload_index %} ov-slider-tb{% endif %}{% endif %}" {{ block.shopify_attributes }}>
+<div class="{% render 'rich-banner-item-size' with block, block: block, item_size_class: item_size_class %} banner-item banner-item--{{ block.id }}{% if block.settings.hide_on_mobile %} hidden-xs{% endif %}{% if block.settings.hide_on_desktop %} hidden-sm hidden-md hidden-lg{% endif %}{% if section.settings.enable_slider %}{{ slider_class }}{% if current_index_mobile > lazyload_index_mobile %} ov-slider-mb{% endif %}{% if current_index_tb > lazyload_index %} ov-slider-tb{% endif %}{% endif %}" {{ block.shopify_attributes }}>
   <div class="video-wrapper" style="position: relative;overflow: hidden;max-width: 100%;height: auto;">
     {%- if block.settings.video_thumbnail != blank -%}
       {%- assign img_url = block.settings.video_thumbnail | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
@@ -21,4 +21,15 @@
       {%- endif -%}
     {%- endif -%}
   </div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'rich-banner-item-size' with block: block, item_size_class: item_size_class
+    %}"
+  to: "{% render 'rich-banner-item-size' with block, block: block, item_size_class:
+    item_size_class %}"
+  position: 12..107
+{%- endcomment -%}

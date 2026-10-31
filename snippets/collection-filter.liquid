@@ -9,9 +9,9 @@
         <div class="cf__content">
           <form class="cf__form">
             {%- assign current_label = 'collections.general.active_filters' | t -%}
-            {%- render 'collection-filter-item-display' with block: block, type: 'current', label: current_label, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
+            {%- render 'collection-filter-item-display' with block, block: block, type: 'current', label: current_label, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
             {%- if section.settings.category_filter_enable -%}
-              {%- render 'collection-filter-item-display' with block: block, type: 'category', label: section.settings.category_filter_label, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
+              {%- render 'collection-filter-item-display' with block, block: block, type: 'category', label: section.settings.category_filter_label, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
             {%- endif -%}
             {%- assign total_active_values = 0 -%}
             {%- for filter in collection.filters -%}
@@ -30,7 +30,7 @@
                   {%- assign total_active_values = total_active_values | plus: 1 -%}
                 {%- endif -%}
               {%- endif -%}
-              {%- render 'collection-filter-item-display' with block: block, filter: filter, type: filter.type, label: filter.label, enable_rtl: enable_rtl, filtering_price: filtering_price, left_holder: left_holder, right_holder: right_holder -%}
+              {%- render 'collection-filter-item-display' with block, block: block, filter: filter, type: filter.type, label: filter.label, enable_rtl: enable_rtl, filtering_price: filtering_price, left_holder: left_holder, right_holder: right_holder -%}
             {%- endfor -%}
             {% if collection.current_vendor or collection.current_type %}
               <input type="hidden" name="q" value="{{ collection.current_vendor }}{{ collection.current_type }}">
@@ -47,4 +47,36 @@
     </div>
   </div>
 </div>
-{%- render 'collection-filter-action-mobile' with total_active_values: total_active_values -%}
+{%- render 'collection-filter-action-mobile' with total_active_values, total_active_values: total_active_values -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'collection-filter-item-display' with block: block, type: 'current',
+    label: current_label, enable_rtl: enable_rtl, left_holder: left_holder, right_holder:
+    right_holder -%}"
+  to: "{%- render 'collection-filter-item-display' with block, block: block, type:
+    'current', label: current_label, enable_rtl: enable_rtl, left_holder: left_holder,
+    right_holder: right_holder -%}"
+  position: 823..1012
+- from: "{%- render 'collection-filter-item-display' with block: block, type: 'category',
+    label: section.settings.category_filter_label, enable_rtl: enable_rtl, left_holder:
+    left_holder, right_holder: right_holder -%}"
+  to: "{%- render 'collection-filter-item-display' with block, block: block, type:
+    'category', label: section.settings.category_filter_label, enable_rtl: enable_rtl,
+    left_holder: left_holder, right_holder: right_holder -%}"
+  position: 1090..1305
+- from: "{%- render 'collection-filter-item-display' with block: block, filter: filter,
+    type: filter.type, label: filter.label, enable_rtl: enable_rtl, filtering_price:
+    filtering_price, left_holder: left_holder, right_holder: right_holder -%}"
+  to: "{%- render 'collection-filter-item-display' with block, block: block, filter:
+    filter, type: filter.type, label: filter.label, enable_rtl: enable_rtl, filtering_price:
+    filtering_price, left_holder: left_holder, right_holder: right_holder -%}"
+  position: 2274..2514
+- from: "{%- render 'collection-filter-action-mobile' with total_active_values: total_active_values
+    -%}"
+  to: "{%- render 'collection-filter-action-mobile' with total_active_values, total_active_values:
+    total_active_values -%}"
+  position: 3297..3412
+{%- endcomment -%}

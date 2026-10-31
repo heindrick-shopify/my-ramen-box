@@ -26,11 +26,11 @@
 			{%- assign capture_sc = capture_sc | append: ' ' | append: remain_texts[0] | strip -%}
 			{%- assign sc_final = capture_sc | replace: sc_key, '' | strip -%}
 			{%- if sc_type == 'video' -%}
-				{%- render 'product-single-main-video-iframe' with video_type: 'mp4', video_url: video_url -%}
+				{%- render 'product-single-main-video-iframe' with video_type, video_type: 'mp4', video_url: video_url -%}
 			{%- elsif sc_type == 'youtube' -%}
-				{%- render 'product-single-main-video-iframe' with video_type: 'youtube', video_id: sc_final -%}
+				{%- render 'product-single-main-video-iframe' with video_type, video_type: 'youtube', video_id: sc_final -%}
 			{%- else -%}
-				{%- render 'product-single-main-video-iframe' with video_type: 'vimeo', video_id: sc_final -%}
+				{%- render 'product-single-main-video-iframe' with video_type, video_type: 'vimeo', video_id: sc_final -%}
 			{%- endif -%}
 		{%- else -%}
 			{%- assign capture_sc = capture_sc | append: ' ' | append: word -%}
@@ -38,4 +38,25 @@
 		{%- endif -%}
 	{%- endif -%}
 {%- endfor -%}
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-single-main-video-iframe' with video_type: 'mp4', video_url:
+    video_url -%}"
+  to: "{%- render 'product-single-main-video-iframe' with video_type, video_type:
+    'mp4', video_url: video_url -%}"
+  position: 1115..1221
+- from: "{%- render 'product-single-main-video-iframe' with video_type: 'youtube',
+    video_id: sc_final -%}"
+  to: "{%- render 'product-single-main-video-iframe' with video_type, video_type:
+    'youtube', video_id: sc_final -%}"
+  position: 1264..1372
+- from: "{%- render 'product-single-main-video-iframe' with video_type: 'vimeo', video_id:
+    sc_final -%}"
+  to: "{%- render 'product-single-main-video-iframe' with video_type, video_type:
+    'vimeo', video_id: sc_final -%}"
+  position: 1393..1499
+{%- endcomment -%}

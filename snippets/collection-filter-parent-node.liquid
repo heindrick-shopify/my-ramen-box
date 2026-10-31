@@ -1,5 +1,19 @@
 {%- if collection_parent_node != blank -%}
 <li class="gutter-ele-bottom">
-<a class="cfc__link cf__link" href="{{ collection_parent_node.url }}{{ tag_url }}{{ filter_sortby_param }}" title="{{ collection_parent_node.title | escape }}" style="padding-{% unless enable_rtl %}left{% else %}right{% endunless %}:{{ padding_left }}px;">{{ collection_parent_node.title }}{%- unless enable_rtl -%}{%- render 'icon-chevron-right' with add_classes: 'cf__back-icon' -%}{%- else -%}{%- render 'icon-chevron-left' with add_classes: 'cf__back-icon' -%}{%- endunless -%}</a>
+<a class="cfc__link cf__link" href="{{ collection_parent_node.url }}{{ tag_url }}{{ filter_sortby_param }}" title="{{ collection_parent_node.title | escape }}" style="padding-{% unless enable_rtl %}left{% else %}right{% endunless %}:{{ padding_left }}px;">{{ collection_parent_node.title }}{%- unless enable_rtl -%}{%- render 'icon-chevron-right' with add_classes, add_classes: 'cf__back-icon' -%}{%- else -%}{%- render 'icon-chevron-left' with add_classes, add_classes: 'cf__back-icon' -%}{%- endunless -%}</a>
 </li>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'icon-chevron-right' with add_classes: 'cf__back-icon' -%}"
+  to: "{%- render 'icon-chevron-right' with add_classes, add_classes: 'cf__back-icon'
+    -%}"
+  position: 389..471
+- from: "{%- render 'icon-chevron-left' with add_classes: 'cf__back-icon' -%}"
+  to: "{%- render 'icon-chevron-left' with add_classes, add_classes: 'cf__back-icon'
+    -%}"
+  position: 483..564
+{%- endcomment -%}

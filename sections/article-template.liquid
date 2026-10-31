@@ -46,13 +46,13 @@
             <div class="article__comment-count article__comment-count--list dib">
               {% if article.comments_enabled? and article.comments_count == 0 %}
                 <a href="{{ article.url }}#comment_form" title="{{ 'blogs.comments.no_comment' | t | escape }}" class="no-gutter flex flex-align-ver">
-                  {%- render 'icon-comment' with add_class: 'article__comment-icon' -%}<span>{{ 'blogs.comments.no_comment' | t }}</span>
+                  {%- render 'icon-comment' with add_class, add_class: 'article__comment-icon' -%}<span>{{ 'blogs.comments.no_comment' | t }}</span>
                 </a>
               {% endif %}
 
               {% if article.comments_enabled? and article.comments_count > 0 %}
                 <a href="{{ article.url }}#comments" title="{{ 'blogs.comments.comments_with_count' | t: count: article.comments_count | escape }}" class="no-gutter">
-                  {%- render 'icon-comment' with add_class: 'article__comment-icon' -%}<span>{{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}</span>
+                  {%- render 'icon-comment' with add_class, add_class: 'article__comment-icon' -%}<span>{{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}</span>
                 </a>
               {% endif %}
             </div>
@@ -86,9 +86,9 @@
         <div class="gutter-top">
           <span class="dib text-uppercase">{{ 'general.social.share_on' | t }}</span>
           {%- if article.image != blank -%}
-            {%- render 'social-sharing' with share_permalink: article.url, share_title: article.title, share_image: article.image -%}
+            {%- render 'social-sharing' with share_permalink, share_permalink: article.url, share_title: article.title, share_image: article.image -%}
           {%- else -%}
-            {%- render 'social-sharing' with share_permalink: article.url, share_title: article.title -%}
+            {%- render 'social-sharing' with share_permalink, share_permalink: article.url, share_title: article.title -%}
           {%- endif -%}
         </div>
 
@@ -384,3 +384,28 @@
     ]
   }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'icon-comment' with add_class: 'article__comment-icon' -%}"
+  to: "{%- render 'icon-comment' with add_class, add_class: 'article__comment-icon'
+    -%}"
+  position: 1979..2059
+- from: "{%- render 'icon-comment' with add_class: 'article__comment-icon' -%}"
+  to: "{%- render 'icon-comment' with add_class, add_class: 'article__comment-icon'
+    -%}"
+  position: 2423..2503
+- from: "{%- render 'social-sharing' with share_permalink: article.url, share_title:
+    article.title, share_image: article.image -%}"
+  to: "{%- render 'social-sharing' with share_permalink, share_permalink: article.url,
+    share_title: article.title, share_image: article.image -%}"
+  position: 4099..4237
+- from: "{%- render 'social-sharing' with share_permalink: article.url, share_title:
+    article.title -%}"
+  to: "{%- render 'social-sharing' with share_permalink, share_permalink: article.url,
+    share_title: article.title -%}"
+  position: 4273..4383
+{% endcomment %}

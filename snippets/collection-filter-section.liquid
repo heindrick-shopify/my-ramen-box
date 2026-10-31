@@ -54,7 +54,7 @@
                     <span class="cfs__dropdown__title{% if has_active %} cfs__dropdown__title--top{% endif %} transition w100 db text-uppercase lh1">{{ filter.label | escape }}</span>
                     <span class="cfs__dropdown__value w100 db fw-bold lh1 gutter-ele-small-top">{%- if has_active -%}{%- assign active_filter = filter.active_values | first -%}{{ active_filter.label }}{%- endif -%}</span>
                   </div>
-                  {%- render 'icon-arrow-down' with add_classes: 'cfs__item__arrow transition' -%}
+                  {%- render 'icon-arrow-down' with add_classes, add_classes: 'cfs__item__arrow transition' -%}
                 </div>
                 {%- if has_active or after_active_index > 0 or index == 1 -%}
                   <div class="cfs__dropdown__content transition custom-scrollbar custom-scrollbar--thick">
@@ -78,4 +78,15 @@
       <a class="button button--style1 cfs__btn w100" href="#" title="{{ 'layout.navigation.search' | t | escape }}">{{ 'layout.navigation.search' | t }}</a>
     </div>
   </form>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'icon-arrow-down' with add_classes: 'cfs__item__arrow transition'
+    -%}"
+  to: "{%- render 'icon-arrow-down' with add_classes, add_classes: 'cfs__item__arrow
+    transition' -%}"
+  position: 2957..3050
+{%- endcomment -%}

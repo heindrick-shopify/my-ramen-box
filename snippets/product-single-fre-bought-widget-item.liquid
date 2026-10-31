@@ -16,19 +16,19 @@
 	  	<a class="item__name pg__sync-url pg__name" href="{{ fre_product.url }}" title="{{ fre_product.title | escape }}">
         {{ fre_product.title | truncatewords: 5 }}
       </a>
-      {%- capture fre_product_review -%}{%- render 'product-review' with product: fre_product -%}{%- endcapture -%}
+      {%- capture fre_product_review -%}{%- render 'product-review' with product, product: fre_product -%}{%- endcapture -%}
 	    {%- if fre_product_review != '' -%}
       <div class="gutter-ele-top">
       	{{ fre_product_review }}
       </div>
       {%- endif -%}
       <div class="gutter-ele-top">
-	      {%- render 'product-variant-price' with fre_current_variant as variant, fre_product as product  -%}
+	      {%- render 'product-variant-price' with fre_current_variant as variant -%}
 	    </div>
 
 	  	{%- unless fre_product.has_only_default_variant -%}
 			<div class="pg__options pg__options--fre gutter-ele-top-tb">
-				{%- render 'product-group-variants' with product: fre_product, enable_product_options: true, color_size: '60x', is_single_view: true, is_show_sub_info: true, is_single_sticky: true, force_dropdown_all: true -%}
+				{%- render 'product-group-variants' with product, product: fre_product, enable_product_options: true, color_size: '60x', is_single_view: true, is_show_sub_info: true, is_single_sticky: true, force_dropdown_all: true -%}
       </div>
       {%- endunless -%}
       <select name="id" data-productid="{{ product.id }}" class="variant-id hide">
@@ -50,4 +50,24 @@
 		  </div>
 	  </div>
   </div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-review' with product: fre_product -%}"
+  to: "{%- render 'product-review' with product, product: fre_product -%}"
+  position: 1666..1732
+- from: "{%- render 'product-variant-price' with fre_current_variant as variant, fre_product
+    as product  -%}"
+  to: "{%- render 'product-variant-price' with fre_current_variant as variant -%}"
+  position: 1934..2008
+- from: "{%- render 'product-group-variants' with product: fre_product, enable_product_options:
+    true, color_size: '60x', is_single_view: true, is_show_sub_info: true, is_single_sticky:
+    true, force_dropdown_all: true -%}"
+  to: "{%- render 'product-group-variants' with product, product: fre_product, enable_product_options:
+    true, color_size: '60x', is_single_view: true, is_show_sub_info: true, is_single_sticky:
+    true, force_dropdown_all: true -%}"
+  position: 2146..2365
+{%- endcomment -%}

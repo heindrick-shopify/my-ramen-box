@@ -1,4 +1,4 @@
-<div class="{% render 'rich-banner-item-size' with block: block, item_size_class: item_size_class %} banner-item banner-item--{{ block.id }}{% if block.settings.hide_on_mobile %} hidden-xs{% endif %}{% if block.settings.hide_on_desktop %} hidden-sm hidden-md hidden-lg{% endif %}{% if section.settings.enable_slider %}{{ slider_class }}{% if current_index_mobile > lazyload_index_mobile %} ov-slider-mb{% endif %}{% if current_index_tb > lazyload_index %} ov-slider-tb{% endif %}{% endif %}" {{ block.shopify_attributes }}>
+<div class="{% render 'rich-banner-item-size' with block, block: block, item_size_class: item_size_class %} banner-item banner-item--{{ block.id }}{% if block.settings.hide_on_mobile %} hidden-xs{% endif %}{% if block.settings.hide_on_desktop %} hidden-sm hidden-md hidden-lg{% endif %}{% if section.settings.enable_slider %}{{ slider_class }}{% if current_index_mobile > lazyload_index_mobile %} ov-slider-mb{% endif %}{% if current_index_tb > lazyload_index %} ov-slider-tb{% endif %}{% endif %}" {{ block.shopify_attributes }}>
   {%- capture banner_html -%}
     {%- assign collection = collections[block.settings.collection] -%}
     {%- assign limit = block.settings.limit -%}
@@ -29,28 +29,7 @@
             {%- assign column_count = 2 -%}  
           {%- endif -%}
           {%- for product in collection.products limit: limit -%}
-            {%- include 'product-grid-item' with 
-              use_slider: false, 
-              index: forloop.index, 
-              lazy_index: 0,
-              column_count: column_count, 
-              main_thumbnail: block.settings.main_thumbnail, 
-              truncate_count: block.settings.product_name_size,
-              enable_product_options: block.settings.enable_product_options, 
-              show_review_stars: block.settings.show_review_stars,
-              enable_small_images: false,
-              show_wishlist_btn: block.settings.show_wishlist_btn,
-              small_image: '1x',
-              show_label : block.settings.show_label,
-              show_cart_btn: block.settings.show_cart_btn,
-              show_wishlist : false,
-              show_compare_btn: block.settings.show_compare_btn,
-              show_qs_btn: block.settings.show_qs_btn,
-              small_image_slider: false,
-              show_countdown_timer: block.settings.show_countdown_timer,
-              show_vendor: block.settings.show_vendor,
-              withinCollection: collection
-            -%}
+            {%- include 'product-grid-item' with use_slider, use_slider: false, index: forloop.index, lazy_index: 0, column_count: column_count, main_thumbnail: block.settings.main_thumbnail, truncate_count: block.settings.product_name_size, enable_product_options: block.settings.enable_product_options, show_review_stars: block.settings.show_review_stars, enable_small_images: false, show_wishlist_btn: block.settings.show_wishlist_btn, small_image: '1x', show_label: block.settings.show_label, show_cart_btn: block.settings.show_cart_btn, show_wishlist: false, show_compare_btn: block.settings.show_compare_btn, show_qs_btn: block.settings.show_qs_btn, small_image_slider: false, show_countdown_timer: block.settings.show_countdown_timer, show_vendor: block.settings.show_vendor, withinCollection: collection -%}
           {%- endfor -%}
         {%- else -%}
           {%- for product in collection.products limit: limit -%}
@@ -78,7 +57,7 @@
       {%- endif -%}
     </div>
   {%- endcapture -%}
-  {%- render 'rich-banner-display' with banner_html: banner_html, block: block -%}
+  {%- render 'rich-banner-display' with banner_html, banner_html: banner_html, block: block -%}
 </div>
 {%- capture rb_product_list_css -%}
 .rb__products-title__text--{{ block.id }}{color:{{ block.settings.heading_color }};font-size:{{ block.settings.heading_fs }}px;}
@@ -98,3 +77,42 @@
 {%- endif -%}
 
 
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'rich-banner-item-size' with block: block, item_size_class: item_size_class
+    %}"
+  to: "{% render 'rich-banner-item-size' with block, block: block, item_size_class:
+    item_size_class %}"
+  position: 12..107
+- from: "{%- include 'product-grid-item' with \n              use_slider: false, \n
+    \             index: forloop.index, \n              lazy_index: 0,\n              column_count:
+    column_count, \n              main_thumbnail: block.settings.main_thumbnail, \n
+    \             truncate_count: block.settings.product_name_size,\n              enable_product_options:
+    block.settings.enable_product_options, \n              show_review_stars: block.settings.show_review_stars,\n
+    \             enable_small_images: false,\n              show_wishlist_btn: block.settings.show_wishlist_btn,\n
+    \             small_image: '1x',\n              show_label : block.settings.show_label,\n
+    \             show_cart_btn: block.settings.show_cart_btn,\n              show_wishlist
+    : false,\n              show_compare_btn: block.settings.show_compare_btn,\n              show_qs_btn:
+    block.settings.show_qs_btn,\n              small_image_slider: false,\n              show_countdown_timer:
+    block.settings.show_countdown_timer,\n              show_vendor: block.settings.show_vendor,\n
+    \             withinCollection: collection\n            -%}"
+  to: "{%- include 'product-grid-item' with use_slider, use_slider: false, index:
+    forloop.index, lazy_index: 0, column_count: column_count, main_thumbnail: block.settings.main_thumbnail,
+    truncate_count: block.settings.product_name_size, enable_product_options: block.settings.enable_product_options,
+    show_review_stars: block.settings.show_review_stars, enable_small_images: false,
+    show_wishlist_btn: block.settings.show_wishlist_btn, small_image: '1x', show_label:
+    block.settings.show_label, show_cart_btn: block.settings.show_cart_btn, show_wishlist:
+    false, show_compare_btn: block.settings.show_compare_btn, show_qs_btn: block.settings.show_qs_btn,
+    small_image_slider: false, show_countdown_timer: block.settings.show_countdown_timer,
+    show_vendor: block.settings.show_vendor, withinCollection: collection -%}"
+  position: 2705..3508
+- from: "{%- render 'rich-banner-display' with banner_html: banner_html, block: block
+    -%}"
+  to: "{%- render 'rich-banner-display' with banner_html, banner_html: banner_html,
+    block: block -%}"
+  position: 4688..4781
+{% endcomment %}

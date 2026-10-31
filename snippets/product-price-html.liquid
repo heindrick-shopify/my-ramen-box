@@ -12,5 +12,14 @@
   {%- unless available -%}
     <span class="product-price__sold-out w100 db">{{ 'products.product.sold_out' | t }}</span>
   {%- endunless -%}
-  {%- render 'product-price-unit' with variant: variant -%}
-</div>
+  {%- render 'product-price-unit' with variant, variant: variant -%}
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-price-unit' with variant: variant -%}"
+  to: "{%- render 'product-price-unit' with variant, variant: variant -%}"
+  position: 675..741
+{%- endcomment -%}

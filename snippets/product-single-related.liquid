@@ -30,28 +30,7 @@
               {%- assign current_product_found = true -%}
               {%- else -%}
               {%- unless current_product_found == false and forloop.last -%}
-                {%- render 'product-grid-item' with 
-                  product: product,
-                  use_slider: true, 
-                  index: forloop.index, 
-                  lazy_index: 999,
-                  column_count: 4, 
-                  main_thumbnail: settings.main_thumbnail_related, 
-                  image_size: '375x', 
-                  truncate_count: settings.product_name_size_related,
-                  enable_product_options: settings.enable_product_options_related, 
-                  show_review_stars: settings.show_review_stars_related,
-                  enable_small_images: false,
-                  show_wishlist_btn: settings.show_wishlist_btn_related,
-                  small_image: 'small',
-                  show_label : settings.show_label_related,
-                  show_cart_btn: settings.show_cart_btn_related,
-                  show_wishlist : false,
-                  show_compare_btn: settings.show_compare_btn_related,
-                  show_qs_btn: settings.show_qs_btn_related,
-                  small_image_slider: false,
-                  withinCollection: collection 
-                -%}
+                {%- render 'product-grid-item' with product, product: product, use_slider: true, index: forloop.index, lazy_index: 999, column_count: 4, main_thumbnail: settings.main_thumbnail_related, image_size: '375x', truncate_count: settings.product_name_size_related, enable_product_options: settings.enable_product_options_related, show_review_stars: settings.show_review_stars_related, enable_small_images: false, show_wishlist_btn: settings.show_wishlist_btn_related, small_image: 'small', show_label: settings.show_label_related, show_cart_btn: settings.show_cart_btn_related, show_wishlist: false, show_compare_btn: settings.show_compare_btn_related, show_qs_btn: settings.show_qs_btn_related, small_image_slider: false, withinCollection: collection -%}
               {%- assign current_index = current_index | plus: 1 -%}
               {%- endunless -%}
               {%- endif -%}
@@ -62,4 +41,33 @@
       </div>
     </div>
   </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'product-grid-item' with \n                  product: product,\n
+    \                 use_slider: true, \n                  index: forloop.index,
+    \n                  lazy_index: 999,\n                  column_count: 4, \n                  main_thumbnail:
+    settings.main_thumbnail_related, \n                  image_size: '375x', \n                  truncate_count:
+    settings.product_name_size_related,\n                  enable_product_options:
+    settings.enable_product_options_related, \n                  show_review_stars:
+    settings.show_review_stars_related,\n                  enable_small_images: false,\n
+    \                 show_wishlist_btn: settings.show_wishlist_btn_related,\n                  small_image:
+    'small',\n                  show_label : settings.show_label_related,\n                  show_cart_btn:
+    settings.show_cart_btn_related,\n                  show_wishlist : false,\n                  show_compare_btn:
+    settings.show_compare_btn_related,\n                  show_qs_btn: settings.show_qs_btn_related,\n
+    \                 small_image_slider: false,\n                  withinCollection:
+    collection \n                -%}"
+  to: "{%- render 'product-grid-item' with product, product: product, use_slider:
+    true, index: forloop.index, lazy_index: 999, column_count: 4, main_thumbnail:
+    settings.main_thumbnail_related, image_size: '375x', truncate_count: settings.product_name_size_related,
+    enable_product_options: settings.enable_product_options_related, show_review_stars:
+    settings.show_review_stars_related, enable_small_images: false, show_wishlist_btn:
+    settings.show_wishlist_btn_related, small_image: 'small', show_label: settings.show_label_related,
+    show_cart_btn: settings.show_cart_btn_related, show_wishlist: false, show_compare_btn:
+    settings.show_compare_btn_related, show_qs_btn: settings.show_qs_btn_related,
+    small_image_slider: false, withinCollection: collection -%}"
+  position: 1933..2681
+{%- endcomment -%}

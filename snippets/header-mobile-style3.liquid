@@ -3,7 +3,21 @@
 		{%- render 'header-mobile-logo' -%}
 	</div>
 	<div class="col-xs-8 flex header__links header__links--flex no-gutter">
-		{%- render 'header__links--mobile' with use_growave_account_app: use_growave_account_app, root_url: root_url -%}
-		<a class="mobile-nav-bar bt-sidebar-btn header__link" href="#" title="menu-bar" data-target="#sidebar-mobile-nav" data-placement="{% unless settings.enable_rtl and settings.rtl_language_codes contains request.locale.iso_code %}right{% else %}left{% endunless %}">{% render 'icon-bar' with add_class: 'ver-sub' %}</a>
+		{%- render 'header__links--mobile' with use_growave_account_app, use_growave_account_app: use_growave_account_app, root_url: root_url -%}
+		<a class="mobile-nav-bar bt-sidebar-btn header__link" href="#" title="menu-bar" data-target="#sidebar-mobile-nav" data-placement="{% unless settings.enable_rtl and settings.rtl_language_codes contains request.locale.iso_code %}right{% else %}left{% endunless %}">{% render 'icon-bar' with add_class, add_class: 'ver-sub' %}</a>
 	</div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'header__links--mobile' with use_growave_account_app: use_growave_account_app,
+    root_url: root_url -%}"
+  to: "{%- render 'header__links--mobile' with use_growave_account_app, use_growave_account_app:
+    use_growave_account_app, root_url: root_url -%}"
+  position: 282..419
+- from: "{% render 'icon-bar' with add_class: 'ver-sub' %}"
+  to: "{% render 'icon-bar' with add_class, add_class: 'ver-sub' %}"
+  position: 685..745
+{%- endcomment -%}

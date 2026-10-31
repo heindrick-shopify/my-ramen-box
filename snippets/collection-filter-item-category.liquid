@@ -78,16 +78,16 @@
 	  	<ul class="list--inline gutter-ele-bottom" role="list">
   			<li class="gutter-ele-bottom">
 					<a class="cfc__link cf__link flex flex-align-ver" href="{{ routes.all_products_collection_url }}{{ filter_sortby_param }}" title="{{ 'collections.general.all_collections' | t | escape }}">{{ 'collections.general.all_collections' | t }}{%- unless enable_rtl -%}
-							{%- render 'icon-chevron-right' with add_classes: 'cf__back-icon' -%}
+							{%- render 'icon-chevron-right' with add_classes, add_classes: 'cf__back-icon' -%}
 						{%- else -%}
-							{%- render 'icon-chevron-left' with add_classes: 'cf__back-icon' -%}	
+							{%- render 'icon-chevron-left' with add_classes, add_classes: 'cf__back-icon' -%}	
 						{%- endunless -%}
 					</a>
 				</li>
 				{%- if parentPath != blank -%}
 			  	{%- assign parent_node_handles_array = parentPath | split: '/' -%}
 			  	{%- for p_handle in parent_node_handles_array -%}
-						{%- render 'collection-filter-parent-node' with collection_parent_node: collections[p_handle], filter_sortby_param: filter_sortby_param, enable_rtl: enable_rtl, padding_left: padding_left -%}
+						{%- render 'collection-filter-parent-node' with collection_parent_node, collection_parent_node: collections[p_handle], filter_sortby_param: filter_sortby_param, enable_rtl: enable_rtl, padding_left: padding_left -%}
 						{%- assign padding_left = padding_left | plus: 15 -%}
 			  	{%- endfor -%}
 		  	{%- endif -%}
@@ -96,7 +96,7 @@
 		  	</li>
 		  </ul>
 	  {%- endif -%}
-	  {%- render 'collection-filter-render-tree' with treeNodes: renderNodes, filter_sortby_param: filter_sortby_param, enable_rtl: enable_rtl, padding_left: padding_left, enable_rtl: enable_rtl, left_holder: left_holder, right_holder: right_holder -%}
+	  {%- render 'collection-filter-render-tree' with treeNodes, treeNodes: renderNodes, filter_sortby_param: filter_sortby_param, enable_rtl: enable_rtl, padding_left: padding_left, left_holder: left_holder, right_holder: right_holder -%}
 	{%- else -%}
   {%- if linklists[section.settings.category_filter_category].links.size > 0 -%}
 	  <ul class="link-list mobile-nav" style="padding-{{ left_holder }}:0;">
@@ -137,3 +137,32 @@
 	{%- endif -%}
 	{%- endif-%}
 </div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'icon-chevron-right' with add_classes: 'cf__back-icon' -%}"
+  to: "{%- render 'icon-chevron-right' with add_classes, add_classes: 'cf__back-icon'
+    -%}"
+  position: 3949..4031
+- from: "{%- render 'icon-chevron-left' with add_classes: 'cf__back-icon' -%}"
+  to: "{%- render 'icon-chevron-left' with add_classes, add_classes: 'cf__back-icon'
+    -%}"
+  position: 4058..4139
+- from: "{%- render 'collection-filter-parent-node' with collection_parent_node: collections[p_handle],
+    filter_sortby_param: filter_sortby_param, enable_rtl: enable_rtl, padding_left:
+    padding_left -%}"
+  to: "{%- render 'collection-filter-parent-node' with collection_parent_node, collection_parent_node:
+    collections[p_handle], filter_sortby_param: filter_sortby_param, enable_rtl: enable_rtl,
+    padding_left: padding_left -%}"
+  position: 4355..4570
+- from: "{%- render 'collection-filter-render-tree' with treeNodes: renderNodes, filter_sortby_param:
+    filter_sortby_param, enable_rtl: enable_rtl, padding_left: padding_left, enable_rtl:
+    enable_rtl, left_holder: left_holder, right_holder: right_holder -%}"
+  to: "{%- render 'collection-filter-render-tree' with treeNodes, treeNodes: renderNodes,
+    filter_sortby_param: filter_sortby_param, enable_rtl: enable_rtl, padding_left:
+    padding_left, left_holder: left_holder, right_holder: right_holder -%}"
+  position: 4853..5086
+{% endcomment %}

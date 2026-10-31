@@ -10,7 +10,7 @@ itemtype="https://schema.org/ListItem">
       </a>
       <span class="breadcrumbs__slash dib">/</span>
       {%- assign bIndex = bIndex | plus: 1 -%}
-      {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+      {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
     </li>
     {% if collection.url %}
     <li itemprop="itemListElement" itemscope
@@ -21,7 +21,7 @@ itemtype="https://schema.org/ListItem">
       </a>
       <span class="breadcrumbs__slash dib">/</span>
       {%- assign bIndex = bIndex | plus: 1 -%}
-      {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+      {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
     </li>
     {% endif %}
     <li itemprop="itemListElement" itemscope
@@ -31,8 +31,23 @@ itemtype="https://schema.org/ListItem">
         <span itemprop="name">{{ product.title }}</span>
       </a>
       {%- assign bIndex = bIndex | plus: 1 -%}
-      {%- render 'breadcrumbs-index' with bIndex: bIndex -%}
+      {%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}
     </li>
   </ul>
 </div>
-{%- endif -%}
+{%- endif -%}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 618..680
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 1071..1133
+- from: "{%- render 'breadcrumbs-index' with bIndex: bIndex -%}"
+  to: "{%- render 'breadcrumbs-index' with bIndex, bIndex: bIndex -%}"
+  position: 1454..1516
+{%- endcomment -%}
